@@ -1,0 +1,26 @@
+name: Daily Supabase Snapshot
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # هر روز ساعت 03:00 UTC — می‌تونی تغییرش بدی
+  workflow_dispatch:    # امکان اجرای دستی از Actions UI
+
+jobs:
+  take-snapshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Run snapshot script
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: |
+          node ./scripts/take_snapshots.js
