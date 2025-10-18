@@ -3,27 +3,32 @@ name: Take Daily YouTube Snapshots
 on:
   schedule:
     - cron: "0 0 * * *" # هر روز ساعت 00:00 UTC
-  workflow_dispatch:     # برای اجرا دستی از GitHub UI
+  workflow_dispatch:
 
 jobs:
-  snapshot:
+  youtube-snapshot:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Run snapshot script
+      - name: Run YouTube snapshot script
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: node scripts/take_snapshots.js
+
+      - name: Success message
+        if: success()
+        run: echo "✅ YouTube snapshots successfully taken!"
