@@ -2,155 +2,139 @@
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { supabase } from "@/lib/supabaseClient";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
-interface Channel {
+interface VideoStats {
   id: string;
   title: string;
-  description: string | null;
-  thumbnail: string | null;
-  published_at: string | null;
-  country: string | null;
-  custom_url: string | null;
+  publishedAt: string;
+  views: number;
+  likes: number;
+  comments: number;
 }
 
-export default function Dashboard() {
+interface Summary {
+  totalVideos: number;
+  totalViews: number;
+  totalLikes: number;
+  totalComments: number;
+  avgViews: number;
+}
+
+export default function DashboardPage() {
   const searchParams = useSearchParams();
-  const url = searchParams.get("url");
-  const [channel, setChannel] = useState<Channel | null>(null);
+  const channel = searchParams.get("channel");
+  const [summary, setSummary] = useState<Summary | null>(null);
+  const [videos, setVideos] = useState<VideoStats[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchChannel = async () => {
-      if (!url) {
-        console.error("❌ No URL found in query params");
-        setLoading(false);
-        return;
-      }
+    async function fetchAnalytics() {
+      if (!channel) return;
+      setLoading(true);
 
       try {
-        // مرحله ۱️⃣ بررسی اینکه کانال از قبل در دیتابیس هست یا نه
-        console.log("🔍 Checking if channel exists in DB...");
-        const { data: existing, error: checkError } = await supabase
-          .from("channels")
-          .select("*")
-          .ilike("custom_url", `%${url}%`)
-          .maybeSingle();
+        // مرحله ۱: گرفتن اطلاعات کانال برای Channel ID
+        const channelRes = await fetch(`/api/youtube?channel=${channel}`);
+        const channelData = await channelRes.json();
+        const channelId = channelData?.id;
 
-        if (checkError) {
-          console.error("❌ Error checking channel:", checkError);
-        }
+        // مرحله ۲: گرفتن آنالیز ۳۰ روزه
+        const analyticsRes = await fetch(`/api/youtube/analytics?channelId=${channelId}`);
+        const analyticsData = await analyticsRes.json();
 
-        if (existing) {
-          console.log("✅ Channel found in DB:", existing.title);
-          setChannel(existing);
-          setLoading(false);
-          return;
-        }
-
-        // مرحله ۲️⃣ اگر نبود، از /api/search اطلاعات بگیر
-        console.log("📡 Channel not found — fetching from API...");
-        const res = await fetch("/api/search", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ query: url }),
-        });
-
-        const data = await res.json();
-
-        if (!res.ok || !data.channelId) {
-          throw new Error(data.error || "Failed to fetch channel info");
-        }
-
-        // مرحله ۳️⃣ ذخیره در دیتابیس
-        console.log("💾 Saving channel to DB...");
-        const { error: insertError } = await supabase.from("channels").upsert({
-          id: data.channelId,
-          title: data.title,
-          description: data.description,
-          thumbnail: data.thumbnail,
-          published_at: data.publishedAt,
-          country: data.country || null,
-          custom_url: data.customUrl || url,
-        });
-
-        if (insertError) {
-          console.error("❌ Error saving channel:", insertError);
-          throw insertError;
-        }
-
-        // مرحله ۴️⃣ حالا مجدداً از دیتابیس بخون تا state آپدیت شه
-        const { data: saved } = await supabase
-          .from("channels")
-          .select("*")
-          .eq("id", data.channelId)
-          .single();
-
-        setChannel(saved);
-        console.log("✅ Channel saved and loaded successfully:", saved.title);
-      } catch (err: any) {
-        console.error("❌ Unexpected error in fetchChannel:", err.message);
+        setSummary(analyticsData.summary);
+        setVideos(analyticsData.videos);
+      } catch (err) {
+        console.error("Error fetching analytics:", err);
       } finally {
         setLoading(false);
       }
-    };
+    }
 
-    fetchChannel();
-  }, [url, supabase]);
+    fetchAnalytics();
+  }, [channel]);
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-gray-600">
-        <p>Loading channel data...</p>
-      </div>
-    );
+    return <p className="text-center text-lg mt-20">Loading analytics...</p>;
   }
 
-  if (!channel) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-gray-600">
-        <p>No channel data found.</p>
-      </div>
-    );
+  if (!summary) {
+    return <p className="text-center text-lg mt-20 text-red-500">No analytics data found.</p>;
   }
 
   return (
-    <>
-      <Navbar />
-      <main className="max-w-5xl mx-auto px-6 py-24">
-        <h1 className="text-3xl font-bold mb-6">{channel.title}</h1>
-        <div className="flex items-center gap-6 mb-6">
-          {channel.thumbnail && (
-            <img
-              src={channel.thumbnail}
-              alt={channel.title}
-              className="w-24 h-24 rounded-full"
-            />
-          )}
-          <div>
-            <p className="text-gray-700">{channel.description}</p>
-            <p className="text-sm text-gray-500 mt-2">
-              Country: {channel.country || "N/A"}
-            </p>
-            <p className="text-sm text-gray-500">
-              Created:{" "}
-              {channel.published_at
-                ? new Date(channel.published_at).toLocaleDateString()
-                : "Unknown"}
-            </p>
-          </div>
-        </div>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold text-center mb-6">YouTube Channel Analytics (Last 30 Days)</h1>
 
-        <div className="border-t border-gray-200 mt-10 pt-10">
-          <h2 className="text-xl font-semibold mb-4">Channel Insights</h2>
-          <p className="text-gray-600">
-            (Coming soon — analytics, growth charts, and more!)
-          </p>
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+        <Card>
+          <CardHeader><CardTitle>Total Videos</CardTitle></CardHeader>
+          <CardContent className="text-2xl font-bold">{summary.totalVideos}</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader><CardTitle>Total Views</CardTitle></CardHeader>
+          <CardContent className="text-2xl font-bold">{summary.totalViews.toLocaleString()}</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader><CardTitle>Total Likes</CardTitle></CardHeader>
+          <CardContent className="text-2xl font-bold">{summary.totalLikes.toLocaleString()}</CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader><CardTitle>Total Comments</CardTitle></CardHeader>
+          <CardContent className="text-2xl font-bold">{summary.totalComments.toLocaleString()}</CardContent>
+        </Card>
+      </div>
+
+      {/* Line Chart */}
+      <Card className="p-4">
+        <CardHeader><CardTitle>Views by Video (30 Days)</CardTitle></CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={350}>
+            <LineChart data={videos} margin={{ top: 20, right: 30, left: 0, bottom: 5 }}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="publishedAt" tickFormatter={(date) => date.slice(5, 10)} />
+              <YAxis />
+              <Tooltip formatter={(value: number) => value.toLocaleString()} labelFormatter={(label) => `📅 ${label}`} />
+              <Line type="monotone" dataKey="views" stroke="#007BFF" strokeWidth={2} dot={false} />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+
+      {/* Video Table */}
+      <div className="mt-10">
+        <h2 className="text-xl font-semibold mb-3">Recent Videos</h2>
+        <div className="overflow-x-auto border rounded-lg">
+          <table className="min-w-full text-sm text-left">
+            <thead className="bg-gray-100">
+              <tr>
+                <th className="px-4 py-2">Title</th>
+                <th className="px-4 py-2">Published</th>
+                <th className="px-4 py-2">Views</th>
+                <th className="px-4 py-2">Likes</th>
+                <th className="px-4 py-2">Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              {videos.map((v) => (
+                <tr key={v.id} className="border-t hover:bg-gray-50">
+                  <td className="px-4 py-2">{v.title}</td>
+                  <td className="px-4 py-2">{v.publishedAt.slice(0, 10)}</td>
+                  <td className="px-4 py-2">{v.views.toLocaleString()}</td>
+                  <td className="px-4 py-2">{v.likes.toLocaleString()}</td>
+                  <td className="px-4 py-2">{v.comments.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      </main>
-      <Footer />
-    </>
+      </div>
+    </div>
   );
 }

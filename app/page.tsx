@@ -14,36 +14,44 @@ export default function Home() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-  const [query, setQuery] = useState<string>("");
+    const [query, setQuery] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false); // ✅ حالت لودینگ
   const router = useRouter();
 
-    const handleSearch = async () => {
+  const handleSearch = async () => {
     if (!query.trim()) return;
+    setLoading(true); // ✅ شروع لودینگ
 
     try {
-      // درج در دیتابیس به صورت غیرمسدودکننده
-      const { error } = await supabase
-        .from("search_history")
-        .insert([{ query: query.trim(), created_at: new Date().toISOString() }]);
-
-      if (error) {
-        console.error("❌ Error saving search:", error);
-      }
-    } catch (err: unknown) {
-      console.error("❌ Unexpected error saving search:", err);
+      // درج در Supabase (اختیاری)
+      await supabase.from("search_history").insert([
+        { query: query.trim(), created_at: new Date().toISOString() },
+      ]);
+    } catch (err) {
+      console.error("❌ Error saving search:", err);
     }
 
-    // بعدش برو به داشبورد
-    router.push(`/dashboard?url=${encodeURIComponent(query.trim())}`);
+    // ✅ هدایت به داشبورد با پارامتر channel
+    setTimeout(() => {
+      router.push(`/dashboard?channel=${encodeURIComponent(query.trim())}`);
+    }, 800);
   };
-
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") handleSearch();
   };
 
+
   return (
     <>
+
+    {loading && (
+  <div className="fixed inset-0 bg-white/90 flex flex-col items-center justify-center z-50">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-[#bfd62e] mb-4"></div>
+    <p className="text-gray-700 font-medium">Loading channel data...</p>
+  </div>
+)}
+
       <Navbar />
 
       {/* Hero Section */}
