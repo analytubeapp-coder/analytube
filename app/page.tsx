@@ -7,6 +7,8 @@ import Footer from "@/components/Footer";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { createClient } from "@supabase/supabase-js";
+import ChannelAnalytics from "@/components/ChannelAnalytics";
+
 
 
 export default function Home() {
@@ -32,9 +34,23 @@ export default function Home() {
     }
 
     // ✅ هدایت به داشبورد با پارامتر channel
-    setTimeout(() => {
-      router.push(`/dashboard?channel=${encodeURIComponent(query.trim())}`);
-    }, 800);
+    // 1) resolve channel
+const res = await fetch("/api/resolve-channel", {
+  method:"POST",
+  headers:{ "Content-Type":"application/json" },
+  body: JSON.stringify({ query }),
+});
+const data = await res.json();
+
+if (!data.channelId) {
+  alert("Channel not found");
+  setLoading(false);
+  return;
+}
+
+// 2) redirect
+router.push(`/channel/${data.channelId}`);
+
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
