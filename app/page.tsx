@@ -1,133 +1,61 @@
 "use client";
 
-import { useState, KeyboardEvent } from "react";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Search } from "lucide-react";
 import Image from "next/image";
-import { createClient } from "@supabase/supabase-js";
-import ChannelAnalytics from "@/components/ChannelAnalytics";
-
-
+import { useRouter } from "next/navigation";
 
 export default function Home() {
-    const supabase = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-  );
-    const [query, setQuery] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false); // ✅ حالت لودینگ
+  const [heroQuery, setHeroQuery] = useState("");
+  const [ctaQuery, setCtaQuery] = useState("");
   const router = useRouter();
 
-  const handleSearch = async () => {
-    if (!query.trim()) return;
-    setLoading(true); // ✅ شروع لودینگ
-
-    try {
-      // درج در Supabase (اختیاری)
-      await supabase.from("search_history").insert([
-        { query: query.trim(), created_at: new Date().toISOString() },
-      ]);
-    } catch (err) {
-      console.error("❌ Error saving search:", err);
-    }
-
-    // ✅ هدایت به داشبورد با پارامتر channel
-    // 1) resolve channel
-const res = await fetch("/api/resolve-channel", {
-  method:"POST",
-  headers:{ "Content-Type":"application/json" },
-  body: JSON.stringify({ query }),
-});
-const data = await res.json();
-
-if (!data.channelId) {
-  alert("Channel not found");
-  setLoading(false);
-  return;
-}
-
-// 2) redirect
-router.push(`/channel/${data.channelId}`);
-
-  };
-
-  const handleKeyPress = (e: KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") handleSearch();
-  };
-
+const handleSearch = (query: string) => {
+  const trimmed = query.trim();
+  if (!trimmed) return;
+  router.push(`/dashboard/${encodeURIComponent(trimmed)}`);
+};
 
   return (
     <>
-
-    {loading && (
-  <div className="fixed inset-0 bg-white/90 flex flex-col items-center justify-center z-50">
-    <div className="animate-spin rounded-full h-12 w-12 border-t-4 border-[#bfd62e] mb-4"></div>
-    <p className="text-gray-700 font-medium">Loading channel data...</p>
-  </div>
-)}
-
       <Navbar />
 
-      {/* Hero Section */}
+      {/* HERO SECTION … */}
       <section className="bg-white text-black pt-24">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          {/* Left side: Title + Subtitle + Search */}
           <div className="pt-24">
             <h1 className="text-4xl md:text-4xl font-extrabold leading-snug mb-6">
               Clear, Accurate YouTube <br />
               Insights That Help You <br />
               Grow Faster
             </h1>
-
             <p className="text-base md:text-lg text-[#414141] mb-8 max-w-lg">
               Stop guessing. Analyze your channel, track real performance, and
               uncover competitor strategies all in one simple dashboard.
             </p>
 
-            {/* Search Box */}
             <div className="flex items-center w-full max-w-lg bg-[#f5f5f5] rounded-full overflow-hidden mt-2">
               <input
-                type="text"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={handleKeyPress}
+                value={heroQuery}
+                onChange={(e) => setHeroQuery(e.target.value)}
                 className="flex-grow bg-transparent px-8 py-3 text-sm md:text-base focus:outline-none"
                 placeholder="Search Channel or paste URL"
               />
               <button
-                onClick={handleSearch}
-                className="bg-[#bfd62e] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#a6bd29] transition"
-              >
-                <Search size={20} className="text-white" />
-              </button>
+  onClick={() => handleSearch(heroQuery)}
+  className="bg-[#bfd62e] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#a6bd29] transition"
+>
+  <Search size={20} className="text-white" />
+</button>
             </div>
           </div>
 
-          {/* Right side: Illustration */}
           <div className="relative flex justify-center md:justify-end pt-16">
-            <Image
-              src="/woman.svg"
-              alt="Creator Woman"
-              width={400}
-              height={400}
-              className="rounded-xl relative z-10"
-            />
-            <Image
-              src="/star.svg"
-              alt="Star"
-              width={50}
-              height={50}
-              className="absolute -top--4 right-80"
-            />
-            <Image
-              src="/star.svg"
-              alt="Star"
-              width={50}
-              height={50}
-              className="absolute bottom-10 left-0"
-            />
+            <Image src="/woman.svg" alt="Creator Woman" width={400} height={400} className="rounded-xl relative z-10" />
+            <Image src="/star.svg" alt="Star" width={50} height={50} className="absolute -top--4 right-80" />
+            <Image src="/star.svg" alt="Star" width={50} height={50} className="absolute bottom-10 left-0" />
           </div>
         </div>
       </section>
@@ -244,26 +172,24 @@ router.push(`/channel/${data.channelId}`);
         </div>
       </section>
 
-      {/* Final CTA Section */}
+      {/* FINAL CTA */}
       <section className="pt-20 pb-40 bg-white text-center">
         <h2 className="text-2xl md:text-3xl font-extrabold mb-10">
           Ready to analyze your first channel?
         </h2>
         <div className="flex items-center w-full max-w-xl mx-auto bg-[#f5f5f5] rounded-full overflow-hidden">
           <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={handleKeyPress}
+            value={ctaQuery}
+            onChange={(e) => setCtaQuery(e.target.value)}
             className="flex-grow bg-transparent px-8 py-3 text-sm md:text-base focus:outline-none"
             placeholder="Search Channel or paste URL"
           />
           <button
-            onClick={handleSearch}
-            className="bg-[#bfd62e] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#a6bd29] transition"
-          >
-            <Search size={20} className="text-white" />
-          </button>
+  onClick={() => handleSearch(ctaQuery)}
+  className="bg-[#bfd62e] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#a6bd29] transition"
+>
+  <Search size={20} className="text-white" />
+</button>
         </div>
       </section>
 
