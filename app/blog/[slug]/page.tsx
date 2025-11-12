@@ -1,14 +1,12 @@
+// blog/[slug]/page.tsx
+
 import { supabase } from "@/lib/supabaseClient";
 import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const { data: post } = await supabase
     .from("posts")
@@ -18,18 +16,13 @@ export async function generateMetadata({
 
   return {
     title: post?.title ? `${post.title} | AnalyTube Blog` : "AnalyTube Blog",
-    description:
-      post?.content?.slice(0, 150) || "Read the latest from AnalyTube.",
+    description: post?.content?.slice(0, 150) || "Read the latest from AnalyTube.",
   };
 }
 
 export const revalidate = 60;
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
 
   const { data: post, error } = await supabase
@@ -43,9 +36,7 @@ export default async function BlogPostPage({
       <>
         <Navbar />
         <div className="max-w-3xl mx-auto py-32 text-center">
-          <h1 className="text-2xl font-semibold text-gray-700">
-            Post not found 😕
-          </h1>
+          <h1 className="text-2xl font-semibold text-gray-700">Post not found 😕</h1>
           <Link href="/blog" className="text-[#BFD62E] underline mt-20 block">
             ← Back to Blog
           </Link>
@@ -63,7 +54,7 @@ export default async function BlogPostPage({
           ← Back to Blog
         </Link>
 
-        <h1 className="text-4xl font-bold mt-6 mb-4">{post.title}</h1>
+        <h1 className="text-4xl font-bold mt-6 mb-8">{post.title}</h1>
         <p className="text-gray-500 text-sm mb-8">
           {new Date(post.created_at).toLocaleDateString()}
         </p>
@@ -79,11 +70,10 @@ export default async function BlogPostPage({
           </div>
         )}
 
-        <div className="prose prose-lg max-w-none">
-          {post.content.split("\n").map((p: string, i: number) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
+        {/* محتوای HTML وبلاگ با استایل Typography */}
+        <article className="max-w-none mx-auto space-y-6">
+  <div dangerouslySetInnerHTML={{ __html: post.content }} className="space-y-4" />
+</article>
       </div>
       <Footer />
     </>

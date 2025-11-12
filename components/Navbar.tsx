@@ -35,24 +35,22 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-white shadow-sm fixed top-0 left-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <nav className="w-full bg-white fixed top-0 left-0 z-50">
+      <div className="w-full px-20 py-7 flex items-center justify-between">
         {/* Left side: Logo + Links */}
-        <div className="flex items-center space-x-8">
-          <Link href="/">
-            <Image
-              src="/logo.svg"
-              alt="AnalyTube Logo"
-              width={150}
-              height={50}
-              priority
-            />
-          </Link>
+        <div className="flex items-center space-x-16">
+          <Link href="/" className="flex items-center">
+  <Image
+    src="/logoo.svg"
+    alt="AnalyTube Logo"
+    width={150}
+    height={80}
+    className="translate-y-[-2px]"
+    priority
+  />
+</Link>
 
-          <div className="hidden md:flex items-center space-x-6 text-sm font-medium text-gray-800">
-            <Link href="/dashboard" className="hover:text-purple">
-              Dashboard
-            </Link>
+          <div className="hidden md:flex items-center space-x-10 text-sm font-medium text-black">
             <Link href="/blog" className="hover:text-purple">
               Blog
             </Link>
@@ -74,7 +72,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/signin"
-                className="bg-black text-white! px-4 py-2 rounded-md font-semibold hover:bg-gray-800"
+                className="bg-black text-white! px-6 py-4 rounded-full font-semibold hover:bg-gray-800"
               >
                 Log in
               </Link>
@@ -163,9 +161,6 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-white shadow-md px-6 py-4 space-y-4 text-sm font-medium text-text">
-          <Link href="/dashboard" className="block hover:text-purple">
-            Dashboard
-          </Link>
           <Link href="/blog" className="block hover:text-purple">
             Blog
           </Link>

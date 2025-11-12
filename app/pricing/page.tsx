@@ -15,11 +15,11 @@ export default function PricingPage() {
 
       {/* Hero + Pricing */}
       <main className="flex-1 relative overflow-hidden">
-        <section className="max-w-6xl mx-auto px-6 pt-40 pb-32 grid md:grid-cols-2 gap-20 items-center">
+        <section className="max-w-6xl mx-auto px-6 pt-36 pb-32 grid md:grid-cols-2 gap-20 items-center">
           {/* Left Side (Text) */}
           <div>
             <h1 className="text-5xl md:text-5xl font-extrabold leading-tight mb-6">
-              Know your rivals, <br /> grow your channel.
+              Know Your Rivals, <br /> <span className="text-[#E94C88]">Grow</span> Your Channel.
             </h1>
             <p className="text-gray-600 text-base md:text-lg mb-10 max-w-md">
               Stop guessing. Analyze your channel, track performance, and uncover
@@ -43,7 +43,7 @@ export default function PricingPage() {
                 </span>
                 <div
                   className={`w-10 h-5 flex items-center rounded-full p-1 transition-colors duration-300 ${
-                    isYearly ? "bg-[#bfd62e]" : "bg-gray-300"
+                    isYearly ? "bg-[#E94C88]" : "bg-gray-300"
                   }`}
                 >
                   <div
@@ -70,7 +70,7 @@ export default function PricingPage() {
 
             {/* Discount text */}
             <p
-              className={`text-green-600 text-sm font-medium mb-5 h-4 transition-opacity duration-300 ${
+              className={`text-[#2BC016] text-sm font-medium mb-5 h-4 transition-opacity duration-300 ${
                 isYearly ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -86,7 +86,7 @@ export default function PricingPage() {
             </ul>
 
             {/* CTA Button */}
-            <button className="bg-[#bfd62e] hover:bg-[#a6bd29] text-white font-semibold py-3 px-6 rounded-full w-full text-center transition-all duration-200">
+            <button className="bg-[#E94C88] hover:bg-[#DA3B72] text-white font-semibold py-3 px-6 rounded-full w-full text-center transition-all duration-200">
               Subscribe
             </button>
 
@@ -97,13 +97,6 @@ export default function PricingPage() {
         </section>
 
         {/* Decorative Icons */}
-        <Image
-          src="/arrow.svg"
-          alt="arrow"
-          width={50}
-          height={50}
-          className="absolute top-150 right-234 opacity-100"
-        />
         <Image
           src="/icon.svg"
           alt="icon"

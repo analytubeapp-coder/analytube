@@ -156,7 +156,7 @@ export default function ProfilePage() {
           />
           <label
             htmlFor="avatar-upload"
-            className="absolute bottom-0 right-0 bg-[#BFD62E] text-black p-2 rounded-full cursor-pointer hover:opacity-80 transition"
+            className="absolute bottom-0 right-0 bg-[#E94C88] text-[#FFFFFF] p-2 rounded-full cursor-pointer hover:opacity-80 transition"
           >
             <Upload size={18} />
           </label>
@@ -201,7 +201,7 @@ export default function ProfilePage() {
             type="text"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#BFD62E]"
+            className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#E94C88]"
           />
         </div>
 
@@ -214,7 +214,7 @@ export default function ProfilePage() {
             type="text"
             value={channelName}
             onChange={(e) => setChannelName(e.target.value)}
-            className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#BFD62E]"
+            className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#E94C88]"
           />
         </div>
 
@@ -229,7 +229,7 @@ export default function ProfilePage() {
           {profile?.plan !== "pro" && (
             <button
               onClick={handleUpgrade}
-              className="bg-[#BFD62E] text-black px-4 py-2 rounded-md font-medium hover:opacity-80 transition"
+              className="bg-[#E94C88] text-[#FFFFFF] px-4 py-2 rounded-md font-regular hover:opacity-80 transition"
             >
               Upgrade to Pro
             </button>

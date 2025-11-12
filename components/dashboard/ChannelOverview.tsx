@@ -1,18 +1,15 @@
-//components/dashboard/ChannelOverview.tsx
-
 "use client";
 
-import { ClipboardCopy } from "lucide-react";
+import { Copy } from "lucide-react";
 
 interface Props {
   channel: {
     views: number;
   };
-  keywords: string[]; // ✅ اضافه شد
+  keywords: string[];
 }
 
 export default function ChannelOverview({ channel, keywords }: Props) {
-  // ✅ Clipboard copy واقعی
   const copyAll = () => {
     navigator.clipboard.writeText(keywords.join(", "));
   };
@@ -32,27 +29,33 @@ export default function ChannelOverview({ channel, keywords }: Props) {
   const revenueAvg = (revenueMin + revenueMax) / 2;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-10">
       
       {/* LEFT — Top Keywords */}
-      <div className="bg-white rounded-2xl p-6 shadow-sm lg:col-span-2">
-        <div className="flex justify-between">
-          <h4 className="font-semibold mb-4 text-gray-800">Top Keywords</h4>
+      <div className="bg-white rounded-2xl p-6 border border-[#eee] lg:col-span-2">
+        <div className="flex justify-between items-center">
+          <h4 className="text-lg font-semibold text-gray-900 tracking-tight">
+            Top Keywords
+          </h4>
+
           {keywords.length > 0 && (
             <button
-              className="flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 transition"
+              className="flex items-center gap-2 text-sm text-gray-600 hover:text-gray-900 transition"
               onClick={copyAll}
             >
               Copy All
-              <ClipboardCopy size={18} />
+              <Copy size={16} />
             </button>
           )}
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 mt-4">
           {keywords.length > 0 ? (
             keywords.map((k, i) => (
-              <span key={i} className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm shadow-sm">
+              <span
+                key={i}
+                className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
+              >
                 {k}
               </span>
             ))
@@ -62,19 +65,27 @@ export default function ChannelOverview({ channel, keywords }: Props) {
         </div>
       </div>
 
-      {/* RIGHT — Stats Cards */}
-      <div className="space-y-6">
-        <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
-          <p className="text-xs text-gray-600 mb-1">Total Lifetime Views</p>
-          <p className="text-3xl font-bold text-gray-900">{shortFmt(channel.views)}</p>
+      {/* RIGHT — Stats */}
+      <div className="space-y-4">
+        <div className="bg-white rounded-2xl p-4 border border-[#eee] text-center">
+          <p className="text-sm font-medium text-gray-600 mb-1">Total Lifetime Views</p>
+          <p className="text-3xl font-bold text-gray-900 tracking-tight">
+            {shortFmt(channel.views)}
+          </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-sm text-center">
-          <p className="text-xs text-gray-600 mb-1">Estimated Revenue (Lifetime)</p>
-          <p className="text-xl font-bold">
+        <div className="bg-white rounded-2xl p-4 border border-[#eee] text-center">
+          <p className="text-sm font-medium text-gray-600 mb-1">
+            Estimated Revenue (Lifetime)
+          </p>
+
+          <p className="text-3xl font-bold text-gray-900 tracking-tight">
             ${shortFmt(revenueMin)} - ${shortFmt(revenueMax)}
           </p>
-          <p className="text-xs text-gray-500 mt-1">≈ ${shortFmt(revenueAvg)} average</p>
+
+          <p className="text-xs text-gray-500 mt-1">
+            ≈ ${shortFmt(revenueAvg)} average
+          </p>
         </div>
       </div>
     </div>

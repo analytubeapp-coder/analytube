@@ -15,7 +15,7 @@ export default function About() {
       <Navbar />
 
       {/* Header */}
-      <section className="relative bg-[#bfd62e] pt-50 pb-24">
+      <section className="relative bg-[#E94C88] pt-50 pb-24">
         {/* Decorative shapes */}
         <div className="absolute bottom-35 right-80 w-10 h-10 bg-white opacity-40 rotate-65"></div>
         <div className="absolute top-30 right-20 w-14 h-14 bg-white opacity-40 rounded-full"></div>
@@ -40,11 +40,11 @@ export default function About() {
               <span className="text-8xl font-extrabold text-black">01</span>
 
               {/* circle */}
-              <div className="w-5 h-5 rounded-full bg-[#bfd62e] absolute top-[150%] -translate-y-1/2" />
+              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2" />
 
               {/* vertical line */}
               <motion.div
-                className="bg-[#bfd62e] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
+                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
                 initial={{ height: 0 }}
                 whileInView={{ height: 230 }}
                 transition={{ duration: verticalDuration, ease: "easeOut" }}
@@ -53,7 +53,7 @@ export default function About() {
 
               {/* horizontal line */}
               <motion.div
-                className="bg-[#bfd62e] h-1 absolute top-[calc(150%+230px)] left-1/2"
+                className="bg-[#E94C88] h-1 absolute top-[calc(150%+230px)] left-1/2"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
@@ -122,11 +122,11 @@ export default function About() {
               <span className="text-8xl font-extrabold text-black">02</span>
 
               {/* circle */}
-              <div className="w-5 h-5 rounded-full bg-[#bfd62e] absolute top-[150%] -translate-y-1/2" />
+              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2" />
 
               {/* vertical line */}
               <motion.div
-                className="bg-[#bfd62e] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
+                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
                 initial={{ height: 0 }}
                 whileInView={{ height: 280 }}
                 transition={{ duration: verticalDuration, ease: "easeOut" }}
@@ -135,7 +135,7 @@ export default function About() {
 
               {/* horizontal line to left */}
               <motion.div
-                className="bg-[#bfd62e] h-1 absolute top-[calc(150%+280px)] right-1/2"
+                className="bg-[#E94C88] h-1 absolute top-[calc(150%+280px)] right-1/2"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
@@ -155,11 +155,11 @@ export default function About() {
               <span className="text-8xl font-extrabold text-black">03</span>
 
               {/* circle */}
-              <div className="w-5 h-5 rounded-full bg-[#bfd62e] absolute top-[150%] -translate-y-1/2" />
+              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2" />
 
               {/* vertical line */}
               <motion.div
-                className="bg-[#bfd62e] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
+                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
                 initial={{ height: 0 }}
                 whileInView={{ height: 300 }}
                 transition={{ duration: verticalDuration, ease: "easeOut" }}
@@ -168,7 +168,7 @@ export default function About() {
 
               {/* horizontal line */}
               <motion.div
-                className="bg-[#bfd62e] h-1 absolute top-[calc(150%+300px)] left-1/2"
+                className="bg-[#E94C88] h-1 absolute top-[calc(150%+300px)] left-1/2"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{

@@ -77,24 +77,24 @@ export default function SignInPage() {
     <div className="flex h-screen">
       {/* سمت چپ */}
       <div
-        className="w-1/3 flex flex-col py-40 px-16 relative"
-        style={{ backgroundColor: "#bfd62e" }}
+        className="w-3/10 flex flex-col py-40 px-16 relative"
+        style={{ backgroundColor: "#E94C88" }}
       >
         <h1 className="mb-8">
-          <span className="block text-2xl text-white font-bold mb-2">
+          <span className="block text-xl text-white font-bold mb-2">
             Welcome back,
           </span>
           <span className="block text-4xl text-white font-extrabold">
             AnalyTube!
           </span>
         </h1>
-        <div className="w-14 h-0.5 bg-white mb-4"></div>
+        <div className="w-30 h-0.5 bg-white mb-10"></div>
         <p className="text-white text-sm max-w-sm">
           Log in to access your insights, accurate revenue tracking, and growth
           tools. Continue your journey with smarter analytics.
         </p>
 
-        <div className="absolute bottom-20 right-[-80px] w-40 h-40 border-[20px] border-white rounded-full"></div>
+        <div className="absolute bottom-20 right-[-80px] w-40 h-40 border-[30px] border-white rounded-full"></div>
       </div>
 
       {/* سمت راست */}
@@ -138,7 +138,7 @@ export default function SignInPage() {
               className={`w-full text-white font-semibold rounded-full py-2 transition-colors duration-200 ${
                 loading
                   ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#bfd62e] hover:bg-[#a6bd29]"
+                  : "bg-[#E94C88] hover:bg-[#DA3B72]"
               }`}
             >
               {loading ? "Sending..." : "Sign In"}

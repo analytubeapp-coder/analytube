@@ -74,7 +74,7 @@ export default function Contact() {
       <Navbar />
 
       {/* Header */}
-            <section className="relative bg-[#bfd62e] pt-40 pb-24">
+            <section className="relative bg-[#e94c88] pt-40 pb-24">
               {/* Decorative shapes */}
               <div className="absolute bottom-35 right-80 w-10 h-10 bg-white opacity-40 rotate-65"></div>
               <div className="absolute top-30 right-20 w-14 h-14 bg-white opacity-40 rounded-full"></div>
@@ -91,7 +91,7 @@ export default function Contact() {
               </h1>
             </section>
 
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#ffffff]">
         <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-12 space-y-8 text-center">
           <p className="text-lg text-gray-700 font-medium">
             Fill out this form and we will get back to you shortly.
@@ -106,7 +106,7 @@ export default function Contact() {
               required
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#bfd62e]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#e94c88]"
             />
             <textarea
               placeholder="Message*"
@@ -114,13 +114,13 @@ export default function Contact() {
               rows={5}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#bfd62e]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#e94c88]"
             ></textarea>
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
             {success && (
               <p className="text-green-600 text-sm">
-                Message sent successfully 🎉
+                Message sent successfully.
               </p>
             )}
 

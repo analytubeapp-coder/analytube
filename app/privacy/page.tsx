@@ -9,7 +9,7 @@ export default function Privacy() {
       <Navbar />
 
       {/* Header Section with Green Background */}
-      <section className="relative bg-[#bfd62e] pt-50 pb-24">
+      <section className="relative bg-[#E94C88] pt-50 pb-24">
         {/* Decorative shapes */}
         <div className="absolute bottom-35 right-80 w-10 h-10 bg-white opacity-40 rotate-65"></div>
         <div className="absolute top-30 right-20 w-14 h-14 bg-white opacity-40 rounded-full"></div>
@@ -29,7 +29,7 @@ export default function Privacy() {
       </section>
 
       {/* Privacy Content */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-[#ffffff]">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-12 space-y-8">
           <div>
             <h2 className="text-xl font-bold mb-2">1. Introduction</h2>

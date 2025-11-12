@@ -22,63 +22,57 @@ const handleSearch = (query: string) => {
     <>
       <Navbar />
 
-      {/* HERO SECTION … */}
-      <section className="bg-white text-black pt-24">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-          <div className="pt-24">
-            <h1 className="text-4xl md:text-4xl font-extrabold leading-snug mb-6">
-              Clear, Accurate YouTube <br />
-              Insights That Help You <br />
-              Grow Faster
-            </h1>
-            <p className="text-base md:text-lg text-[#414141] mb-8 max-w-lg">
-              Stop guessing. Analyze your channel, track real performance, and
-              uncover competitor strategies all in one simple dashboard.
-            </p>
+      {/* HERO SECTION */}
+<section className="bg-white text-black pt-64 pb-32">
+  <div className="w-full px-6 text-center">
 
-            <div className="flex items-center w-full max-w-lg bg-[#f5f5f5] rounded-full overflow-hidden mt-2">
-              <input
-                value={heroQuery}
-                onChange={(e) => setHeroQuery(e.target.value)}
-                className="flex-grow bg-transparent px-8 py-3 text-sm md:text-base focus:outline-none"
-                placeholder="Search Channel or paste URL"
-              />
-              <button
-  onClick={() => handleSearch(heroQuery)}
-  className="bg-[#bfd62e] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#a6bd29] transition"
->
-  <Search size={20} className="text-white" />
-</button>
-            </div>
-          </div>
+    <h1 className="text-[42px] md:text-[48px] font-extrabold leading-tight mb-7 mx-auto">
+  Clear, Actionable YouTube Analytics<br />
+  Accelerate Your Channel <span className="text-[#E94C88]">Growth</span>
+</h1>
 
-          <div className="relative flex justify-center md:justify-end pt-16">
-            <Image src="/woman.svg" alt="Creator Woman" width={400} height={400} className="rounded-xl relative z-10" />
-            <Image src="/star.svg" alt="Star" width={50} height={50} className="absolute -top--4 right-80" />
-            <Image src="/star.svg" alt="Star" width={50} height={50} className="absolute bottom-10 left-0" />
-          </div>
-        </div>
-      </section>
+<p className="text-base md:text-[17px] text-[#414141] mb-14 max-w-3xl mx-auto">
+  Stop guessing and start growing. Analyze your YouTube channel performance, track subscriber growth, and uncover competitor strategies all in one powerful, easy to use dashboard.
+</p>
+
+    <div className="flex items-center w-full max-w-[650px] mx-auto bg-[#f5f5f5] rounded-full overflow-hidden">
+      <input
+        value={heroQuery}
+        onChange={(e) => setHeroQuery(e.target.value)}
+        onKeyDown={(e) => e.key === "Enter" && handleSearch(heroQuery)}
+        className="flex-grow bg-transparent px-8 py-3 text-sm md:text-base focus:outline-none"
+        placeholder="Search Channel or paste URL"
+      />
+      <button
+        onClick={() => handleSearch(heroQuery)}
+        className="bg-[#E94C88] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
+      >
+        <Search size={20} className="text-white" />
+      </button>
+    </div>
+
+  </div>
+</section>
 
       {/* Features Section (3 top cards) */}
-      <section className="py-42 bg-white">
+      <section className="py-54 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             {
-              icon: "/icon-feature1.svg",
-              title: "Competitor insights",
-              text: "See what makes top creators grow and discover strategies you can apply to your own channel.",
-            },
-            {
-              icon: "/icon-feature2.svg",
-              title: "Revenue estimation",
-              text: "Understand real earning potential from both long videos and Shorts with accurate CPM data.",
-            },
-            {
-              icon: "/icon-feature3.svg",
-              title: "Simple & clean design",
-              text: "Get clear insights without complexity, in a dashboard that's easy to use every day.",
-            },
+    icon: "/icon-feature1.svg",
+    title: "Actionable Competitor Insights",
+    text: "Discover what drives growth for top creators, identify successful content strategies, and apply insights directly to your channel for maximum impact.",
+  },
+  {
+    icon: "/icon-feature2.svg",
+    title: "Accurate Revenue Estimates",
+    text: "Understand your true earning potential with precise analytics and CPM data, enabling smarter monetization decisions.",
+  },
+  {
+    icon: "/icon-feature3.svg",
+    title: "Intuitive Dashboard Design",
+    text: "Access all your key YouTube metrics in a clean, organized interface that’s built for creators, saving time and reducing complexity.",
+  },
           ].map((item, index) => (
             <div
               key={index}
@@ -101,19 +95,17 @@ const handleSearch = (query: string) => {
       </section>
 
       {/* Middle Section */}
-      <section className="py-24 bg-white">
+      <section className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-2xl md:text-3xl font-extrabold mb-6">
-              All your YouTube insights. <br />
-              None of the complexity.
-            </h2>
-            <p className="text-base text-[#414141] max-w-lg">
-              With AnalyTube, you get everything you need to understand your
-              channel at a glance. From accurate revenue estimates for both
-              Shorts and long videos to subscriber growth tracking and
-              competitor analysis — all in one simple, powerful dashboard.
-            </p>
+            <h2 className="text-2xl md:text-[36px] font-extrabold mb-6">
+  Complete YouTube Analytics. <br />
+  No Confusion. Just Growth.
+</h2>
+
+<p className="text-base md:text-[16px] text-[#414141] max-w-lg">
+  AnalyTube gives you a holistic view of your YouTube channel. Track subscriber growth, monitor video performance, and gain actionable insights into audience engagement. Make data-driven decisions faster and optimize your content strategy effortlessly.
+</p>
           </div>
 
           <div className="relative flex justify-center md:justify-end">
@@ -129,7 +121,7 @@ const handleSearch = (query: string) => {
       </section>
 
       {/* Why Choose Section */}
-      <section className="py-30 bg-white">
+      <section className="py-42 bg-white">
         <h2 className="text-center text-2xl md:text-3xl font-extrabold mb-20">
           Why creators choose AnalyTube
         </h2>
@@ -137,20 +129,20 @@ const handleSearch = (query: string) => {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             {
-              icon: "/icon-feature4.svg",
-              title: "Accuracy",
-              text: "Get reliable earning estimates powered by YouTube’s public data, so you can trust the numbers you see.",
-            },
-            {
-              icon: "/icon-feature5.svg",
-              title: "Speed",
-              text: "Enjoy instant analysis results in seconds, helping you make faster and smarter content decisions.",
-            },
-            {
-              icon: "/icon-feature6.svg",
-              title: "Trust",
-              text: "Built for creators first — with clear insights, transparency, and no unnecessary data noise.",
-            },
+    icon: "/icon-feature4.svg",
+    title: "Reliable Accuracy",
+    text: "Powered by YouTube’s public data, our analytics provide trustworthy insights you can rely on to make critical decisions.",
+  },
+  {
+    icon: "/icon-feature5.svg",
+    title: "Lightning-fast Analysis",
+    text: "Get instant analytics on your channel performance, reducing guesswork and enabling immediate strategic actions.",
+  },
+  {
+    icon: "/icon-feature6.svg",
+    title: "Creator-first Transparency",
+    text: "Designed for creators with clarity and simplicity in mind, delivering insights without unnecessary noise or complexity.",
+  },
           ].map((item, index) => (
             <div
               key={index}
@@ -173,10 +165,11 @@ const handleSearch = (query: string) => {
       </section>
 
       {/* FINAL CTA */}
-      <section className="pt-20 pb-40 bg-white text-center">
+      <section className="pt-20 pb-30 bg-white text-center">
         <h2 className="text-2xl md:text-3xl font-extrabold mb-10">
-          Ready to analyze your first channel?
-        </h2>
+  Start Growing Your YouTube Channel Today
+</h2>
+
         <div className="flex items-center w-full max-w-xl mx-auto bg-[#f5f5f5] rounded-full overflow-hidden">
           <input
             value={ctaQuery}
@@ -186,7 +179,7 @@ const handleSearch = (query: string) => {
           />
           <button
   onClick={() => handleSearch(ctaQuery)}
-  className="bg-[#bfd62e] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#a6bd29] transition"
+  className="bg-[#E94C88] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
 >
   <Search size={20} className="text-white" />
 </button>

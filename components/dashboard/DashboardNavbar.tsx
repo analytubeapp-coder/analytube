@@ -1,5 +1,3 @@
-//components/dashboard/DashboardNavbar.tsx
-
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -17,39 +15,39 @@ export default function DashboardNavbar() {
   };
 
   return (
-    <div className="bg-white border-b border-gray-100 py-4 shadow-sm">
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+    <nav className="w-full bg-white fixed top-0 left-0 z-50">
+      <div className="w-full px-20 py-7 flex items-center justify-between">
 
-        {/* ✅ Brand Logo */}
+        {/* ✅ Logo - Exactly like main navbar */}
         <Image
-          src="/logo.svg"
-          alt="Analytube"
-          width={135}
-          height={40}
-          className="cursor-pointer"
+          src="/logoo.svg"
+          alt="AnalyTube Logo"
+          width={150}
+          height={80}
+          className="cursor-pointer translate-y-[-2px]"
           onClick={() => router.push("/")}
         />
 
-        {/* ✅ Search Box EXACT like Homepage */}
-        <div className="flex items-center w-full max-w-lg bg-[#f5f5f5] rounded-full overflow-hidden">
+        {/* ✅ Search Box - Same as homepage */}
+        <div className="flex items-center w-full max-w-xl bg-[#f5f5f5] rounded-full overflow-hidden">
           <input
-            type="text"
-            placeholder="Search Channel or paste URL"
-            className="flex-grow bg-transparent px-6 py-3 text-sm md:text-base focus:outline-none"
             value={q}
             onChange={(e) => setQ(e.target.value)}
+            type="text"
+            placeholder="Search Channel or paste URL"
             onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+            className="flex-grow bg-transparent px-6 py-3 text-sm md:text-base focus:outline-none"
           />
-
           <button
             onClick={handleSearch}
-            className="bg-[#bfd62e] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#a7bd28] transition"
+            className="bg-[#E94C88] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
             aria-label="search"
           >
             <Search size={20} className="text-white" />
           </button>
         </div>
+
       </div>
-    </div>
+    </nav>
   );
 }

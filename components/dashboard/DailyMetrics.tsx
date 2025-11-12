@@ -1,4 +1,3 @@
-// components/dashboard/DailyMetrics.tsx
 "use client";
 import React from "react";
 
@@ -12,13 +11,12 @@ function shortFmt(n: number) {
 export default function DailyMetrics({ snapshots }: { snapshots: any[] }) {
   if (!snapshots || snapshots.length === 0) {
     return (
-      <div className="bg-white rounded-2xl p-6 shadow-sm">
+      <div className="bg-white rounded-2xl p-6 border border-[#eee]">
         <p className="text-gray-500">No daily metrics available</p>
       </div>
     );
   }
 
-  // compute daily diffs for views
   const rows = snapshots.map((s: any, i: number) => {
     const prev = snapshots[i - 1];
     const views = Number(s.views || 0);
@@ -34,36 +32,27 @@ export default function DailyMetrics({ snapshots }: { snapshots: any[] }) {
     };
   });
 
-  // daily average over available days (exclude first if it doesn't have a delta)
-  const deltas = rows.slice(1).map((r) => r.dailyViews);
-  const avg = deltas.length ? Math.round(deltas.reduce((a, b) => a + b, 0) / deltas.length) : 0;
-
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-sm">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold">Daily Channel Metrics</h3>
-        <div className="text-sm text-gray-500">Daily average views: <span className="font-bold">{shortFmt(avg)}</span></div>
-      </div>
-
+    <div className="bg-white rounded-2xl p-6 border border-[#eee] mb-10">
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm">
-          <thead className="text-left text-gray-600">
+          <thead className="text-left text-gray-600 border-b border-gray-200">
             <tr>
-              <th className="p-2">Date</th>
-              <th className="p-2">Subscribers</th>
-              <th className="p-2">Views</th>
-              <th className="p-2">Daily Views</th>
-              <th className="p-2">Videos</th>
+              <th className="p-3">Date</th>
+              <th className="p-3 text-center">Subscribers</th>
+              <th className="p-3 text-center">Views</th>
+              <th className="p-3 text-center">Daily Views</th>
+              <th className="p-3 text-center">Videos</th>
             </tr>
           </thead>
           <tbody>
             {rows.slice(-14).reverse().map((r: any) => (
-              <tr key={r.date} className="border-t hover:bg-gray-50">
-                <td className="p-2">{new Date(r.date).toLocaleDateString()}</td>
-                <td className="p-2">{shortFmt(r.subscribers)}</td>
-                <td className="p-2">{shortFmt(r.views)}</td>
-                <td className="p-2">{shortFmt(r.dailyViews)}</td>
-                <td className="p-2">{r.videos}</td>
+              <tr key={r.date} className="border-b last:border-b-0 hover:bg-gray-50 transition">
+                <td className="p-3">{new Date(r.date).toLocaleDateString()}</td>
+                <td className="p-3 text-center">{shortFmt(r.subscribers)}</td>
+                <td className="p-3 text-center">{shortFmt(r.views)}</td>
+                <td className="p-3 text-center">{shortFmt(r.dailyViews)}</td>
+                <td className="p-3 text-center">{r.videos}</td>
               </tr>
             ))}
           </tbody>
