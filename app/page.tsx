@@ -26,7 +26,7 @@ const handleSearch = (query: string) => {
 <section className="bg-white text-black pt-64 pb-32">
   <div className="w-full px-6 text-center">
 
-    <h1 className="text-[42px] md:text-[48px] font-extrabold leading-tight mb-7 mx-auto">
+    <h1 className="text-[34px] md:text-[48px] font-extrabold leading-tight mb-7 mx-auto">
   Clear, Actionable YouTube Analytics<br />
   Accelerate Your Channel <span className="text-[#E94C88]">Growth</span>
 </h1>
@@ -55,7 +55,7 @@ const handleSearch = (query: string) => {
 </section>
 
       {/* Features Section (3 top cards) */}
-      <section className="py-54 bg-white">
+      <section className="py-34 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             {
