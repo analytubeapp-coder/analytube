@@ -24,8 +24,8 @@ export default function SignInInner() {
 
     const redirectTo =
       redirect === "contact"
-        ? "http://localhost:3000/contact"
-        : "http://localhost:3000/";
+        ? `${process.env.NEXT_PUBLIC_SITE_URL}/contact`
+        : process.env.NEXT_PUBLIC_SITE_URL;
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -49,8 +49,8 @@ export default function SignInInner() {
 
     const redirectTo =
       redirect === "contact"
-        ? "http://localhost:3000/contact"
-        : "http://localhost:3000/";
+        ? `${process.env.NEXT_PUBLIC_SITE_URL}/contact`
+        : process.env.NEXT_PUBLIC_SITE_URL;
 
     const { error } = await supabase.auth.signInWithOtp({
       email,

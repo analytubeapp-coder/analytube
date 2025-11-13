@@ -20,7 +20,7 @@ export default function SignUpPage() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: "http://localhost:3000/",
+        redirectTo: process.env.NEXT_PUBLIC_SITE_URL,
       },
     });
     if (error) setError("Google sign-up failed. Please try again.");
@@ -43,7 +43,7 @@ export default function SignUpPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: "http://localhost:3000/",
+        emailRedirectTo: process.env.NEXT_PUBLIC_SITE_URL,
       },
     });
 
