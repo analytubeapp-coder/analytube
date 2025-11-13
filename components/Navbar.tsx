@@ -125,13 +125,13 @@ export default function Navbar() {
         {profile?.plan === "pro" ? "⭐ Pro Plan" : "Free Plan"}
       </p>
     </div>
+
     {/* لینک پروفایل */}
     <Link
       href="/profile"
       className="block px-4 py-2 hover:bg-gray-50 cursor-pointer"
       onClick={() =>
-
-setIsDropdownOpen(false)}
+        setIsDropdownOpen(false)}
     >
       Profile
     </Link>
@@ -160,61 +160,59 @@ setIsDropdownOpen(false)}
       </div>
 
       {/* Mobile Menu */}
-{isOpen && (
-  <div className="md:hidden bg-white px-6 py-4 space-y-4 text-sm font-medium text-text">
-    <div className="flex flex-col space-y-4"> {/* فاصله بهتر بین لوگو و منو */}
-      <Link href="/blog" className="block hover:text-purple">
-        Blog
-      </Link>
-      <Link href="/pricing" className="block hover:text-purple">
-        Pricing
-      </Link>
-      <Link href="/about" className="block hover:text-purple">
-        About Us
-      </Link>
-    </div>
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-md px-6 py-4 space-y-4 text-sm font-medium text-text">
+          <Link href="/blog" className="block hover:text-purple">
+            Blog
+          </Link>
+          <Link href="/pricing" className="block hover:text-purple">
+            Pricing
+          </Link>
+          <Link href="/about" className="block hover:text-purple">
+            About Us
+          </Link>
 
-    {!user ? (
-      <>
-        <Link
-          href="/signup"
-          className="block font-semibold hover:text-purple"
-        >
-          Sign up
-        </Link>
-        <Link
-          href="/signin"
-          className="block bg-black text-white px-4 py-2 rounded-md text-center font-semibold hover:bg-gray-800"
-        >
-          Log in
-        </Link>
-      </>
-    ) : (
-      <div className="pt-4 border-t">
-        <Link
-          href="/profile"
-          className="block hover:text-purple"
-          onClick={() => setIsOpen(false)}
-        >
-          Profile
-        </Link>
-        <Link
-          href="/settings"
-          className="block hover:text-purple"
-          onClick={() => setIsOpen(false)}
-        >
-          Settings
-        </Link>
-        <div
-          onClick={handleLogout}
-          className="block text-red-600 hover:text-red-700 cursor-pointer"
-        >
-          Sign out
+          {!user ? (
+            <>
+              <Link
+                href="/signup"
+                className="block font-semibold hover:text-purple"
+              >
+                Sign up
+              </Link>
+              <Link
+                href="/signin"
+                className="block bg-black text-white px-4 py-2 rounded-md text-center font-semibold hover:bg-gray-800"
+              >
+                Log in
+              </Link>
+            </>
+          ) : (
+            <div className="pt-4 border-t">
+              <Link
+                href="/profile"
+                className="block hover:text-purple"
+                onClick={() => setIsOpen(false)}
+              >
+                Profile
+              </Link>
+              <Link
+                href="/settings"
+                className="block hover:text-purple"
+                onClick={() => setIsOpen(false)}
+              >
+                Settings
+              </Link>
+              <div
+                onClick={handleLogout}
+                className="block text-red-600 hover:text-red-700 cursor-pointer"
+              >
+                Sign out
+              </div>
+            </div>
+          )}
         </div>
-      </div>
-    )}
-  </div>
-)}
+      )}
     </nav>
   );
 }
