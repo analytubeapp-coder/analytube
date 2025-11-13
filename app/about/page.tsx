@@ -86,7 +86,7 @@ export default function About() {
           </div>
 
           {/* SECTION 02 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative py-2">
             {/* text */}
             <div className="md:col-span-2 order-2 md:order-1">
               <h2 className="text-4xl font-extrabold mb-6">Our Mission</h2>
@@ -149,7 +149,7 @@ export default function About() {
           </div>
 
           {/* SECTION 03 */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative py-2">
             {/* number with line */}
             <div className="flex flex-col items-center relative">
               <span className="text-8xl font-extrabold text-black">03</span>
