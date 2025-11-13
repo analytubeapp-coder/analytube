@@ -36,7 +36,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="w-full bg-white fixed top-0 left-0 z-50 shadow-sm">
+    <nav className="w-full bg-white fixed top-0 left-0 z-50">
       {/* Container */}
       <div className="flex items-center justify-between px-6 py-4 md:px-20 md:py-7">
         {/* Left side: Logo + Desktop Links */}
