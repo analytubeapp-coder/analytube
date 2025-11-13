@@ -92,7 +92,7 @@ export default function SignInInner() {
       </div>
 
       {/* سمت راست */}
-      <div className="w-3/5 flex flex-col justify-center items-center">
+      <div className="w-full md:w-3/5 flex flex-col justify-center items-center min-h-screen py-10">
         <div className="w-80">
           <h2 className="text-xl font-bold text-center mb-4">
             Sign in to AnalyTube

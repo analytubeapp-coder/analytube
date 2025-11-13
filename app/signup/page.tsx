@@ -61,7 +61,7 @@ export default function SignUpPage() {
     <div className="flex h-screen">
       {/* سمت چپ */}
       <div
-        className=" hidden md:flex w-3/10 flex flex-col py-40 px-16 relative"
+        className="hidden md:flex w-3/10 flex flex-col py-40 px-16 relative"
         style={{ backgroundColor: "#E94C88" }}
       >
         <h1 className="mb-8">
@@ -84,7 +84,7 @@ export default function SignUpPage() {
       </div>
 
       {/* سمت راست */}
-      <div className="w-3/5 flex flex-col justify-center items-center">
+      <div className="w-full md:w-3/5 flex flex-col justify-center items-center min-h-screen py-10">
         <div className="w-80">
           <h2 className="text-xl font-bold text-center mb-4">
             Sign Up to AnalyTube
