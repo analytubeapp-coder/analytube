@@ -61,7 +61,7 @@ export default function SignUpPage() {
     <div className="flex h-screen">
       {/* سمت چپ */}
       <div
-        className="w-3/10 flex flex-col py-40 px-16 relative"
+        className=" hidden md:flex w-3/10 flex flex-col py-40 px-16 relative"
         style={{ backgroundColor: "#E94C88" }}
       >
         <h1 className="mb-8">
