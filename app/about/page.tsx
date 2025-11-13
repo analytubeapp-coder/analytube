@@ -31,8 +31,8 @@ export default function About() {
       </section>
 
       {/* Content */}
-      <section className="py-60 bg-white">
-        <div className="max-w-6xl mx-auto px-6 space-y-[30rem]">
+      <section className="py-20 md:py-60 bg-white">
+        <div className="max-w-6xl mx-auto px-6 space-y-32 md:space-y-[30rem]">
           {/* SECTION 01 */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative">
             {/* number with line */}
