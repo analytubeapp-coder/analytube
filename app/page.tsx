@@ -26,7 +26,7 @@ const handleSearch = (query: string) => {
 <section className="bg-white text-black pt-64 pb-32">
   <div className="w-full px-6 text-center">
 
-    <h1 className="text-[34px] md:text-[48px] font-extrabold leading-tight mb-7 mx-auto">
+    <h1 className="text-[24px] md:text-[48px] font-extrabold leading-tight mb-7 mx-auto">
   Clear, Actionable YouTube Analytics<br />
   Accelerate Your Channel <span className="text-[#E94C88]">Growth</span>
 </h1>
