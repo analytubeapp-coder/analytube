@@ -40,11 +40,11 @@ export default function About() {
               <span className="text-8xl font-extrabold text-black">01</span>
 
               {/* circle */}
-              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2" />
+              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2 hidden md:block" />
 
               {/* vertical line */}
               <motion.div
-                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
+                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                 initial={{ height: 0 }}
                 whileInView={{ height: 230 }}
                 transition={{ duration: verticalDuration, ease: "easeOut" }}
@@ -53,7 +53,7 @@ export default function About() {
 
               {/* horizontal line */}
               <motion.div
-                className="bg-[#E94C88] h-1 absolute top-[calc(150%+230px)] left-1/2"
+                className="bg-[#E94C88] h-1 absolute top-[calc(150%+230px)] left-1/2 hidden md:block"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
@@ -122,11 +122,11 @@ export default function About() {
               <span className="text-8xl font-extrabold text-black">02</span>
 
               {/* circle */}
-              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2" />
+              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2 hidden md:block" />
 
               {/* vertical line */}
               <motion.div
-                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
+                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                 initial={{ height: 0 }}
                 whileInView={{ height: 280 }}
                 transition={{ duration: verticalDuration, ease: "easeOut" }}
@@ -135,7 +135,7 @@ export default function About() {
 
               {/* horizontal line to left */}
               <motion.div
-                className="bg-[#E94C88] h-1 absolute top-[calc(150%+280px)] right-1/2"
+                className="bg-[#E94C88] h-1 absolute top-[calc(150%+280px)] right-1/2 hidden md:block"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
@@ -155,11 +155,11 @@ export default function About() {
               <span className="text-8xl font-extrabold text-black">03</span>
 
               {/* circle */}
-              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2" />
+              <div className="w-5 h-5 rounded-full bg-[#E94C88] absolute top-[150%] -translate-y-1/2 hidden md:block" />
 
               {/* vertical line */}
               <motion.div
-                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2"
+                className="bg-[#E94C88] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                 initial={{ height: 0 }}
                 whileInView={{ height: 300 }}
                 transition={{ duration: verticalDuration, ease: "easeOut" }}
@@ -168,7 +168,7 @@ export default function About() {
 
               {/* horizontal line */}
               <motion.div
-                className="bg-[#E94C88] h-1 absolute top-[calc(150%+300px)] left-1/2"
+                className="bg-[#E94C88] h-1 absolute top-[calc(150%+300px)] left-1/2 hidden md:block"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
