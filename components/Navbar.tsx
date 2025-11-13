@@ -182,7 +182,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/signin"
-                className="block bg-black text-white px-4 py-2 rounded-md text-center font-semibold hover:bg-gray-800"
+                className="block bg-black text-white! px-4 py-2 rounded-md text-center font-semibold hover:bg-gray-800"
               >
                 Log in
               </Link>
