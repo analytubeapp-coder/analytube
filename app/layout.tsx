@@ -15,6 +15,9 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "AnalyTube",
   description: "YouTube analytics made simple",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
