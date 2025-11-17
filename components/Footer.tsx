@@ -22,7 +22,6 @@ export default function Footer() {
           </Link>
 
           {[
-            { href: "/dashboard", label: "Dashboard" },
             { href: "/blog", label: "Blogs" },
             { href: "/contact", label: "Contact Us" },
             { href: "/pricing", label: "Pricing" },
