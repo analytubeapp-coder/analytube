@@ -170,7 +170,7 @@ export default function Terms() {
                 href="mailto:analytubeapp@gmail.com"
                 className="text-purple font-semibold"
               >
-                analytubeapp@gmail.com
+                support@analytubeapp.com
               </a>
             </p>
           </div>
