@@ -11,11 +11,11 @@ export default function Privacy() {
       {/* Header Section with Green Background */}
       <section className="relative bg-[#E94C88] pt-50 pb-24">
         {/* Decorative shapes */}
-        <div className="absolute bottom-35 right-80 w-10 h-10 bg-white opacity-40 rotate-65"></div>
-        <div className="absolute top-30 right-20 w-14 h-14 bg-white opacity-40 rounded-full"></div>
-        <div className="absolute bottom-20 left-100 w-10 h-10 bg-white opacity-40 rotate-35"></div>
+        <div className="hidden md:block absolute bottom-35 right-80 w-10 h-10 bg-white opacity-40 rotate-65"></div>
+        <div className="hidden md:block absolute top-30 right-20 w-14 h-14 bg-white opacity-40 rounded-full"></div>
+        <div className="hidden md:block absolute bottom-20 left-100 w-10 h-10 bg-white opacity-40 rotate-35"></div>
 
-        <div className="absolute top-25 left-20">
+        <div className="hidden md:block absolute top-25 left-20">
           <Image src="/term.svg" alt="Privacy" width={200} height={200} />
         </div>
 
