@@ -1,9 +1,11 @@
+// app/pricing/page.tsx
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function PricingPage() {
   const [isYearly, setIsYearly] = useState(true);
@@ -36,11 +38,7 @@ export default function PricingPage() {
                 onClick={() => setIsYearly(!isYearly)}
                 className="flex items-center gap-2 bg-gray-100 px-3 py-1 rounded-full text-sm cursor-pointer select-none"
               >
-                <span
-                  className={!isYearly ? "text-gray-700" : "text-gray-400"}
-                >
-                  Monthly
-                </span>
+                <span className={!isYearly ? "text-gray-700" : "text-gray-400"}>Monthly</span>
                 <div
                   className={`w-10 h-5 flex items-center rounded-full p-1 transition-colors duration-300 ${
                     isYearly ? "bg-[#E94C88]" : "bg-gray-300"
@@ -52,9 +50,7 @@ export default function PricingPage() {
                     }`}
                   />
                 </div>
-                <span className={isYearly ? "text-gray-700" : "text-gray-400"}>
-                  Yearly
-                </span>
+                <span className={isYearly ? "text-gray-700" : "text-gray-400"}>Yearly</span>
               </button>
             </div>
 
@@ -62,9 +58,7 @@ export default function PricingPage() {
             <div className="mb-2">
               <p className="text-6xl font-extrabold text-gray-900">
                 {isYearly ? "$7" : "$14"}
-                <span className="text-base font-normal text-gray-500">
-                  /month
-                </span>
+                <span className="text-base font-normal text-gray-500">/month</span>
               </p>
             </div>
 
@@ -87,27 +81,37 @@ export default function PricingPage() {
 
             {/* CTA Button */}
             <button
-  onClick={async () => {
-    const plan = isYearly ? "yearly" : "monthly"; // چک میکنه که کاربر ماهانه یا سالانه انتخاب کرده
+              onClick={async () => {
+                const supabase = createClientComponentClient();
+                const {
+                  data: { user },
+                } = await supabase.auth.getUser();
 
-    const res = await fetch("/api/nowpayments/create-payment", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ plan }),
-    });
+                if (!user) {
+                  alert("Please login first.");
+                  return;
+                }
 
-    const data = await res.json();
+                const userId = user.id;
+                const plan = isYearly ? "yearly" : "monthly";
 
-    if (data.url) {
-      window.location.href = data.url; // کاربر به لینک پرداخت منتقل میشه
-    } else {
-      alert("Error creating payment"); // اگر لینک نیومد، پیام خطا نمایش میده
-    }
-  }}
-  className="bg-[#E94C88] hover:bg-[#DA3B72] text-white font-semibold py-3 px-6 rounded-full w-full text-center transition-all duration-200"
->
-  Subscribe
-</button>
+                const res = await fetch("/api/nowpayments/create-payment", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({ plan, userId }),
+                });
+                const data = await res.json();
+
+                if (data.url) {
+                  window.location.href = data.url;
+                } else {
+                  alert("Error creating payment");
+                }
+              }}
+              className="bg-[#E94C88] hover:bg-[#DA3B72] text-white font-semibold py-3 px-6 rounded-full w-full text-center transition-all duration-200"
+            >
+              Subscribe
+            </button>
 
             <p className="text-xs text-gray-500 mt-4 text-center">
               Includes 3 free channel analyses. Upgrade for unlimited insights.
@@ -165,9 +169,7 @@ export default function PricingPage() {
                 height={50}
                 className="mb-8"
               />
-              <h3 className="font-semibold text-lg mb-3 text-left">
-                {item.title}
-              </h3>
+              <h3 className="font-semibold text-lg mb-3 text-left">{item.title}</h3>
               <p className="text-sm text-gray-500 text-left">{item.text}</p>
             </div>
           ))}

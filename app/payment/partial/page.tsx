@@ -1,12 +1,20 @@
+//payment/partial/page.tsx
+
+import { useRouter } from "next/router";
+
 export default function PartialPage() {
+  const router = useRouter();
+
   return (
-    <div style={{ padding: "60px", textAlign: "center" }}>
-      <h1 style={{ color: "#FFA500", fontSize: "32px", fontWeight: "bold" }}>
-        ⚠️ Partial Payment
-      </h1>
-      <p style={{ marginTop: "20px" }}>
-        We received a partial payment. Please complete the payment.
-      </p>
+    <div className="flex flex-col items-center justify-center min-h-screen">
+      <h1 className="text-4xl font-bold text-yellow-600">Payment Partially Completed</h1>
+      <p className="mt-4 text-lg">Your payment is still pending. Please complete your payment to finalize the subscription.</p>
+      <button
+        onClick={() => router.push("/pricing")}
+        className="mt-6 px-6 py-3 bg-gray-300 text-black rounded-full"
+      >
+        Complete Payment
+      </button>
     </div>
   );
 }
