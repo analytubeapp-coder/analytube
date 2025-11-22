@@ -1,16 +1,13 @@
-//payment/success/page.tsx
-
 "use client"
 import { useEffect } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function SuccessPage() {
   const router = useRouter();
 
   useEffect(() => {
-    // در اینجا می‌توانید داده‌های پرداخت رو از URL دریافت کنید و ذخیره کنید
-    // این معمولاً با استفاده از query params انجام می‌شود، مثل order_id
-  }, [router]);
+    // handle order_id or query params here if needed
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">

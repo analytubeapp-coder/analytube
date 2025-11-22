@@ -1,7 +1,7 @@
 //payment/failed/page.tsx
 
 "use client"
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 export default function FailedPage() {
   const router = useRouter();
