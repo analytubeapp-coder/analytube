@@ -86,9 +86,28 @@ export default function PricingPage() {
             </ul>
 
             {/* CTA Button */}
-            <button className="bg-[#E94C88] hover:bg-[#DA3B72] text-white font-semibold py-3 px-6 rounded-full w-full text-center transition-all duration-200">
-              Subscribe
-            </button>
+            <button
+  onClick={async () => {
+    const plan = isYearly ? "yearly" : "monthly"; // چک میکنه که کاربر ماهانه یا سالانه انتخاب کرده
+
+    const res = await fetch("/api/nowpayments/create-payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan }),
+    });
+
+    const data = await res.json();
+
+    if (data.url) {
+      window.location.href = data.url; // کاربر به لینک پرداخت منتقل میشه
+    } else {
+      alert("Error creating payment"); // اگر لینک نیومد، پیام خطا نمایش میده
+    }
+  }}
+  className="bg-[#E94C88] hover:bg-[#DA3B72] text-white font-semibold py-3 px-6 rounded-full w-full text-center transition-all duration-200"
+>
+  Subscribe
+</button>
 
             <p className="text-xs text-gray-500 mt-4 text-center">
               Includes 3 free channel analyses. Upgrade for unlimited insights.
