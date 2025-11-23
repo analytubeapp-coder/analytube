@@ -32,7 +32,7 @@ export async function POST(req: Request) {
     });
 
     const data = await res.json();
-console.log("NOWPayments invoice response:", data);
+console.log("NOWPayments invoice response:", JSON.stringify(data, null, 2));
 
 // 🔍 اگر NOWPayments خطا برگرداند (مثلاً API key غلط باشد)
 if (!data.invoice_url) {
