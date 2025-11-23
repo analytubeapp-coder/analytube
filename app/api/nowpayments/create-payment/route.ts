@@ -32,9 +32,18 @@ export async function POST(req: Request) {
     });
 
     const data = await res.json();
-    console.log("NOWPayments invoice response:", data);
+console.log("NOWPayments invoice response:", data);
 
-    return NextResponse.json({ url: data.invoice_url });
+// 🔍 اگر NOWPayments خطا برگرداند (مثلاً API key غلط باشد)
+if (!data.invoice_url) {
+  return NextResponse.json(
+    { error: "NOWPayments error", details: data },
+    { status: 400 }
+  );
+}
+
+// ✔ اگر همه‌چیز OK بود
+return NextResponse.json({ url: data.invoice_url });
   } catch (err) {
     console.log(err);
     return NextResponse.json({ error: "Something went wrong" }, { status: 500 });
