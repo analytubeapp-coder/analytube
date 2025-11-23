@@ -14,37 +14,33 @@ export default function PricingPage() {
   const router = useRouter();
 
   const handleSubscribe = async () => {
-    if (!user) {
-      alert("❌ Please log in first to subscribe.");
-      router.push("/signin?redirect=pricing"); // هدایت به لاگین با redirect
-      return;
+  if (!user) {
+    alert("❌ Please log in first to subscribe.");
+    router.push("/signin?redirect=pricing"); // هدایت به لاگین با redirect
+    return;
+  }
+
+  try {
+    const userId = user.id; // از همان Context استفاده کن
+    const plan = isYearly ? "yearly" : "monthly";
+
+    const res = await fetch("/api/nowpayments/create-payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ plan, userId }),
+    });
+
+    const data = await res.json();
+    if (data.url) {
+      window.location.href = data.url;
+    } else {
+      alert("❌ Error creating payment");
     }
-
-    try {
-      const supabase = createClientComponentClient();
-      const { data: { user: currentUser } } = await supabase.auth.getUser();
-      if (!currentUser) throw new Error("User not found");
-
-      const userId = currentUser.id;
-      const plan = isYearly ? "yearly" : "monthly";
-
-      const res = await fetch("/api/nowpayments/create-payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ plan, userId }),
-      });
-
-      const data = await res.json();
-      if (data.url) {
-        window.location.href = data.url;
-      } else {
-        alert("❌ Error creating payment");
-      }
-    } catch (err: any) {
-      console.error(err);
-      alert(err.message || "❌ Something went wrong");
-    }
-  };
+  } catch (err: any) {
+    console.error(err);
+    alert(err.message || "❌ Something went wrong");
+  }
+};
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
