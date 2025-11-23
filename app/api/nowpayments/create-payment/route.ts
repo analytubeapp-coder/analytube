@@ -36,6 +36,7 @@ console.log("NOWPayments invoice response:", JSON.stringify(data, null, 2));
 
 // 🔍 اگر NOWPayments خطا برگرداند (مثلاً API key غلط باشد)
 if (!data.invoice_url) {
+    console.log("NOWPayments ERROR DETAILS:", JSON.stringify(data, null, 2));
   return NextResponse.json(
     { error: "NOWPayments error", details: data },
     { status: 400 }
