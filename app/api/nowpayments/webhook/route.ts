@@ -32,7 +32,7 @@ export async function POST(req: Request) {
       }
 
       const { error } = await supabase
-        .from("users")
+        .from("profiles")
         .update({
           plan,
           subscription_start: now.toISOString(),
