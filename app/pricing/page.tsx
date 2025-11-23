@@ -1,14 +1,50 @@
-// app/pricing/page.tsx
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useSupabaseAuth } from "@/lib/SupabaseProvider";
+import { useRouter } from "next/navigation";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function PricingPage() {
   const [isYearly, setIsYearly] = useState(true);
+  const { user } = useSupabaseAuth(); // وضعیت لاگین
+  const router = useRouter();
+
+  const handleSubscribe = async () => {
+    if (!user) {
+      alert("❌ Please log in first to subscribe.");
+      router.push("/signin?redirect=pricing"); // هدایت به لاگین با redirect
+      return;
+    }
+
+    try {
+      const supabase = createClientComponentClient();
+      const { data: { user: currentUser } } = await supabase.auth.getUser();
+      if (!currentUser) throw new Error("User not found");
+
+      const userId = currentUser.id;
+      const plan = isYearly ? "yearly" : "monthly";
+
+      const res = await fetch("/api/nowpayments/create-payment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ plan, userId }),
+      });
+
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert("❌ Error creating payment");
+      }
+    } catch (err: any) {
+      console.error(err);
+      alert(err.message || "❌ Something went wrong");
+    }
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
@@ -66,7 +102,7 @@ export default function PricingPage() {
             <p
               className={`text-[#2BC016] text-sm font-medium mb-5 h-4 transition-opacity duration-300 ${
                 isYearly ? "opacity-100" : "opacity-0"
-              }`}
+                }`}
             >
               YOU SAVE 50%
             </p>
@@ -81,33 +117,7 @@ export default function PricingPage() {
 
             {/* CTA Button */}
             <button
-              onClick={async () => {
-                const supabase = createClientComponentClient();
-                const {
-                  data: { user },
-                } = await supabase.auth.getUser();
-
-                if (!user) {
-                  alert("Please login first.");
-                  return;
-                }
-
-                const userId = user.id;
-                const plan = isYearly ? "yearly" : "monthly";
-
-                const res = await fetch("/api/nowpayments/create-payment", {
-                  method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify({ plan, userId }),
-                });
-                const data = await res.json();
-
-                if (data.url) {
-                  window.location.href = data.url;
-                } else {
-                  alert("Error creating payment");
-                }
-              }}
+              onClick={handleSubscribe}
               className="bg-[#E94C88] hover:bg-[#DA3B72] text-white font-semibold py-3 px-6 rounded-full w-full text-center transition-all duration-200"
             >
               Subscribe
