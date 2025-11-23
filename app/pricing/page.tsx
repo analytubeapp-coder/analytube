@@ -31,6 +31,11 @@ export default function PricingPage() {
     });
 
     const data = await res.json();
+
+    console.log("NowPayments API response:", data);
+
+
+
     if (data.url) {
       window.location.href = data.url;
     } else {
