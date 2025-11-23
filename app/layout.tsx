@@ -2,6 +2,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SupabaseProvider } from "@/lib/SupabaseProvider";
 
+// ⬇⬇ اینو اضافه کن
+import { Analytics } from "@vercel/analytics/react";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,7 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <SupabaseProvider>{children}</SupabaseProvider>
+        <SupabaseProvider>
+          {children}
+        </SupabaseProvider>
+
+        {/* ⬇⬇ اینو اینجا بذار */}
+        <Analytics />
       </body>
     </html>
   );
