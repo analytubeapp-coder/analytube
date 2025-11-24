@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -12,6 +12,12 @@ export default function DashboardNavbar() {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
+  // کانال اول خودکار پر شود وقتی q تغییر کند
+  const [compare1, setCompare1] = useState("");
+  useEffect(() => {
+    if (q) setCompare1(q);
+  }, [q]);
+
   const handleSearch = () => {
     const trimmed = q.trim();
     if (!trimmed) return;
@@ -19,15 +25,16 @@ export default function DashboardNavbar() {
   };
 
   const handleCompare = async () => {
-    const channel1 = q.trim();
-    const channel2 = compare.trim();
+    const c1 = compare1.trim();
+    const c2 = compare.trim();
 
-    if (!channel1 || !channel2) {
-      alert("Please enter both channels!");
+    if (!c1 || !c2) {
+      alert("Please enter both channels to compare.");
       return;
     }
 
     const { data: { session } } = await supabase.auth.getSession();
+
     if (!session) {
       setShowModal(true);
       return;
@@ -41,7 +48,7 @@ export default function DashboardNavbar() {
 
     if (error) {
       console.error(error);
-      alert("Error checking user plan.");
+      alert("Error checking account.");
       return;
     }
 
@@ -50,9 +57,7 @@ export default function DashboardNavbar() {
       return;
     }
 
-    router.push(
-      `/compare?c1=${encodeURIComponent(channel1)}&c2=${encodeURIComponent(channel2)}`
-    );
+    router.push(`/compare?c1=${encodeURIComponent(c1)}&c2=${encodeURIComponent(c2)}`);
   };
 
   return (
@@ -70,15 +75,23 @@ export default function DashboardNavbar() {
             onClick={() => router.push("/")}
           />
 
+          {/* Middle section */}
           <div className="flex flex-col md:flex-row items-center w-full md:max-w-2xl gap-3 md:gap-4">
 
             {/* Compare Search Box */}
-            <div className="flex items-center w-full md:w-60 bg-[#f5f5f5] rounded-full overflow-hidden">
+            <div className="flex items-center w-full md:w-72 bg-[#f5f5f5] rounded-full overflow-hidden">
+              <input
+                value={compare1}
+                onChange={(e) => setCompare1(e.target.value)}
+                type="text"
+                placeholder="Channel 1"
+                className="flex-grow bg-transparent px-4 py-3 text-sm md:text-base focus:outline-none"
+              />
               <input
                 value={compare}
                 onChange={(e) => setCompare(e.target.value)}
                 type="text"
-                placeholder="Compare Channel"
+                placeholder="Channel 2"
                 className="flex-grow bg-transparent px-4 py-3 text-sm md:text-base focus:outline-none"
               />
               <button
@@ -105,7 +118,7 @@ export default function DashboardNavbar() {
                 className="bg-[#E94C88] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
                 aria-label="search"
               >
-                <Search size={20} className="text-white" />
+              <Search size={20} className="text-white" />
               </button>
             </div>
 
@@ -113,26 +126,24 @@ export default function DashboardNavbar() {
         </div>
       </nav>
 
-      {/* Modal for Free Users */}
+      {/* Modal for Free users */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-sm w-full text-center">
-            <h2 className="text-lg font-semibold mb-4">Pro Feature</h2>
-            <p className="mb-6">This feature is only for Pro users. Upgrade to Pro to compare channels.</p>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={() => setShowModal(false)}
-                className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => router.push("/pricing")}
-                className="px-4 py-2 bg-[#E94C88] text-white rounded hover:bg-[#DA3B72] transition"
-              >
-                Go Pro
-              </button>
-            </div>
+        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
+          <div className="bg-white rounded-lg p-6 w-80 text-center">
+            <h2 className="text-lg font-semibold mb-4">Upgrade Required</h2>
+            <p className="mb-6">This feature is only available for Pro users.</p>
+            <button
+              onClick={() => router.push("/pricing")}
+              className="bg-[#E94C88] text-white px-4 py-2 rounded hover:bg-[#DA3B72] transition"
+            >
+              Go to Pricing
+            </button>
+            <button
+              onClick={() => setShowModal(false)}
+              className="ml-2 px-4 py-2 rounded border hover:bg-gray-100 transition"
+            >
+              Cancel
+            </button>
           </div>
         </div>
       )}
