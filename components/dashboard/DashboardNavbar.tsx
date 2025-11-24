@@ -74,7 +74,7 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
   };
 
   return (
-    <nav className="w-full bg-white fixed top-4 left-0 z-50"> {/* top-4 برای فاصله از بالا */}
+    <nav className="w-full bg-white fixed top-0 left-0 z-60"> {/* top-4 برای فاصله از بالا */}
       <div className="flex items-center px-4 md:px-20 py-2 md:py-3">
 
         {/* LOGO */}
