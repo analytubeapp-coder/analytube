@@ -1,12 +1,13 @@
-// components/dashboard/DashboardNavbar.tsx
 "use client";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { supabase } from "@/lib/supabaseClient"; // همان client یکبار ساخته شده
+import { useSupabaseAuth } from "@/lib/SupabaseProvider";
 
 export default function DashboardNavbar() {
+  const { user } = useSupabaseAuth(); // user فعلی
   const [q, setQ] = useState("");
   const [compare, setCompare] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -14,21 +15,15 @@ export default function DashboardNavbar() {
 
   const router = useRouter();
   const params = useParams();
-  const supabase = createClientComponentClient();
 
   const currentChannel = Array.isArray(params?.channelId)
     ? params.channelId[0]
     : (params?.channelId as string | undefined);
 
-  // گرفتن userId از Supabase Auth
+  // وقتی user آماده شد، id را ذخیره کن
   useEffect(() => {
-    async function fetchUser() {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUserId(user?.id ?? null);
-      console.log("Fetched userId:", user?.id);
-    }
-    fetchUser();
-  }, [supabase]);
+    if (user) setUserId(user.id);
+  }, [user]);
 
   const handleSearch = () => {
     const trimmed = q.trim();
@@ -42,58 +37,48 @@ export default function DashboardNavbar() {
 
     const mainChannel = q.trim() || currentChannel;
     if (!mainChannel) {
-      console.log("No main channel specified.");
       setShowModal(true);
       return;
     }
 
     if (!userId) {
-      console.log("No userId available yet.");
+      // کاربر لاگین نکرده
       setShowModal(true);
       return;
     }
 
-    console.log("userId being used for Supabase query:", userId);
-
+    // گرفتن پلن کاربر از Supabase
     const { data, error } = await supabase
       .from("profiles")
       .select("plan")
       .eq("id", userId)
       .single();
 
-    console.log("Supabase response:", { data, error });
-
     if (error || !data?.plan) {
-      console.error("Supabase error or plan not found:", error);
+      console.error("Supabase error:", error);
       setShowModal(true);
       return;
     }
 
     const plan = data.plan.trim().toLowerCase();
-    console.log("User plan:", plan);
 
     if (plan === "free") {
-      console.log("Plan is free → showing modal");
       setShowModal(true);
       return;
     }
 
     if (plan === "monthly" || plan === "yearly") {
-      console.log("Plan is PRO → navigating to compare");
       router.push(
         `/compare?main=${encodeURIComponent(mainChannel)}&target=${encodeURIComponent(trimmedCompare)}`
       );
     } else {
-      console.log("Plan not recognized → showing modal");
       setShowModal(true);
     }
   };
 
   return (
-    <nav className="w-full bg-white fixed top-0 left-0 z-60">
+    <nav className="w-full bg-white fixed left-0 z-60">
       <div className="flex items-center px-4 md:px-20 py-2 md:py-5">
-
-        {/* LOGO */}
         <Image
           src="/logoo.svg"
           alt="AnalyTube Logo"
@@ -103,10 +88,7 @@ export default function DashboardNavbar() {
           onClick={() => router.push("/")}
         />
 
-        {/* SEARCHES */}
         <div className="flex items-center ml-auto space-x-4">
-
-          {/* MAIN SEARCH */}
           <div className="flex items-center w-[450px] md:w-[520px] bg-[#f5f5f5] rounded-full overflow-hidden h-10">
             <input
               value={q}
@@ -123,7 +105,6 @@ export default function DashboardNavbar() {
             </button>
           </div>
 
-          {/* COMPARE SEARCH */}
           <div className="flex items-center w-[260px] md:w-[300px] bg-[#f5f5f5] rounded-full overflow-hidden h-10">
             <input
               value={compare}
@@ -134,16 +115,17 @@ export default function DashboardNavbar() {
             />
             <button
               onClick={handleCompare}
-              className="bg-[#E94C88] w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
+              disabled={!user} // وقتی user آماده نیست، غیرفعال
+              className={`bg-[#E94C88] w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition ${
+                !user ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
               <Search size={16} className="text-white" />
             </button>
-          </div>
-
+            </div>
         </div>
       </div>
 
-      {/* MODAL */}
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-[999]">
           <div className="bg-white rounded-2xl p-6 md:p-8 max-w-sm w-full text-center">
