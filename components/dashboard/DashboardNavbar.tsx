@@ -1,13 +1,12 @@
 // components/dashboard/DashboardNavbar.tsx
 "use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 
-// ✔️ Supabase client (بهینه – خارج از کامپوننت ساخته می‌شود)
+// ✔️ Supabase فقط یک بار ساخته می‌شود (مهم!)
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -21,29 +20,23 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
   const router = useRouter();
   const params = useParams();
 
-  // ✔️ کانال فعلی که داخل URL هست (اگر وجود داشته باشد)
-  const currentChannel = params?.channelId as string | undefined;
+  const currentChannel = Array.isArray(params?.channelId)
+    ? params.channelId[0]
+    : (params?.channelId as string | undefined);
 
-  // ---------------------------
-  // ▶️ SEARCH handler
-  // ---------------------------
   const handleSearch = () => {
     const trimmed = q.trim();
     if (!trimmed) return;
     router.push(`/dashboard/${encodeURIComponent(trimmed)}`);
   };
 
-  // ---------------------------
-  // ▶️ COMPARE handler (اصلاح‌شده)
-  // ---------------------------
   const handleCompare = async () => {
     const trimmed = compare.trim();
     if (!trimmed) return;
 
-    // ✔️ اگر q خالی بود → main = کانال فعلی
+    // ✔️ اگر q خالی است از کانال فعلی URL استفاده کن
     const mainChannel = q.trim() || currentChannel;
 
-    // ❗ اگر هیچ کانال اصلی نداریم (مثلاً صفحه Home)
     if (!mainChannel) {
       setShowModal(true);
       return;
@@ -55,61 +48,67 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
       return;
     }
 
-    // بررسی پلن کاربر
+    // ✔️ گرفتن پلن کاربر
     const { data, error } = await supabase
       .from("profiles")
       .select("plan")
       .eq("id", userId)
       .single();
 
-    if (error || !data || data.plan === "free") {
+    if (error) {
+      console.error("Supabase error:", error);
       setShowModal(true);
       return;
     }
 
-    // ✔️ اشتراک Pro → رفتن به compare
+    // ✔️ فقط پلن free نباید اجازه داشته باشد
+    if (!data?.plan || data.plan === "free") {
+      setShowModal(true);
+      return;
+    }
+
+    // ✔️ monthly و yearly → مجاز
     router.push(
       `/compare?main=${encodeURIComponent(mainChannel)}&target=${encodeURIComponent(trimmed)}`
     );
   };
 
   return (
-    <nav className="w-full bg-white fixed top-0 left-0 z-[999] shadow-sm">
-      <div className="flex items-center px-4 md:px-20 py-3 md:py-4">
-
-        {/* Logo */}
+    <nav className="w-full bg-white fixed top-0 left-0 z-50">
+      <div className="flex items-center px-4 md:px-20 py-2 md:py-3">
+        
+        {/* LOGO */}
         <Image
           src="/logoo.svg"
           alt="AnalyTube Logo"
-          width={120}
-          height={50}
+          width={130}
+          height={56}
           className="cursor-pointer"
           onClick={() => router.push("/")}
         />
 
-        {/* SEARCH AREA */}
-        <div className="flex items-center ml-auto space-x-3">
+        {/* SEARCHES */}
+        <div className="flex items-center ml-auto space-x-4">
 
-          {/* MAIN SEARCH (کوچیک شده و تمیز) */}
-          <div className="flex items-center w-[280px] md:w-[360px] bg-[#f5f5f5] rounded-full overflow-hidden h-10 md:h-11">
+          {/* MAIN SEARCH */}
+          <div className="flex items-center w-[450px] md:w-[520px] bg-[#f5f5f5] rounded-full overflow-hidden h-10">
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search Channel or paste URL"
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-              className="flex-grow bg-transparent px-3 text-sm md:text-base focus:outline-none h-full"
+              className="flex-grow bg-transparent px-4 text-sm md:text-base focus:outline-none h-full"
             />
             <button
-              type="button"
               onClick={handleSearch}
-              className="bg-[#E94C88] w-10 md:w-11 h-full flex items-center justify-center hover:bg-[#DA3B72] transition"
+              className="bg-[#E94C88] w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
             >
               <Search size={18} className="text-white" />
             </button>
           </div>
 
-          {/* COMPARE SEARCH (کوچیک‌تر) */}
-          <div className="flex items-center w-[200px] md:w-[240px] bg-[#f5f5f5] rounded-full overflow-hidden h-10 md:h-11">
+          {/* COMPARE SEARCH */}
+          <div className="flex items-center w-[260px] md:w-[300px] bg-[#f5f5f5] rounded-full overflow-hidden h-10">
             <input
               value={compare}
               onChange={(e) => setCompare(e.target.value)}
@@ -118,36 +117,35 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
               className="flex-grow bg-transparent px-3 text-sm md:text-base focus:outline-none h-full"
             />
             <button
-              type="button"
               onClick={handleCompare}
-              className="bg-[#E94C88] w-10 md:w-11 h-full flex items-center justify-center hover:bg-[#DA3B72] transition"
+              className="bg-[#E94C88] w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
             >
-            <Search size={16} className="text-white" />
+              <Search size={16} className="text-white" />
             </button>
           </div>
 
         </div>
       </div>
 
-      {/* MODAL: Upgrade */}
+      {/* MODAL */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-[9999]">
-          <div className="bg-white rounded-2xl p-6 md:p-8 max-w-sm w-full text-center animate-fadeIn">
-            <h2 className="text-lg md:text-xl font-bold mb-2">Upgrade Required</h2>
-            <p className="text-gray-600 mb-5">
-              Comparing channels is available only for PRO users.
+        <div className="fixed inset-0 flex items-center justify-center bg-black/40 z-[999]">
+          <div className="bg-white rounded-2xl p-6 md:p-8 max-w-sm w-full text-center">
+            <h2 className="text-lg md:text-xl font-bold mb-3">Upgrade Required</h2>
+            <p className="text-gray-600 mb-4">
+              Comparing two channels is available only for PRO users.
             </p>
 
             <button
               onClick={() => router.push("/pricing")}
-              className="bg-[#E94C88] text-white w-full py-3 rounded-xl hover:bg-[#DA3B72] transition"
+              className="bg-[#E94C88] text-white w-full py-2 md:py-3 rounded-xl hover:bg-[#DA3B72]"
             >
               Upgrade to PRO
             </button>
 
             <button
               onClick={() => setShowModal(false)}
-              className="mt-4 text-gray-500 hover:underline"
+              className="mt-3 text-gray-500 hover:underline"
             >
               Cancel
             </button>
