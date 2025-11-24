@@ -1,28 +1,34 @@
 // components/dashboard/DashboardNavbar.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-// Supabase client یکبار ساخته شود
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
-
-export default function DashboardNavbar({ userId }: { userId?: string }) {
+export default function DashboardNavbar() {
   const [q, setQ] = useState("");
   const [compare, setCompare] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
 
   const router = useRouter();
   const params = useParams();
+  const supabase = createClientComponentClient();
 
   const currentChannel = Array.isArray(params?.channelId)
     ? params.channelId[0]
     : (params?.channelId as string | undefined);
+
+  // گرفتن userId از Supabase Auth
+  useEffect(() => {
+    async function fetchUser() {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUserId(user?.id ?? null);
+      console.log("Fetched userId:", user?.id);
+    }
+    fetchUser();
+  }, [supabase]);
 
   const handleSearch = () => {
     const trimmed = q.trim();
@@ -42,7 +48,7 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
     }
 
     if (!userId) {
-      console.log("No userId provided.");
+      console.log("No userId available yet.");
       setShowModal(true);
       return;
     }
@@ -63,7 +69,6 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
       return;
     }
 
-    // ✅ trim و lowercase برای جلوگیری از مشکل case و space
     const plan = data.plan.trim().toLowerCase();
     console.log("User plan:", plan);
 
@@ -73,7 +78,6 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
       return;
     }
 
-    // monthly یا yearly → اجازه برو به compare
     if (plan === "monthly" || plan === "yearly") {
       console.log("Plan is PRO → navigating to compare");
       router.push(
