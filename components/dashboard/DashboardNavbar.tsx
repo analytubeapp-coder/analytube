@@ -6,7 +6,7 @@ import { Search } from "lucide-react";
 import { useRouter, useParams } from "next/navigation";
 import { createClient } from "@supabase/supabase-js";
 
-// ✔️ Supabase فقط یک بار ساخته می‌شود (مهم!)
+// Supabase client یکبار ساخته شود
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
@@ -31,52 +31,52 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
   };
 
   const handleCompare = async () => {
-    const trimmed = compare.trim();
-    if (!trimmed) return;
+    const trimmedCompare = compare.trim();
+    if (!trimmedCompare) return;
 
-    // ✔️ اگر q خالی است از کانال فعلی URL استفاده کن
     const mainChannel = q.trim() || currentChannel;
-
     if (!mainChannel) {
       setShowModal(true);
       return;
     }
 
-    // ❗ اگر لاگین نیست
     if (!userId) {
       setShowModal(true);
       return;
     }
 
-    // ✔️ گرفتن پلن کاربر
     const { data, error } = await supabase
       .from("profiles")
       .select("plan")
       .eq("id", userId)
       .single();
 
-    if (error) {
+    if (error || !data?.plan) {
       console.error("Supabase error:", error);
       setShowModal(true);
       return;
     }
 
-    // ✔️ فقط پلن free نباید اجازه داشته باشد
-    if (!data?.plan || data.plan === "free") {
+    // ✅ trim و lowercase برای جلوگیری از مشکل case و space
+    const plan = data.plan.trim().toLowerCase();
+
+    if (plan === "free") {
       setShowModal(true);
       return;
     }
 
-    // ✔️ monthly و yearly → مجاز
-    router.push(
-      `/compare?main=${encodeURIComponent(mainChannel)}&target=${encodeURIComponent(trimmed)}`
-    );
+    // monthly یا yearly → اجازه برو به compare
+    if (plan === "monthly" || plan === "yearly") {
+      router.push(
+        `/compare?main=${encodeURIComponent(mainChannel)}&target=${encodeURIComponent(trimmedCompare)}`
+      );
+    }
   };
 
   return (
-    <nav className="w-full bg-white fixed top-0 left-0 z-50">
+    <nav className="w-full bg-white fixed top-4 left-0 z-50"> {/* top-4 برای فاصله از بالا */}
       <div className="flex items-center px-4 md:px-20 py-2 md:py-3">
-        
+
         {/* LOGO */}
         <Image
           src="/logoo.svg"
