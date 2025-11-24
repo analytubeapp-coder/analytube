@@ -1,3 +1,4 @@
+//components/dashboard/ChannelOverview.tsx
 "use client";
 
 import { Copy } from "lucide-react";

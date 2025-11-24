@@ -1,3 +1,4 @@
+//components/dashboard/Last30Row.tsx
 "use client";
 import React, { useRef, useState, useEffect } from "react";
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";

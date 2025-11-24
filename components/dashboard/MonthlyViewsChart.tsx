@@ -1,3 +1,4 @@
+//components/dashboard/MonthlyViewsChart.tsx
 "use client";
 import React, { useMemo } from "react";
 import {
