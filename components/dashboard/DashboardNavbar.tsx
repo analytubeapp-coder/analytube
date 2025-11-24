@@ -36,14 +36,18 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
 
     const mainChannel = q.trim() || currentChannel;
     if (!mainChannel) {
+      console.log("No main channel specified.");
       setShowModal(true);
       return;
     }
 
     if (!userId) {
+      console.log("No userId provided.");
       setShowModal(true);
       return;
     }
+
+    console.log("userId being used for Supabase query:", userId);
 
     const { data, error } = await supabase
       .from("profiles")
@@ -51,30 +55,38 @@ export default function DashboardNavbar({ userId }: { userId?: string }) {
       .eq("id", userId)
       .single();
 
+    console.log("Supabase response:", { data, error });
+
     if (error || !data?.plan) {
-      console.error("Supabase error:", error);
+      console.error("Supabase error or plan not found:", error);
       setShowModal(true);
       return;
     }
 
     // ✅ trim و lowercase برای جلوگیری از مشکل case و space
     const plan = data.plan.trim().toLowerCase();
+    console.log("User plan:", plan);
 
     if (plan === "free") {
+      console.log("Plan is free → showing modal");
       setShowModal(true);
       return;
     }
 
     // monthly یا yearly → اجازه برو به compare
     if (plan === "monthly" || plan === "yearly") {
+      console.log("Plan is PRO → navigating to compare");
       router.push(
         `/compare?main=${encodeURIComponent(mainChannel)}&target=${encodeURIComponent(trimmedCompare)}`
       );
+    } else {
+      console.log("Plan not recognized → showing modal");
+      setShowModal(true);
     }
   };
 
   return (
-    <nav className="w-full bg-white fixed top-0 left-0 z-60"> {/* top-4 برای فاصله از بالا */}
+    <nav className="w-full bg-white fixed top-0 left-0 z-60">
       <div className="flex items-center px-4 md:px-20 py-2 md:py-5">
 
         {/* LOGO */}
