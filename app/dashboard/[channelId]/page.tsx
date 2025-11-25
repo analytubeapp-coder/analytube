@@ -62,55 +62,62 @@ export default function DashboardPage() {
   const metrics = data.metrics || {};
 
   return (
-    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#eef2ff] via-[#f7f3ff] to-white">
+  <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
 
-      <DashboardNavbar />
+    <DashboardNavbar />
 
-      <div className="max-w-6xl mx-auto pt-32 pb-20 px-4 md:px-6 flex-1">
+    <div className="max-w-6xl mx-auto pt-32 pb-20 px-4 md:px-6 flex-1">
 
-        {/* Header Card */}
-        <div className="mb-10">
-          <TopHeaderCard channel={channel} snapshots={snapshots} />
-        </div>
-
-        {/* Section: Overview */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Channel Overview</h2>
-        <div className="mb-10">
-          <ChannelOverview channel={channel} keywords={data.keywords ?? []} />
-        </div>
-
-        {/* Section: Performance */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Performance Insights</h2>
-        <div className="mb-10">
-          <Last30Row snapshots={snapshots} metrics={metrics} />
-        </div>
-
-        {/* Section: Top Videos */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Top 5 Videos (Last 30 Days)</h2>
-        <div className="mb-10">
-          <TopVideosTable channelId={channel.channel_id ?? ""} limit={5} />
-        </div>
-
-        {/* Section: Daily Metrics */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Daily Metrics</h2>
-        <div className="mb-10">
-          <DailyMetrics snapshots={snapshots} />
-        </div>
-
-        {/* Section: Monthly Views */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Views in the Last 30 Days</h2>
-        <div className="mb-10">
-          <MonthlyViewsChart snapshots={snapshots} />
-        </div>
-
-        {/* Section: Monthly Subscribers */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-3">Subscribers in the Last 30 Days</h2>
-        <div className="mb-10">
-          <MonthlySubscribersChart snapshots={snapshots} />
-        </div>
-
+      {/* Header Card */}
+      <div className="mb-10">
+        <TopHeaderCard channel={channel} snapshots={snapshots} />
       </div>
-      <Footer />
+
+      {/* Section: Overview */}
+      <h2 className="text-lg font-semibold text-gray-800 mb-3">Channel Overview</h2>
+      <div className="mb-10">
+        <ChannelOverview channel={channel} keywords={data.keywords ?? []} />
+      </div>
+
+      {/* Section: Performance */}
+      <h2 className="text-lg font-semibold text-gray-800 mb-3">Performance Insights</h2>
+      <div className="mb-10">
+        <Last30Row snapshots={snapshots} metrics={metrics} />
+      </div>
+
+      {/* Section: Top Videos */}
+      <h2 className="text-lg font-semibold text-gray-800 mb-3">
+        Top 5 Videos (Last 30 Days)
+      </h2>
+      <div className="mb-10">
+        <TopVideosTable channelId={channel.channel_id ?? ""} limit={5} />
+      </div>
+
+      {/* Section: Daily Metrics */}
+      <h2 className="text-lg font-semibold text-gray-800 mb-3">Daily Metrics</h2>
+      <div className="mb-10">
+        <DailyMetrics snapshots={snapshots} />
+      </div>
+
+      {/* Section: Monthly Views */}
+      <h2 className="text-lg font-semibold text-gray-800 mb-3">
+        Views in the Last 30 Days
+      </h2>
+      <div className="mb-10">
+        <MonthlyViewsChart snapshots={snapshots} />
+      </div>
+
+      {/* Section: Monthly Subscribers */}
+      <h2 className="text-lg font-semibold text-gray-800 mb-3">
+        Subscribers in the Last 30 Days
+      </h2>
+      <div className="mb-10">
+        <MonthlySubscribersChart snapshots={snapshots} />
+      </div>
+
     </div>
-  );
+
+    <Footer />
+  </div>
+);
 }
