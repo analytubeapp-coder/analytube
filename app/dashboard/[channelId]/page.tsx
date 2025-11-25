@@ -13,8 +13,6 @@ import MonthlySubscribersChart from "@/components/dashboard/MonthlySubscribersCh
 import MonthlyViewsChart from "@/components/dashboard/MonthlyViewsChart";
 import Footer from "@/components/Footer";
 
-
-
 export default function DashboardPage() {
   const params = useParams();
   const rawId = params?.channelId;
@@ -64,55 +62,55 @@ export default function DashboardPage() {
   const metrics = data.metrics || {};
 
   return (
-  <div className="min-h-screen bg-[#FFFFFF] flex flex-col">
-    <DashboardNavbar />
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-[#eef2ff] via-[#f7f3ff] to-white">
 
-    <div className="max-w-7xl mx-auto pt-28 md:pt-36 pb-12 px-6 flex-1">
-      
-      {/* ✅ Header */}
-      <div className="mb-10">
-        <TopHeaderCard channel={channel} snapshots={snapshots} />
+      <DashboardNavbar />
+
+      <div className="max-w-6xl mx-auto pt-32 pb-20 px-4 md:px-6 flex-1">
+
+        {/* Header Card */}
+        <div className="mb-10">
+          <TopHeaderCard channel={channel} snapshots={snapshots} />
+        </div>
+
+        {/* Section: Overview */}
+        <h2 className="text-lg font-semibold text-gray-800 mb-3">Channel Overview</h2>
+        <div className="mb-10">
+          <ChannelOverview channel={channel} keywords={data.keywords ?? []} />
+        </div>
+
+        {/* Section: Performance */}
+        <h2 className="text-lg font-semibold text-gray-800 mb-3">Performance Insights</h2>
+        <div className="mb-10">
+          <Last30Row snapshots={snapshots} metrics={metrics} />
+        </div>
+
+        {/* Section: Top Videos */}
+        <h2 className="text-lg font-semibold text-gray-800 mb-3">Top 5 Videos (Last 30 Days)</h2>
+        <div className="mb-10">
+          <TopVideosTable channelId={channel.channel_id ?? ""} limit={5} />
+        </div>
+
+        {/* Section: Daily Metrics */}
+        <h2 className="text-lg font-semibold text-gray-800 mb-3">Daily Metrics</h2>
+        <div className="mb-10">
+          <DailyMetrics snapshots={snapshots} />
+        </div>
+
+        {/* Section: Monthly Views */}
+        <h2 className="text-lg font-semibold text-gray-800 mb-3">Views in the Last 30 Days</h2>
+        <div className="mb-10">
+          <MonthlyViewsChart snapshots={snapshots} />
+        </div>
+
+        {/* Section: Monthly Subscribers */}
+        <h2 className="text-lg font-semibold text-gray-800 mb-3">Subscribers in the Last 30 Days</h2>
+        <div className="mb-10">
+          <MonthlySubscribersChart snapshots={snapshots} />
+        </div>
+
       </div>
-
-      {/* ✅ Channel Overview */}
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Channel Overview</h2>
-      <div className="mb-10">
-        <ChannelOverview channel={channel} keywords={data.keywords ?? []} />
-      </div>
-
-      {/* ✅ Last 30 Days Performance */}
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Last 30 Days Performance</h2>
-      <div className="mb-10">
-        <Last30Row snapshots={snapshots} metrics={metrics} />
-      </div>
-
-      {/* ✅ Top Videos */}
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Top 5 Videos (Last 30 Days)</h2>
-      <div className="mb-10">
-        <TopVideosTable channelId={channel.channel_id ?? ""} limit={5} />
-      </div>
-
-      {/* ✅ Daily Metrics */}
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Daily Channel Metrics</h2>
-      <div className="mb-10">
-        <DailyMetrics snapshots={snapshots} />
-      </div>
-
-      {/* ✅ Monthly Views */}
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Views in the Last 30 Days</h2>
-      <div className="mb-10">
-        <MonthlyViewsChart snapshots={snapshots} />
-      </div>
-
-      {/* ✅ Monthly Subs */}
-      <h2 className="text-xl font-semibold text-gray-900 mb-4">Subscribers in the Last 30 Days</h2>
-      <div className="mb-10">
-        <MonthlySubscribersChart snapshots={snapshots} />
-      </div>
-
+      <Footer />
     </div>
-
-    <Footer />
-  </div>
-);
+  );
 }
