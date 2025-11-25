@@ -43,7 +43,7 @@ export default function TopHeaderCard({ channel }: Props) {
     <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 pb-6">
 
       {/* LEFT CARD — Profile */}
-      <div className="bg-white p-5 rounded-xl border border-[#e5e5e5] shadow-sm flex items-center gap-4">
+      <div className="bg-white py-5 px-8 rounded-none   shadow-sm flex items-center gap-4">
         <Image
           src={channel.thumbnail_url || "/placeholder.png"}
           alt={channel.title}
@@ -63,7 +63,7 @@ export default function TopHeaderCard({ channel }: Props) {
       </div>
 
       {/* RIGHT CARD — Stats */}
-      <div className="bg-white p-5 rounded-xl border border-[#e5e5e5] shadow-sm md:col-span-2 flex justify-between gap-6 items-center">
+      <div className="bg-white py-5 px-8 rounded-none   shadow-sm md:col-span-2 flex justify-between gap-6 items-center">
 
         <div className="flex flex-col gap-0.5">
           <span className="text-sm font-medium text-gray-600">Subscribers</span>
