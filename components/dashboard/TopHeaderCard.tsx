@@ -36,7 +36,7 @@ export default function TopHeaderCard({ channel }: Props) {
   };
 
   return (
-    <div className="w-full bg-white py-5 px-8 shadow-sm rounded-none flex items-center justify-between gap-10">
+    <div className="w-full bg-white py-5 px-8 shadow-sm rounded-s flex items-center justify-between gap-20">
 
       {/* LEFT — Profile */}
       <div className="flex items-center gap-4">
