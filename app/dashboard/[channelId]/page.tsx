@@ -62,7 +62,7 @@ export default function DashboardPage() {
   const metrics = data.metrics || {};
 
   return (
-  <div className="min-h-screen flex flex-col bg-[#F8FAFC]">
+  <div className="min-h-screen flex flex-col bg-[#Ffffff]">
 
     <DashboardNavbar />
 
