@@ -78,7 +78,7 @@ export default function DashboardNavbar() {
 
   return (
     <nav className="w-full bg-white fixed left-0 z-60">
-      <div className="flex items-center px-4 md:px-20 py-2 md:py-6">
+      <div className="flex items-center px-4 md:px-20 py-2 md:py-8">
         <Image
           src="/logoo.svg"
           alt="AnalyTube Logo"
