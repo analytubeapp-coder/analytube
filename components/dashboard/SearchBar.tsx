@@ -13,20 +13,23 @@ export default function SearchBar() {
     if (!trimmed) return;
 
     router.push(`/dashboard/${encodeURIComponent(trimmed)}`);
-    setQuery(""); // مثل Homepage
+    setQuery("");
   };
 
   return (
     <div className="relative w-full max-w-xl">
 
-      <div className="
-        flex items-center 
-        bg-white 
-        rounded-full 
-        shadow-sm 
-        border 
-        px-4 py-2
-      ">
+      <div
+        className="
+          flex items-center 
+          bg-white 
+          rounded-full 
+          shadow-sm 
+          border 
+          h-11
+          px-3
+        "
+      >
 
         {/* INPUT */}
         <input
@@ -38,9 +41,9 @@ export default function SearchBar() {
             flex-grow
             bg-transparent
             text-sm
-            px-4
-            py-2
+            px-3
             focus:outline-none
+            h-full
           "
         />
 
@@ -48,24 +51,25 @@ export default function SearchBar() {
         {query.length > 0 && (
           <button
             onClick={() => setQuery("")}
-            className="p-2 rounded-full hover:bg-gray-100"
+            className="p-1.5 rounded-full hover:bg-gray-100"
           >
             <X size={16} className="text-gray-500" />
           </button>
         )}
 
-        {/* SEARCH BUTTON (circle + icon only) */}
+        {/* SEARCH BUTTON — fully attached */}
         <button
           onClick={goTo}
           className="
-            bg-[#E94C88] 
+            bg-[#E94C88]
             w-11 h-11
             rounded-full
             flex items-center justify-center
             hover:bg-[#d53c74]
             transition
-            ml-2
+            -mr-1
           "
+          style={{ marginLeft: "0" }}
         >
           <Search size={18} className="text-white" />
         </button>
