@@ -25,7 +25,7 @@ export default function DashboardPage() {
   const snapshots = data.snapshots ?? [];
 
   return (
-    <div className="min-h-screen bg-[#f6f7fb] flex">
+    <div className="min-h-screen bg-[#f5f6fa] flex">
 
       {/* ---- LEFT SIDEBAR ---- */}
       <Sidebar />
