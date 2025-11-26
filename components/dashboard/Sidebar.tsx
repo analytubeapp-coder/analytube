@@ -32,7 +32,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <div className="w-64 h-screen bg-white border-r border-gray-200 fixed top-0 left-0 flex flex-col px-6 py-8">
+    <div className="w-72 h-screen bg-white border-r border-gray-200 fixed top-0 left-0 flex flex-col px-6 py-8">
       
       {/* Logo */}
       <div
