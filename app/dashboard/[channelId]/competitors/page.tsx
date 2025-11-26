@@ -11,7 +11,7 @@ export default function CompetitorsPage() {
       <div className="flex-1 ml-84 p-8">
 
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-xl font-semibold">Competitors</h1>
+          <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Competitors</h1>
           <SearchBar />
         </div>
 

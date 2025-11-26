@@ -10,7 +10,7 @@ export default function InsightsPage() {
 
       <div className="flex-1 ml-84 p-8">
         <div className="flex items-center justify-between mb-8">
-          <h1 className="text-xl font-semibold">Insights</h1>
+          <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">Insights</h1>
           <SearchBar />
         </div>
 
