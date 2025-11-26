@@ -13,47 +13,61 @@ export default function SearchBar() {
     if (!trimmed) return;
 
     router.push(`/dashboard/${encodeURIComponent(trimmed)}`);
-
     setQuery(""); // مثل Homepage
   };
 
   return (
     <div className="relative w-full max-w-xl">
 
-      <div className="flex items-center bg-white px-3 py-2 rounded-full shadow-sm border">
-
-        {/* Left search icon */}
-        <div className="px-2">
-          <Search size={18} className="text-gray-400" />
-        </div>
+      <div className="
+        flex items-center 
+        bg-white 
+        rounded-full 
+        shadow-sm 
+        border 
+        px-4 py-2
+      ">
 
         {/* INPUT */}
         <input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && goTo()}
-          placeholder="Search channel or paste URL"
-          className="flex-grow outline-none text-sm px-2 py-2"
+          placeholder="Search Channel or paste URL"
+          className="
+            flex-grow
+            bg-transparent
+            text-sm
+            px-4
+            py-2
+            focus:outline-none
+          "
         />
 
         {/* Clear button */}
         {query.length > 0 && (
           <button
             onClick={() => setQuery("")}
-            aria-label="clear"
             className="p-2 rounded-full hover:bg-gray-100"
           >
             <X size={16} className="text-gray-500" />
           </button>
         )}
 
-        {/* SEARCH BUTTON */}
+        {/* SEARCH BUTTON (circle + icon only) */}
         <button
           onClick={goTo}
-          className="ml-3 bg-[#E94C88] text-white px-4 py-2 rounded-full hover:bg-[#d53c74] transition text-sm flex items-center gap-2"
+          className="
+            bg-[#E94C88] 
+            w-11 h-11
+            rounded-full
+            flex items-center justify-center
+            hover:bg-[#d53c74]
+            transition
+            ml-2
+          "
         >
-          <span className="hidden sm:inline">Search</span>
-          <Search size={16} />
+          <Search size={18} className="text-white" />
         </button>
 
       </div>
