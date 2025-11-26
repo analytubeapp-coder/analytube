@@ -18,62 +18,48 @@ export default function SearchBar() {
   return (
     <div className="relative w-full max-w-xl">
 
-      <div
-        className="
-          flex items-center
-          bg-white
-          shadow-sm
-          border
-          h-11
-          rounded-full
-          overflow-hidden
-        "
-      >
+      {/* --- FULLY ROUNDED LIKE HOMEPAGE --- */}
+      <div className="flex items-center w-full bg-white border shadow-sm rounded-full h-11 overflow-hidden">
 
-        {/* INPUT SECTION */}
-        <div className="flex items-center flex-grow h-full pl-3 pr-1">
-          <input
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && goTo()}
-            placeholder="Search Channel or paste URL"
-            className="
-              flex-grow
-              bg-transparent
-              text-sm
-              focus:outline-none
-              h-full
-              px-2
-            "
-          />
+        {/* INPUT */}
+        <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && goTo()}
+          placeholder="Search Channel or paste URL"
+          className="
+            flex-grow bg-transparent
+            px-4
+            text-sm
+            focus:outline-none
+            h-full
+          "
+        />
 
-          {query.length > 0 && (
-            <button
-              onClick={() => setQuery("")}
-              className="p-1.5 rounded-full hover:bg-gray-100"
-            >
-              <X size={16} className="text-gray-500" />
-            </button>
-          )}
-        </div>
+        {/* CLEAR BUTTON */}
+        {query.length > 0 && (
+          <button
+            onClick={() => setQuery("")}
+            className="p-2 rounded-full hover:bg-gray-100 mr-1"
+          >
+            <X size={16} className="text-gray-500" />
+          </button>
+        )}
 
-        {/* SEARCH BUTTON — perfectly flush */}
+        {/* SEARCH BUTTON — PERFECTLY INSIDE THE ROUNDED BOX */}
         <button
           onClick={goTo}
           className="
             bg-[#E94C88]
-            h-full
-            px-4
+            w-10 h-10
+            rounded-full
             flex items-center justify-center
             hover:bg-[#d53c74]
             transition
-            text-white
+            mr-1
           "
-          style={{
-            borderRadius: "0 9999px 9999px 0", // چسباندن کامل
-          }}
         >
-          <Search size={18} />
+          <Search size={16} className="text-white" />
         </button>
 
       </div>
