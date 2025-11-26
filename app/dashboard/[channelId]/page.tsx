@@ -28,7 +28,7 @@ export default function DashboardPage() {
       <div className="flex-1 ml-72 p-8">
         <div className="flex items-center justify-between mb-8">
           <SearchBar />
-          <button className="ml-4 bg-[#E94C88] text-white px-6 py-3 rounded-xl hover:bg-[#d53c74] transition">
+          <button className="ml-4 bg-[#E94C88] text-white px-6 py-3 rounded-[10px] hover:bg-[#d53c74] transition">
             Export
           </button>
         </div>
