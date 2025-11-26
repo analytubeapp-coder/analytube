@@ -11,7 +11,6 @@ export default function SearchBar() {
   const goTo = () => {
     const trimmed = query.trim();
     if (!trimmed) return;
-
     router.push(`/dashboard/${encodeURIComponent(trimmed)}`);
     setQuery("");
   };
@@ -21,57 +20,60 @@ export default function SearchBar() {
 
       <div
         className="
-          flex items-center 
-          bg-white 
-          rounded-full 
-          shadow-sm 
-          border 
+          flex items-center
+          bg-white
+          shadow-sm
+          border
           h-11
-          px-3
+          rounded-full
+          overflow-hidden
         "
       >
 
-        {/* INPUT */}
-        <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && goTo()}
-          placeholder="Search Channel or paste URL"
-          className="
-            flex-grow
-            bg-transparent
-            text-sm
-            px-3
-            focus:outline-none
-            h-full
-          "
-        />
+        {/* INPUT SECTION */}
+        <div className="flex items-center flex-grow h-full pl-3 pr-1">
+          <input
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && goTo()}
+            placeholder="Search Channel or paste URL"
+            className="
+              flex-grow
+              bg-transparent
+              text-sm
+              focus:outline-none
+              h-full
+              px-2
+            "
+          />
 
-        {/* Clear button */}
-        {query.length > 0 && (
-          <button
-            onClick={() => setQuery("")}
-            className="p-1.5 rounded-full hover:bg-gray-100"
-          >
-            <X size={16} className="text-gray-500" />
-          </button>
-        )}
+          {query.length > 0 && (
+            <button
+              onClick={() => setQuery("")}
+              className="p-1.5 rounded-full hover:bg-gray-100"
+            >
+              <X size={16} className="text-gray-500" />
+            </button>
+          )}
+        </div>
 
-        {/* SEARCH BUTTON — fully attached */}
+        {/* SEARCH BUTTON — perfectly flush */}
         <button
           onClick={goTo}
           className="
             bg-[#E94C88]
-            w-11 h-11
-            rounded-full
+            h-full
+            px-4
             flex items-center justify-center
             hover:bg-[#d53c74]
             transition
-            -mr-1
+            text-white
           "
-          style={{ marginLeft: "0" }}
+          style={{
+            borderRadius: "0 9999px 9999px 0", // چسباندن کامل
+          }}
         >
-          <Search size={18} className="text-white" />
+          <Search size={18} />
         </button>
 
       </div>
