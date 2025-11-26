@@ -15,7 +15,7 @@ export default function SearchBar() {
   };
 
   return (
-    <div className="flex items-center w-full max-w-[500px] bg-[#ffffff] border border-gray-200 rounded-full overflow-hidden">
+    <div className="flex items-center w-full max-w-[400px] bg-[#fcfcfc] border border-gray-200 rounded-full overflow-hidden">
 
       {/* INPUT (same as homepage, just reduced padding) */}
       <input
