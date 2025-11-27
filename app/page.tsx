@@ -10,10 +10,10 @@ export default function Home() {
       <Navbar />
 
       {/* MAIN THUMBNAIL GENERATOR */}
-      <section className="bg-white pt-46 pb-24">
+      <section className="bg-white pt-44 pb-24">
         <div className="w-full flex flex-col items-center px-6">
-          <h1 className="text-3xl md:text-[36px] font-bold mb-18 text-center">
-            Upload an image to generate thumbnail
+          <h1 className="text-3xl md:text-[36px] font-bold mb-14 text-center">
+            Upload an Image to Generate Thumbnail
           </h1>
 
           <ThumbnailGenerator />
@@ -21,7 +21,7 @@ export default function Home() {
       </section>
 
       {/* Features Section (3 top cards) */}
-      <section className="py-34 bg-white">
+      <section className="py-40 bg-white pt-10">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             {

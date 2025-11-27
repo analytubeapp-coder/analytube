@@ -203,8 +203,8 @@ export default function ThumbnailGenerator() {
             />
 
             {/* Create Thumbnail Button */}
-            <button className="mt-8 bg-[#E94C88] hover:bg-[#f0689d] text-white text-[20px] font-semibold px-6 py-4 rounded-full transition w-[50%] text-center self-center">
-              Create Thumbnail
+            <button className="mt-8 bg-[#E94C88] hover:bg-[#f0689d] text-white text-[22px] font-semibold px-6 py-4 rounded-full transition w-[30%] text-center self-center">
+              Create
             </button>
           </div>
 

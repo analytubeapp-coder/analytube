@@ -69,7 +69,7 @@ export default function About() {
             <div className="md:col-span-2">
               <h2 className="text-4xl font-extrabold mb-6">Who We Are</h2>
               <p className="text-[#414141] mb-4">
-                At ThumbForge AI, we’re dedicated to helping creators design
+                At AIthumb, we’re dedicated to helping creators design
                 scroll-stopping YouTube thumbnails effortlessly. We saw that many
                 creators struggle with design tools, lack inspiration, or simply
                 don’t have the time to create high-quality thumbnails consistently.
