@@ -11,6 +11,7 @@ export default function DashboardPage() {
   const pathname = usePathname();
 
   const [data, setData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!channelId) return;
@@ -18,15 +19,34 @@ export default function DashboardPage() {
   }, [channelId]);
 
   async function load() {
-    const res = await fetch(`/api/youtube/channel?id=${channelId}`);
-    const json = await res.json();
-    setData(json);
+    try {
+      setLoading(true);
+      const res = await fetch(`/api/youtube/channel?id=${channelId}`);
+      const json = await res.json();
+      setData(json);
+    } finally {
+      setLoading(false);
+    }
   }
 
-  if (!data) return <div>Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center text-gray-500">
+        Loading...
+      </div>
+    );
+  }
+
+  if (!data || !data.channel) {
+    return (
+      <div className="flex h-screen items-center justify-center text-red-500">
+        Channel not found
+      </div>
+    );
+  }
 
   // -------------------------------------
-  // FIX: Extract channel + snapshots
+  // Extract channel + snapshots
   // -------------------------------------
   const channel = data.channel;
   const snapshots = data.snapshots ?? [];
@@ -35,7 +55,6 @@ export default function DashboardPage() {
   // PAGE TITLE LOGIC
   // -------------------------------------
   const segments = pathname.split("/").filter(Boolean);
-
   let page = segments[2] ? segments[2] : "dashboard";
 
   page = page.charAt(0).toUpperCase() + page.slice(1);
@@ -49,21 +68,17 @@ export default function DashboardPage() {
       <Sidebar />
 
       <div className="flex-1 ml-100 p-8">
-        
-        {/* ---------- TOP BAR ---------- */}
-        <div className="flex items-center justify-between mb-8">
 
-          {/* LEFT — PAGE TITLE */}
+        {/* ---------- TOP BAR ---------- */}
+        <div className="flex items-center justify-between mb-10">
           <h1 className="text-2xl font-semibold text-gray-900 tracking-tight">
             {page}
           </h1>
-
-          {/* RIGHT — SEARCH BAR */}
           <SearchBar />
         </div>
 
         {/* ---------- PAGE CONTENT ---------- */}
-        <div className="space-y-8">
+        <div className="space-y-10">
           <TopHeaderCard channel={channel} snapshots={snapshots} />
         </div>
 

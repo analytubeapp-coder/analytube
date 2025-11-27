@@ -69,18 +69,19 @@ export default function About() {
             <div className="md:col-span-2">
               <h2 className="text-4xl font-extrabold mb-6">Who We Are</h2>
               <p className="text-[#414141] mb-4">
-                At AnalyTube, we’re passionate about helping YouTube creators grow
-                with clarity, confidence, and actionable insights. We realized that
-                while YouTube provides a lot of raw data, it is often confusing,
-                incomplete, and difficult to compare across competitors. Many
-                creators end up overwhelmed instead of empowered.
+                At ThumbForge AI, we’re dedicated to helping creators design
+                scroll-stopping YouTube thumbnails effortlessly. We saw that many
+                creators struggle with design tools, lack inspiration, or simply
+                don’t have the time to create high-quality thumbnails consistently.
+                That’s why we built an AI system that understands YouTube visual
+                trends and instantly generates eye-catching concepts.
               </p>
               <p className="text-[#414141]">
-                That’s why we built AnalyTube a simple yet powerful analytics
-                platform designed to make YouTube performance tracking accessible,
-                accurate, and easy to understand. Whether you’re a beginner just
-                starting your channel or a professional creator managing millions of
-                subscribers, AnalyTube is here to simplify your journey.
+                Our goal is to make professional thumbnail creation simple, fast,
+                and accessible for every creator whether you’re launching your
+                first video or already building a large audience. ThumbForge AI
+                helps you create powerful visuals that increase clicks, improve
+                viewer retention, and boost your channel’s overall performance.
               </p>
             </div>
           </div>
@@ -91,29 +92,29 @@ export default function About() {
             <div className="md:col-span-2 order-2 md:order-1">
               <h2 className="text-4xl font-extrabold mb-6">Our Mission</h2>
               <p className="text-[#414141] mb-4">
-                Our mission is to give every creator the tools they need to stop
-                guessing and start growing. We believe that creators deserve insights
-                that are:
+                Our mission is to empower creators with AI-driven tools that remove
+                guesswork and deliver consistently high-performing thumbnails. We
+                believe creators deserve solutions that are:
               </p>
               <ul className="list-disc list-inside text-[#414141] space-y-2">
                 <li>
-                  <b>Accurate</b> – based on real public data and proven industry
-                  benchmarks.
+                  <b>Smart</b> – powered by real YouTube style analysis and proven
+                  CTR patterns.
                 </li>
                 <li>
-                  <b>Easy to understand</b> – clear dashboards, no unnecessary
-                  complexity.
+                  <b>Simple to use</b> – no design skills or editing experience
+                  required.
                 </li>
                 <li>
-                  <b>Immediately actionable</b> – insights you can apply to your
-                  channel today.
+                  <b>Instantly useful</b> – thumbnails you can use right away to
+                  improve visibility and engagement.
                 </li>
               </ul>
               <p className="text-[#414141] mt-4">
-                AnalyTube delivers competitor analysis, reliable revenue estimation,
-                and growth tracking in one streamlined platform. We don’t just
-                provide numbers we provide clarity, so you can focus on what really
-                matters: creating content and connecting with your audience.
+                ThumbForge AI creates multiple professional concepts in seconds,
+                giving you a variety of styles, emotions, and layouts to choose
+                from. We help you focus on your content while our AI takes care of
+                the visuals that drive clicks and growth.
               </p>
             </div>
 
@@ -184,23 +185,22 @@ export default function About() {
             <div className="md:col-span-2">
               <h2 className="text-4xl font-extrabold mb-6">Our Promise</h2>
               <p className="text-[#414141] mb-4">
-                We promise to level the playing field for YouTube creators
-                worldwide. In the past, advanced analytics and competitive insights
-                were tools only available to large agencies and top influencers. With
-                AnalyTube, we bring those same capabilities to every creator,
-                regardless of size.
+                We promise to give every creator the ability to produce powerful,
+                high-impact thumbnails without needing advanced design knowledge.
+                Great visuals shouldn’t be limited to big studios or expert editors
+                our AI makes professional quality available to everyone.
               </p>
-              <p className="text-[#414141] mb-2">Our goal is simple:</p>
+              <p className="text-[#414141] mb-2">Here’s what we stand for:</p>
               <ul className="list-disc list-inside text-[#414141] space-y-2">
-                <li>Empower creators to make smarter decisions.</li>
-                <li>Provide analytics without the fluff.</li>
-                <li>Build a platform that grows alongside your channel.</li>
+                <li>Helping creators boost click-through-rate with ease.</li>
+                <li>Delivering consistent, creator-focused improvements.</li>
+                <li>Building tools that level the playing field for all channels.</li>
               </ul>
               <p className="text-[#414141] mt-4">
-                At AnalyTube, we believe every creator deserves a fair chance at
-                success. By analyzing, comparing, and planning smarter, you can
-                achieve sustainable and long-term growth on YouTube and we’ll be
-                with you every step of the way.
+                ThumbForge AI is committed to supporting your growth with reliable,
+                studio-quality thumbnails and an evolving AI engine that adapts to
+                new trends. We’re here to help you stand out, attract viewers, and
+                grow with confidence one thumbnail at a time.
               </p>
             </div>
           </div>

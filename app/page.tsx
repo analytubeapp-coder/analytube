@@ -1,84 +1,50 @@
 "use client";
 
-import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { Search } from "lucide-react";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
+import ThumbnailGenerator from "@/components/ThumbnailGenerator";
 
 export default function Home() {
-  const [heroQuery, setHeroQuery] = useState("");
-  const [ctaQuery, setCtaQuery] = useState("");
-  const router = useRouter();
-
-const handleSearch = (query: string) => {
-  const trimmed = query.trim();
-  if (!trimmed) return;
-  router.push(`/dashboard/${encodeURIComponent(trimmed)}`);
-};
-
   return (
     <>
       <Navbar />
 
-      {/* HERO SECTION */}
-<section className="bg-white text-black pt-64 pb-32">
-  <div className="w-full px-6 text-center">
+      {/* MAIN THUMBNAIL GENERATOR */}
+      <section className="bg-white pt-46 pb-24">
+        <div className="w-full flex flex-col items-center px-6">
+          <h1 className="text-3xl md:text-[36px] font-bold mb-18 text-center">
+            Upload an image to generate thumbnail
+          </h1>
 
-    <h1 className="text-[36px] md:text-[48px] font-extrabold leading-tight mb-7 mx-auto">
-  Clear, Actionable YouTube Analytics<br />
-  Accelerate Your Channel <span className="text-[#E94C88]">Growth</span>
-</h1>
-
-<p className="text-base md:text-[17px] text-[#414141] mb-14 max-w-3xl mx-auto">
-  Stop guessing and start growing. Analyze your YouTube channel performance, track subscriber growth, and uncover competitor strategies all in one powerful, easy to use dashboard.
-</p>
-
-    <div className="flex items-center w-full max-w-[650px] mx-auto bg-[#f5f5f5] rounded-full overflow-hidden">
-      <input
-        value={heroQuery}
-        onChange={(e) => setHeroQuery(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSearch(heroQuery)}
-        className="flex-grow bg-transparent px-8 py-3 text-sm md:text-base focus:outline-none"
-        placeholder="Search Channel or paste URL"
-      />
-      <button
-        onClick={() => handleSearch(heroQuery)}
-        className="bg-[#E94C88] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
-      >
-        <Search size={20} className="text-white" />
-      </button>
-    </div>
-
-  </div>
-</section>
+          <ThumbnailGenerator />
+        </div>
+      </section>
 
       {/* Features Section (3 top cards) */}
       <section className="py-34 bg-white">
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             {
-    icon: "/icon-feature1.svg",
-    title: "Actionable Competitor Insights",
-    text: "Discover what drives growth for top creators, identify successful content strategies, and apply insights directly to your channel for maximum impact.",
-  },
-  {
-    icon: "/icon-feature2.svg",
-    title: "Accurate Revenue Estimates",
-    text: "Understand your true earning potential with precise analytics and CPM data, enabling smarter monetization decisions.",
-  },
-  {
-    icon: "/icon-feature3.svg",
-    title: "Intuitive Dashboard Design",
-    text: "Access all your key YouTube metrics in a clean, organized interface that’s built for creators, saving time and reducing complexity.",
-  },
+              icon: "/icon-feature1.svg",
+              title: "AI-Powered Thumbnail Generator",
+              text: "Turn simple ideas into high-performing thumbnails automatically, optimized for clicks and engagement.",
+            },
+            {
+              icon: "/icon-feature2.svg",
+              title: "Thumbnail Enhancer",
+              text: "Improve your existing thumbnails with AI sharpening, color boosting, cleanup and professional styling.",
+            },
+            {
+              icon: "/icon-feature3.svg",
+              title: "Ready-Made Templates",
+              text: "Choose from YouTube-optimized templates designed for gaming, vlogs, education, tech, and more.",
+            },
           ].map((item, index) => (
             <div
               key={index}
               className="p-10 rounded-3xl flex flex-col items-start bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
-              <Image
+              <img
                 src={item.icon}
                 alt={item.title}
                 width={50}
@@ -99,17 +65,20 @@ const handleSearch = (query: string) => {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-2xl md:text-[36px] font-extrabold mb-6">
-  Complete YouTube Analytics. <br />
-  No Confusion. Just Growth.
-</h2>
+              Your YouTube Thumbnails <br />
+              Professional, Fast, and Fully AI-Driven
+            </h2>
 
-<p className="text-base md:text-[16px] text-[#414141] max-w-lg">
-  AnalyTube gives you a holistic view of your YouTube channel. Track subscriber growth, monitor video performance, and gain actionable insights into audience engagement. Make data-driven decisions faster and optimize your content strategy effortlessly.
-</p>
+            <p className="text-base md:text-[16px] text-[#414141] max-w-lg">
+              Create thumbnails that stand out in under 30 seconds. Upload an
+              image or start with text, then let AI handle colors, layout, text
+              styling and background enhancement. Perfect for creators who want
+              better thumbnails without wasting hours on design.
+            </p>
           </div>
 
           <div className="relative flex justify-center md:justify-end">
-            <Image
+            <img
               src="/shape.svg"
               alt="Creator shape"
               width={330}
@@ -129,26 +98,26 @@ const handleSearch = (query: string) => {
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             {
-    icon: "/icon-feature4.svg",
-    title: "Reliable Accuracy",
-    text: "Powered by YouTube’s public data, our analytics provide trustworthy insights you can rely on to make critical decisions.",
-  },
-  {
-    icon: "/icon-feature5.svg",
-    title: "Lightning-fast Analysis",
-    text: "Get instant analytics on your channel performance, reducing guesswork and enabling immediate strategic actions.",
-  },
-  {
-    icon: "/icon-feature6.svg",
-    title: "Creator-first Transparency",
-    text: "Designed for creators with clarity and simplicity in mind, delivering insights without unnecessary noise or complexity.",
-  },
+              icon: "/icon-feature4.svg",
+              title: "Boost Your Click-Through Rate",
+              text: "Eye-catching designs tailored to maximize CTR and keep your channel growing.",
+            },
+            {
+              icon: "/icon-feature5.svg",
+              title: "Lightning-Fast Generation",
+              text: "Get multiple thumbnail variations in seconds using advanced image-generation AI.",
+            },
+            {
+              icon: "/icon-feature6.svg",
+              title: "Creator-Focused Simplicity",
+              text: "A clean, intuitive interface made specifically for YouTubers. No design skills required.",
+            },
           ].map((item, index) => (
             <div
               key={index}
               className="p-10 rounded-3xl flex flex-col items-start bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
-              <Image
+              <img
                 src={item.icon}
                 alt={item.title}
                 width={50}
@@ -161,28 +130,6 @@ const handleSearch = (query: string) => {
               <p className="text-sm text-gray-500 text-left">{item.text}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* FINAL CTA */}
-      <section className="pt-20 pb-30 bg-white text-center">
-        <h2 className="text-2xl md:text-3xl font-extrabold mb-10">
-  Start Growing Your YouTube Channel Today
-</h2>
-
-        <div className="flex items-center w-full max-w-xl mx-auto bg-[#f5f5f5] rounded-full overflow-hidden">
-          <input
-            value={ctaQuery}
-            onChange={(e) => setCtaQuery(e.target.value)}
-            className="flex-grow bg-transparent px-8 py-3 text-sm md:text-base focus:outline-none"
-            placeholder="Search Channel or paste URL"
-          />
-          <button
-  onClick={() => handleSearch(ctaQuery)}
-  className="bg-[#E94C88] w-12 h-12 flex items-center justify-center rounded-full hover:bg-[#DA3B72] transition"
->
-  <Search size={20} className="text-white" />
-</button>
         </div>
       </section>
 
