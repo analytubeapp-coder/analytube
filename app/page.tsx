@@ -156,7 +156,7 @@ Just type, generate, and publish with confidence.
 <section className="py-32 bg-white">
   <div className="max-w-5xl mx-auto px-6 text-center">
 
-    <h2 className="text-[3xl] md:text-5xl font-bold mb-6">
+    <h2 className="text-3xl md:text-5xl font-bold mb-6">
       Start Creating Better Thumbnails Today
     </h2>
 
