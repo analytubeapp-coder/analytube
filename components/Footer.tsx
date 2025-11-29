@@ -25,7 +25,7 @@ export default function Footer() {
             { href: "/blog", label: "Blogs" },
             { href: "/contact", label: "Contact Us" },
             { href: "/pricing", label: "Pricing" },
-            { href: "/about", label: "About" },
+            { href: "/about", label: "About Us" },
             { href: "/privacy", label: "Privacy Policy" },
             { href: "/terms", label: "Terms & Conditions" },
           ].map((link) => (

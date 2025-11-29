@@ -74,17 +74,17 @@ export default function Contact() {
       <Navbar />
 
       {/* Header */}
-            <section className="relative bg-[#e94c88] pt-40 pb-24">
+            <section className="relative bg-[#fcc978] pt-40 pb-24">
               {/* Decorative shapes */}
-              <div className="absolute bottom-35 right-80 w-10 h-10 bg-white opacity-40 rotate-65"></div>
-              <div className="absolute top-30 right-20 w-14 h-14 bg-white opacity-40 rounded-full"></div>
-              <div className="absolute bottom-20 left-100 w-10 h-10 bg-white opacity-40 rotate-35"></div>
+              <div className="hidden md:block absolute bottom-28 right-72 w-10 h-10 bg-white opacity-40 rotate-65"></div>
+              <div className="hidden md:block absolute top-28 right-16 w-14 h-14 bg-white opacity-40 rounded-full"></div>
+              <div className="hidden md:block absolute bottom-16 left-80 w-10 h-10 bg-white opacity-40 rotate-35"></div>
       
               <div className="absolute top-25 left-20">
                 <Image src="/term.svg" alt="Contact" width={200} height={200} />
               </div>
       
-              <h1 className="text-center text-5xl font-extrabold text-white leading-relaxed">
+              <h1 className="text-center text-5xl text-gray-700 font-extrabold text-white leading-relaxed">
                 Get questions?
                 <br />
                 We'll answer.
@@ -127,7 +127,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={loading}
-              className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-full transition"
+              className="bg-[#fcc978] hover:bg-[#f9c03f] text-white font-semibold py-3 px-8 rounded-full transition"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>

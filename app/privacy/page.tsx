@@ -9,7 +9,7 @@ export default function Privacy() {
       <Navbar />
 
       {/* Header Section with Green Background */}
-      <section className="relative bg-[#E94C88] pt-50 pb-24">
+      <section className="relative bg-[#fcc978] pt-50 pb-24">
         {/* Decorative shapes */}
         <div className="hidden md:block absolute bottom-35 right-80 w-10 h-10 bg-white opacity-40 rotate-65"></div>
         <div className="hidden md:block absolute top-30 right-20 w-14 h-14 bg-white opacity-40 rounded-full"></div>
@@ -31,111 +31,136 @@ export default function Privacy() {
       {/* Privacy Content */}
       <section className="py-16 bg-[#ffffff]">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-12 space-y-8">
+          
+          {/* SECTION 01 */}
           <div>
             <h2 className="text-xl font-bold mb-2">1. Introduction</h2>
             <p className="text-[#414141]">
-              At <b>AnalyTube</b>, your privacy and trust are extremely important
+              At <b>——</b>, your privacy, security, and trust are extremely important
               to us. This Privacy Policy explains what information we collect,
-              how we use it, how it is stored, and the rights you have over your
-              personal data.
+              how we use it, how it is stored, and what rights you have regarding
+              your personal data and activity on the platform.
             </p>
             <p className="text-[#414141] mt-2">
-              By using AnalyTube, you agree to this Privacy Policy. We are
-              committed to being transparent about how your data is handled and
-              to protecting it with industry-standard security measures.
+              By accessing or using ——, you agree to the terms outlined in this
+              Privacy Policy. We are committed to full transparency and apply
+              industry-standard protection measures to ensure that your data is
+              handled responsibly and safely at all times.
             </p>
           </div>
 
+          {/* SECTION 02 */}
           <div>
             <h2 className="text-xl font-bold mb-2">2. Information We Collect</h2>
             <ul className="list-disc list-inside text-[#414141] space-y-1">
               <li>
-                <b>Account Information:</b> name, email, and login credentials.
+                <b>Account Information:</b> name, email address, and login
+                credentials required to create and maintain your account.
               </li>
               <li>
-                <b>Usage Data:</b> features accessed, pages visited, and
-                preferences selected.
+                <b>Usage Data:</b> features you interact with, pages you visit,
+                preferences you set, and interactions within the dashboard.
               </li>
               <li>
-                <b>Technical Data:</b> IP address, device, browser, OS, and
-                location.
+                <b>Technical Data:</b> IP address, device type, browser version,
+                operating system, and approximate location.
               </li>
               <li>
-                <b>Cookies & Tracking:</b> used to remember preferences, improve
-                performance, and provide analytics.
+                <b>Cookies & Tracking:</b> used to enhance functionality, remember
+                preferences, and improve platform analytics.
               </li>
             </ul>
           </div>
 
+          {/* SECTION 03 */}
           <div>
             <h2 className="text-xl font-bold mb-2">3. How We Use Your Data</h2>
             <ul className="list-disc list-inside text-[#414141] space-y-1">
-              <li>To provide core functionality like analytics and tracking.</li>
-              <li>To personalize your experience and save preferences.</li>
-              <li>To send essential service communications.</li>
-              <li>To analyze usage patterns and improve performance.</li>
-              <li>To comply with legal obligations and ensure security.</li>
+              <li>
+                To operate core platform features, including analytics,
+                personalization, and service optimization.
+              </li>
+              <li>
+                To enhance user experience, save preferences, and maintain
+                consistent performance across sessions.
+              </li>
+              <li>
+                To send essential notifications regarding account activity or
+                service updates (never spam).
+              </li>
+              <li>
+                To analyze platform performance and improve reliability,
+                accuracy, and future updates.
+              </li>
+              <li>
+                To comply with legal requirements and ensure security
+                against fraud or misuse.
+              </li>
             </ul>
             <p className="text-[#414141] mt-2">
-              We do <b>not</b> sell your data to advertisers or unrelated third
-              parties.
+              We do <b>not</b> sell or share your personal data with advertisers
+              or unrelated third-party marketing agencies.
             </p>
           </div>
 
+          {/* SECTION 04 */}
           <div>
             <h2 className="text-xl font-bold mb-2">4. Data Sharing</h2>
             <ul className="list-disc list-inside text-[#414141] space-y-1">
               <li>
-                <b>Service Providers:</b> hosting, payment processors, analytics
-                tools.
+                <b>Service Providers:</b> such as hosting companies, payment
+                processors, and analytics tools that support platform operations.
               </li>
               <li>
-                <b>Legal Compliance:</b> disclosed if required by law or court
-                order.
+                <b>Legal Requirements:</b> only when required by law, regulation,
+                or valid legal process.
               </li>
               <li>
-                <b>Business Transfers:</b> in case of merger, acquisition, or
-                sale of assets.
+                <b>Business Transfers:</b> if —— is involved in a merger or
+                acquisition, some data may be transferred appropriately.
               </li>
             </ul>
             <p className="text-[#414141] mt-2">
-              We will never sell your data to third parties for marketing.
+              Your personal data is <b>never</b> sold or exchanged for advertising
+              purposes.
             </p>
           </div>
 
+          {/* SECTION 05 */}
           <div>
             <h2 className="text-xl font-bold mb-2">5. Data Retention</h2>
             <ul className="list-disc list-inside text-[#414141] space-y-1">
               <li>
-                Data is kept as long as your account is active or needed to
-                provide services.
+                Personal data is retained as long as your account remains active
+                or is necessary for providing our services.
               </li>
               <li>
-                Deleted accounts: personal data removed or anonymized within 12
-                months.
+                When an account is deleted, identifying data is removed or
+                securely anonymized within 12 months.
               </li>
               <li>
-                Technical and aggregated data may be stored longer but not
-                linked to you.
+                Aggregated or non-identifiable technical data may be stored
+                longer for performance and auditing purposes.
               </li>
             </ul>
           </div>
 
+          {/* SECTION 06 */}
           <div>
             <h2 className="text-xl font-bold mb-2">6. Your Rights</h2>
             <ul className="list-disc list-inside text-[#414141] space-y-1">
-              <li>Access: request a copy of your data.</li>
-              <li>Correction: update or fix data anytime.</li>
-              <li>Deletion: permanently delete personal data.</li>
+              <li>Request a copy of the data we store about you.</li>
+              <li>Update or correct your personal information.</li>
+              <li>Request full deletion of your personal data.</li>
+              <li>Unsubscribe from optional communication at any time.</li>
               <li>
-                Opt-Out: unsubscribe from marketing communications at any time.
+                Request your data in a portable, machine-readable format.
               </li>
-              <li>Portability: request data in portable format.</li>
             </ul>
             <p className="text-[#414141] mt-2">
-              For all requests, contact us at:{" "}
+              To submit a privacy request, contact:{" "}
               <a
-                href="mailto:analytubeapp@gmail.com"
+                href="mailto:support@analytubeapp.com"
                 className="text-purple font-semibold"
               >
                 support@analytubeapp.com
@@ -143,28 +168,33 @@ export default function Privacy() {
             </p>
           </div>
 
+          {/* SECTION 07 */}
           <div>
             <h2 className="text-xl font-bold mb-2">7. Security</h2>
             <p className="text-[#414141]">
-              We use industry-standard measures such as HTTPS, encryption, and
-              continuous monitoring to protect your data. However, no system is
-              100% secure, and we cannot guarantee absolute protection.
+              We implement modern security measures including HTTPS encryption,
+              secure authentication, and continuous monitoring. While we take all
+              reasonable steps to protect your information, no online system is
+              ever completely risk-free, and we cannot guarantee absolute
+              security.
             </p>
           </div>
 
+          {/* SECTION 08 */}
           <div>
             <h2 className="text-xl font-bold mb-2">8. Changes to This Policy</h2>
             <ul className="list-disc list-inside text-[#414141] space-y-1">
               <li>
-                This Privacy Policy may be updated to reflect service or legal
-                changes.
+                This Privacy Policy may be updated to reflect service changes,
+                new regulations, or improvements to data practices.
               </li>
               <li>
-                Updates will always be posted here, and significant changes
-                notified by email or in-app.
+                Updated versions will always be available on this page, and significant changes will be communicated via email or in-app
+                notifications.
               </li>
             </ul>
           </div>
+
         </div>
       </section>
 

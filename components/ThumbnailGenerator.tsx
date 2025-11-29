@@ -163,12 +163,12 @@ export default function ThumbnailGenerator() {
           <div className="flex flex-col w-full md:w-[58%]">
 
             {/* Style */}
-            <label className="text-lg font-semibold mb-1">Style</label>
+            <label className="text-lg font-bold mb-1">Style</label>
 
             <div className="relative mb-6">
               <select
                 className="
-                  border border-gray-300 bg-white rounded-[10px] 
+                  border border-gray-200 bg-white rounded-[8px] 
                   px-4 py-3 w-full outline-none 
                   pr-10 appearance-none
                 "
@@ -185,27 +185,27 @@ export default function ThumbnailGenerator() {
             </div>
 
             {/* Title */}
-            <label className="text-lg font-semibold mb-1">Title</label>
+            <label className="text-lg font-bold mb-1">Title</label>
             <input
-              className="border border-gray-300 rounded-[10px] px-4 py-3 mb-6 outline-none"
+              className="border border-gray-200 rounded-[8px] px-4 py-3 mb-6 outline-none"
               placeholder="Enter title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
 
             {/* Description */}
-            <label className="text-lg font-semibold mb-1">Description</label>
+            <label className="text-lg font-bold mb-1">Description</label>
             <textarea
-              className="border border-gray-300 rounded-[10px] px-4 py-3 h-48 outline-none resize-none"
+              className="border border-gray-200 rounded-[8px] px-4 py-3 h-48 outline-none resize-none"
               placeholder="Enter description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             />
 
             {/* Create Thumbnail Button */}
-            <button className="mt-8 bg-[#E94C88] hover:bg-[#f0689d] text-white text-[22px] font-semibold px-6 py-4 rounded-full transition w-[30%] text-center self-center">
+            {/* <button className="mt-8 bg-[#E94C88] hover:bg-[#f0689d] text-white text-[22px] font-semibold px-6 py-4 rounded-full transition w-[30%] text-center self-center">
               Create
-            </button>
+            </button> */}
           </div>
 
         </div>

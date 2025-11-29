@@ -2,136 +2,185 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ThumbnailGenerator from "@/components/ThumbnailGenerator";
+import Price from "@/components/Price";
 
 export default function Home() {
   return (
     <>
       <Navbar />
 
-      {/* MAIN THUMBNAIL GENERATOR */}
-      <section className="bg-white pt-44 pb-24">
-        <div className="w-full flex flex-col items-center px-6">
-          <h1 className="text-3xl md:text-[36px] font-bold mb-14 text-center">
-            Upload an Image to Generate Thumbnail
-          </h1>
+      {/* HERO */}
+      <header className="min-h-screen flex items-center pt-32 pb-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <div className="max-w-3xl text-left">
+            <h1 className="text-4xl md:text-[58px] font-bold leading-tight text-[#000000]">
+              Create High Performance <br />
+              YouTube Thumbnails <br />
+              Automatically.
+            </h1>
 
-          <ThumbnailGenerator />
-        </div>
-      </section>
+            <p className="text-lg md:text-xl font-medium text-[#403d39] mt-6 max-w-2xl leading-relaxed">
+              Generate scroll stopping, high CTR thumbnails powered by advanced<br />
+              AI trained on creator proven design patterns.<br />
+              No editing skills required.
+            </p>
 
-      {/* Features Section (3 top cards) */}
-      <section className="py-40 bg-white pt-10">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
-          {[
-            {
-              icon: "/icon-feature1.svg",
-              title: "AI-Powered Thumbnail Generator",
-              text: "Turn simple ideas into high-performing thumbnails automatically, optimized for clicks and engagement.",
-            },
-            {
-              icon: "/icon-feature2.svg",
-              title: "Thumbnail Enhancer",
-              text: "Improve your existing thumbnails with AI sharpening, color boosting, cleanup and professional styling.",
-            },
-            {
-              icon: "/icon-feature3.svg",
-              title: "Ready-Made Templates",
-              text: "Choose from YouTube-optimized templates designed for gaming, vlogs, education, tech, and more.",
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="p-10 rounded-3xl flex flex-col items-start bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            >
-              <img
-                src={item.icon}
-                alt={item.title}
-                width={50}
-                height={50}
-                className="mb-8"
-              />
-              <h3 className="font-semibold text-lg mb-3 text-left">
-                {item.title}
-              </h3>
-              <p className="text-sm text-gray-500 text-left">{item.text}</p>
+            <div className="flex gap-4 mt-10">
+              <a
+                href="/signup"
+                className="px-8 py-4 rounded-full bg-[#f9c03f] hover:bg-[#fcc978] text-white! text-[20px] font-semibold transition"
+              >
+                Start Free Trial
+              </a>
             </div>
-          ))}
+          </div>
         </div>
-      </section>
+      </header>
+      
+      {/* 3 Cards – Clean, Balanced, Soft Shadow */}
+<section className="pt-24 pb-32 bg-white">
+
+  {/* SECTION TITLE */}
+  <div className="max-w-7xl mx-auto px-6 text-center mb-20">
+    <h2 className="text-3xl md:text-[42px] font-bold leading-tight">
+      Powerful Tools to Accelerate Your YouTube Growth
+    </h2>
+  </div>
+
+  {/* CARD GRID */}
+  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
+    {[
+      {
+        title: "Smart YouTube Insights",
+        text:
+          "Access a powerful set of AI-driven tools designed to grow your channel faster and more efficiently. From smarter content suggestions to optimized upload timing and retention insights, everything works together to sharpen your strategy and keep you ahead of competitors.",
+        icon: "/card1.svg",
+      },
+      {
+        title: "AI Revenue Forecasting",
+        text:
+          "Get clear and reliable revenue predictions powered by advanced AI. By analyzing your uploads, watch time, audience patterns, and seasonal trends, our system gives you accurate forecasts so you can plan ahead with confidence and optimize your monetization strategy.",
+        icon: "/card2.svg",
+      },
+      {
+        title: "Advanced Growth Tools",
+        text:
+          "Access a powerful set of AI-driven tools designed to grow your channel faster and more efficiently. From smarter content suggestions to optimized upload timing and retention insights, everything works together to refine your strategy and keep you ahead of competitors.",
+        icon: "/card3.svg",
+      },
+    ].map((item, idx) => (
+      <div
+        key={idx}
+        className="
+          p-12 rounded-[10px] h-full
+          bg-white
+          shadow-[0_4px_12px_rgba(0,0,0,0.04)]
+          hover:shadow-[0_6px_18px_rgba(0,0,0,0.06)]
+          transition-all duration-300
+          flex flex-col items-start
+        "
+      >
+        <img src={item.icon} width={60} height={60} className="mb-8" />
+        <h3 className="font-semibold text-[20px] mb-2">{item.title}</h3>
+        <p className="text-[18px] text-[#403d39] font-meduim leading-relaxed">{item.text}</p>
+      </div>
+    ))}
+  </div>
+</section>
 
       {/* Middle Section */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <section className="py-32">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
           <div>
-            <h2 className="text-2xl md:text-[36px] font-extrabold mb-6">
-              Your YouTube Thumbnails <br />
-              Professional, Fast, and Fully AI-Driven
-            </h2>
-
-            <p className="text-base md:text-[16px] text-[#414141] max-w-lg">
-              Create thumbnails that stand out in under 30 seconds. Upload an
-              image or start with text, then let AI handle colors, layout, text
-              styling and background enhancement. Perfect for creators who want
-              better thumbnails without wasting hours on design.
+            <h3 className="text-[42px] font-bold mb-6">
+              Make Viral Thumbnails<br />
+              in seconds
+            </h3>
+            <p className="text-[#403d39] leading-relaxed text-[18px]">
+              Create eye catching thumbnails that boost your CTR instantly.
+Our AI analyzes proven creator design patterns and trending styles to generate high quality, viral ready thumbnails from just your video title or idea. No design skills needed.
+Just type, generate, and publish with confidence.
             </p>
           </div>
+        </div>
+      </section>
 
-          <div className="relative flex justify-center md:justify-end">
-            <img
-              src="/shape.svg"
-              alt="Creator shape"
-              width={330}
-              height={330}
-              className="rounded-x2 relative z-10"
-            />
+      {/* WHY CREATORS CHOOSE (Title + 4 Minimal Cards) */}
+<section className="py-28 bg-white">
+  <div className="max-w-6xl mx-auto px-6">
+    <h3 className="text-center text-3xl md:text-[42px] font-bold mb-16">
+      Why Creators choose ——
+    </h3>
+
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-4">
+      {[
+        { icon: "/icon-feature1.svg", words: ["Higher", "Engagement"] },
+        { icon: "/icon-feature2.svg", words: ["Faster", "Workflow"] },
+        { icon: "/icon-feature3.svg", words: ["Smarter", "Decisions"] },
+        { icon: "/icon-feature4.svg", words: ["Consistent", "Quality"] },
+      ].map((item, idx) => (
+        <div
+          key={idx}
+          className="
+            flex flex-col items-center text-center 
+            p-8 md:p-10 
+            rounded-xl
+            border border-[#E9ECEF]
+            bg-white
+            h-[220px]
+          "
+        >
+          <img
+            src={item.icon}
+            alt=""
+            className="w-12 h-12 md:w-14 md:h-14 mb-8"
+          />
+
+          {/* BOTH WORDS EXACT SAME STYLE */}
+          <div className="flex flex-col leading-tight">
+            <span className="text-[18px] md:text-[22px] font-regular text-[#111]">
+              {item.words[0]}
+            </span>
+            <span className="text-[18px] md:text-[22px] font-regular text-[#111] mt-1">
+              {item.words[1]}
+            </span>
           </div>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+      <Price />
 
-      {/* Why Choose Section */}
-      <section className="py-42 bg-white">
-        <h2 className="text-center text-2xl md:text-3xl font-extrabold mb-20">
-          Why creators choose AnalyTube
-        </h2>
+      {/* CTA SECTION */}
+<section className="py-32 bg-white">
+  <div className="max-w-5xl mx-auto px-6 text-center">
 
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
-          {[
-            {
-              icon: "/icon-feature4.svg",
-              title: "Boost Your Click-Through Rate",
-              text: "Eye-catching designs tailored to maximize CTR and keep your channel growing.",
-            },
-            {
-              icon: "/icon-feature5.svg",
-              title: "Lightning-Fast Generation",
-              text: "Get multiple thumbnail variations in seconds using advanced image-generation AI.",
-            },
-            {
-              icon: "/icon-feature6.svg",
-              title: "Creator-Focused Simplicity",
-              text: "A clean, intuitive interface made specifically for YouTubers. No design skills required.",
-            },
-          ].map((item, index) => (
-            <div
-              key={index}
-              className="p-10 rounded-3xl flex flex-col items-start bg-white shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            >
-              <img
-                src={item.icon}
-                alt={item.title}
-                width={50}
-                height={50}
-                className="mb-8"
-              />
-              <h3 className="font-semibold text-lg mb-3 text-left">
-                {item.title}
-              </h3>
-              <p className="text-sm text-gray-500 text-left">{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+    <h2 className="text-[3xl] md:text-5xl font-bold mb-6">
+      Start Creating Better Thumbnails Today
+    </h2>
+
+    <p className="text-[18px] text-[#403d39] max-w-2xl mx-auto leading-relaxed mb-10">
+      Join thousands of creators using AI-powered tools to boost their CTR,
+  grow their audience, and save hours every week all while producing
+  high-quality thumbnails that stand out and drive real results.
+    </p>
+
+    <a
+      href="/signup"
+      className="
+        px-6 py-4 
+        bg-[#F9C03F] hover:bg-[#FCC978] 
+        text-white! text-[20px] font-semibold 
+        rounded-full 
+        transition
+      "
+    >
+      Start Free Trial
+    </a>
+
+  </div>
+</section>
 
       <Footer />
     </>
