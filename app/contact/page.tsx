@@ -106,7 +106,7 @@ export default function Contact() {
               required
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#e94c88]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978]"
             />
             <textarea
               placeholder="Message*"
@@ -114,7 +114,7 @@ export default function Contact() {
               rows={5}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#e94c88]"
+              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978]"
             ></textarea>
 
             {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -127,7 +127,7 @@ export default function Contact() {
             <button
               type="submit"
               disabled={loading}
-              className="bg-[#fcc978] hover:bg-[#f9c03f] text-white font-semibold py-3 px-8 rounded-full transition"
+              className="bg-[#f9c03f] hover:bg-[#fcc978] text-white font-semibold py-3 px-8 rounded-full transition"
             >
               {loading ? "Sending..." : "Send Message"}
             </button>
