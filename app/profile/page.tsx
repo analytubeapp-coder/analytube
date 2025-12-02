@@ -279,7 +279,7 @@ export default function ProfilePage() {
           <button
             onClick={handleSave}
             disabled={loading}
-            className="w-full bg-[#000000] text-white py-3 rounded-full font-semibold hover:opacity-90 disabled:opacity-50 transition"
+            className="w-full bg-[#fcc978] text-white py-3 rounded-full font-semibold hover:opacity-90 disabled:opacity-50 transition"
           >
             {loading ? "Saving..." : "Save Changes"}
           </button>
