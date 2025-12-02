@@ -114,7 +114,7 @@ export default function ThumbnailGenerator() {
             key={c}
             onClick={() => setSelectedCategory(c)}
             className={`
-              px-3 md:px-4 py-1 rounded-full text-xs md:text-[18px] border transition
+              px-3 md:px-4 py-1 rounded-full text-xs md:text-[17px] border transition
               ${selectedCategory === c
                 ? "bg-[#f9c03f] text-black border-[#f9c03f]"
                 : "bg-white/10 text-white/80 border-white/10 hover:bg-white/20"}

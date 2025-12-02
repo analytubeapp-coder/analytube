@@ -7,7 +7,7 @@ export default function Footer() {
     <footer className="text-white! py-12">
       <div className="max-w-7xl mx-auto px-6">
 
-        <div className="w-full flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-sm font-medium">
+        <div className="w-full flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-[16px] font-medium">
 
           {/* Logo 
           <Link href="/" className="flex items-center">

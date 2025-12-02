@@ -30,9 +30,7 @@ export default function BlogPage() {
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-gray-500 animate-pulse">
-        Loading posts...
-      </p>
+      <p className="text-center mt-10 text-white animate-pulse">Loading posts...</p>
     );
 
   if (errorMsg)
@@ -43,21 +41,56 @@ export default function BlogPage() {
     );
 
   if (!posts.length)
-    return <p className="text-center mt-10 text-gray-400">No posts found yet.</p>;
+    return <p className="text-center mt-10 text-white/75">No posts found yet.</p>;
 
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
+    <div className="flex flex-col min-h-screen text-white relative">
+      {/* AURORA FIXED BACKGROUND */}
+            <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+      
+              {/* هاله بنفش — کشیده، انتزاعی، قابل‌تشخیص */}
+              <div
+                className="
+                  absolute top-[35%] left-[55%]
+                  w-[900px] h-[450px]
+                  -translate-x-1/2 -translate-y-1/2
+                  rotate-[25deg]
+                  rounded-[9999px] blur-[160px] opacity-60
+                "
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
+                }}
+              ></div>
+      
+              {/* هاله برنزی — بزرگ‌تر، نزدیک‌تر، واضح‌تر */}
+              <div
+                className="
+                  absolute top-[60%] left-[40%]
+                  w-[1000px] h-[550px]
+                  -translate-x-1/2 -translate-y-1/2
+                  rotate-[-30deg]
+                  rounded-[9999px] blur-[100px] opacity-60
+                "
+                style={{
+                  background:
+                    "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
+                }}
+              ></div>
+      
+            </div>
+      
+        <Navbar />
 
-      <main className="flex-grow">
-        <div className="max-w-6xl mx-auto py-32 px-6">
-          <h1 className="text-4xl font-bold mb-12 text-center">Blogs</h1>
+      <main className="flex-grow pt-32 pb-16">
+        <div className="max-w-7xl mx-auto px-6">
+          <h1 className="text-5xl font-extrabold text-center mb-12">Blogs</h1>
 
           <div className="grid md:grid-cols-2 gap-10">
             {posts.map((post) => (
               <div
                 key={post.id}
-                className="flex flex-col md:flex-row border border-gray-200 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all"
+                className="flex flex-col md:flex-row bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
               >
                 {post.cover_url && (
                   <div className="relative w-full md:w-1/2 h-48 md:h-auto">
@@ -72,15 +105,11 @@ export default function BlogPage() {
 
                 <div className="p-6 flex flex-col justify-between w-full md:w-1/2">
                   <div>
-                    <h2 className="text-xl font-semibold mb-2 line-clamp-2">
-                      {post.title}
-                    </h2>
-                    <p className="text-sm text-gray-500 mb-3">
+                    <h2 className="text-2xl font-semibold mb-2 line-clamp-2">{post.title}</h2>
+                    <p className="text-sm text-white/70 mb-3">
                       {new Date(post.created_at).toLocaleDateString()}
                     </p>
-                    <p className="text-gray-600 mb-4 line-clamp-3">
-                      {post.excerpt}
-                    </p>
+                    <p className="text-white/80 mb-4 line-clamp-3">{post.excerpt}</p>
                   </div>
                   <Link
                     href={`/blog/${post.slug}`}

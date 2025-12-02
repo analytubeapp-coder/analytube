@@ -19,6 +19,7 @@ export default function SignInInner() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
+  // -------------------- GOOGLE LOGIN (UNCHANGED) --------------------
   const handleGoogleLogin = async () => {
     setError("");
 
@@ -35,6 +36,7 @@ export default function SignInInner() {
     if (error) setError("Google sign-in failed. Please try again.");
   };
 
+  // -------------------- EMAIL SIGN-IN (UNCHANGED) --------------------
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -68,84 +70,121 @@ export default function SignInInner() {
   };
 
   return (
-    <div className="flex h-screen">
-      {/* LEFT SIDE */}
-      <div
-        className="hidden md:flex w-1/5 flex flex-col py-40 px-12 relative"
-        style={{ backgroundColor: "#fcc978" }}
-      >
-        <h1 className="mb-8">
-          <span className="block text-[24px] text-white font-bold mb-4">
-            Welcome back,
-          </span>
-          <span className="block text-[44px] text-white text-bold font-extrabold">
-            AnalyTube!
-          </span>
-        </h1>
+    <>
 
-        <div className="absolute bottom-20 right-[-80px] w-40 h-40 border-[30px] border-white rounded-full"></div>
-      </div>
+      {/* AURORA FIXED BACKGROUND */}
+<div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
 
-      {/* RIGHT SIDE */}
-      <div className="w-full md:w-3/5 flex flex-col justify-center items-center min-h-screen py-12 px-6">
-        <div className="w-full max-w-[330px]">
+  {/* Purple Glow — same as Home */}
+  <div
+    className="
+      absolute top-[35%] left-[55%]
+      w-[900px] h-[450px]
+      -translate-x-1/2 -translate-y-1/2
+      rotate-[25deg]
+      rounded-[9999px] blur-[160px] opacity-100
+    "
+    style={{
+      background:
+        "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
+    }}
+  ></div>
 
-          <h2 className="text-xl font-bold text-center mb-3">
+  {/* Gold Glow — same as Home */}
+  <div
+    className="
+      absolute top-[60%] left-[40%]
+      w-[1000px] h-[550px]
+      -translate-x-1/2 -translate-y-1/2
+      rotate-[-30deg]
+      rounded-[9999px] blur-[100px] opacity-100
+    "
+    style={{
+      background:
+        "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
+    }}
+  ></div>
+
+</div>
+
+{/* Dark overlay — same as Home */}
+<div className="fixed inset-0 z-[-0] bg-black/50"></div>
+
+      {/* -------------------- MAIN CONTENT -------------------- */}
+      <div className="flex items-center justify-center min-h-screen px-6 py-20 text-white">
+
+        <div className="w-full max-w-lg bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl p-10">
+
+          {/* Title */}
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
             Sign in to AnalyTube
           </h2>
 
+          {/* Google Login Button */}
           <button
             onClick={handleGoogleLogin}
-            className="w-full border border-gray-300 rounded-full py-2 flex items-center justify-center gap-2 text-sm mb-10 hover:bg-gray-50 text-gray-700 transition"
+            className="
+              w-full border border-white/20 rounded-full py-3 
+              flex items-center justify-center gap-3 text-base 
+              bg-white/5 hover:bg-white/10 transition
+            "
           >
-            <img src="/google-icon.svg" alt="Google" className="w-4 h-4" />
-            Sign in with Google
+            <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+            Continue with Google
           </button>
 
-          <div className="text-center text-gray-400 text-sm mb-8">or</div>
+          <div className="text-center text-white/60 text-sm my-6">or</div>
 
-          <form onSubmit={handleEmailSignIn} className="space-y-4">
+          {/* EMAIL FORM */}
+          <form onSubmit={handleEmailSignIn} className="space-y-5">
+
             <input
               type="email"
               placeholder="Enter your email address"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-2 text-gray-700"
+              className="
+                w-full rounded-lg px-4 py-3 bg-white/10 border border-white/20 
+                text-white placeholder-white/40 outline-none
+                focus:ring-2 focus:ring-[#fcc978]
+              "
               required
             />
 
-            {error && (
-              <p className="text-red-500 text-xs">{error}</p>
-            )}
-            {message && (
-              <p className="text-green-600 text-xs">{message}</p>
-            )}
+            {error && <p className="text-red-400 text-sm">{error}</p>}
+            {message && <p className="text-green-400 text-sm">{message}</p>}
 
+            {/* Submit */}
             <button
               type="submit"
               disabled={loading}
-              className={`w-full text-white font-semibold rounded-full py-2 transition-colors duration-200 ${
-                loading
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-[#fcc978] hover:bg-[#f9c03f]"
-              }`}
+              className={`
+                w-full font-semibold rounded-full py-3 text-black text-lg 
+                transition
+                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#fcc978] hover:bg-[#f9c03f]"}
+              `}
             >
               {loading ? "Sending..." : "Sign In"}
             </button>
           </form>
 
-          <p className="text-[12px] text-gray-400 mt-8 text-center">
-  By continuing, you agree to our{" "}
-  <a href="/terms" className="underline!">Terms</a> and{" "}
-  <a href="/privacy" className="underline!">Privacy Policy</a>.
-</p>
+          {/* Terms */}
+          <p className="text-[13px] text-white/60 mt-8 text-center">
+            By continuing, you agree to our{" "}
+            <a href="/terms" className="underline">Terms</a> and{" "}
+            <a href="/privacy" className="underline">Privacy Policy</a>.
+          </p>
 
-          <p className="text-[12px] text-gray-400 mt-2 text-center">
-            Don't have an account? {" "} <a href="/signup" className="underline!"> Sign up</a>
+          {/* Signup */}
+          <p className="text-[13px] text-white/60 mt-2 text-center">
+            Don't have an account?{" "}
+            <a href="/signup" className="underline">Sign up</a>
           </p>
 
         </div>
+
       </div>
-    </div>
+
+    </>
   );
 }

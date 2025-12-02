@@ -3,8 +3,7 @@
 import { supabase } from "@/lib/supabaseClient";
 import Image from "next/image";
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -34,21 +33,20 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   if (error || !post) {
     return (
       <>
-        <Navbar />
+
         <div className="max-w-3xl mx-auto py-32 text-center">
           <h1 className="text-2xl font-semibold text-gray-700">Post not found 😕</h1>
           <Link href="/blog" className="text-[#BFD62E] underline mt-20 block">
             ← Back to Blog
           </Link>
         </div>
-        <Footer />
+      
       </>
     );
   }
 
   return (
     <>
-      <Navbar />
       <div className="max-w-3xl mx-auto py-32 px-6">
         <Link href="/blog" className="text-[#BFD62E] underline">
           ← Back to Blog
@@ -75,7 +73,6 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   <div dangerouslySetInnerHTML={{ __html: post.content }} className="space-y-4" />
 </article>
       </div>
-      <Footer />
     </>
   );
 }

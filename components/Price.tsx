@@ -71,7 +71,7 @@ export default function PricingSection() {
         </div>
 
         {/* PRICING GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-0">
 
           {/* CARD — STARTER */}
           <div

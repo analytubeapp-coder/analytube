@@ -73,78 +73,105 @@ export default function Contact() {
     <>
       <Navbar />
 
-      {/* Header */}
-            <section className="relative bg-[#fcc978] pt-40 pb-24">
-              {/* Decorative shapes */}
-              <div className="hidden md:block absolute bottom-28 right-72 w-10 h-10 bg-white opacity-40 rotate-65"></div>
-              <div className="hidden md:block absolute top-28 right-16 w-14 h-14 bg-white opacity-40 rounded-full"></div>
-              <div className="hidden md:block absolute bottom-16 left-80 w-10 h-10 bg-white opacity-40 rotate-35"></div>
-      
-              <div className="absolute top-25 left-20">
-                <Image src="/term.svg" alt="Contact" width={200} height={200} />
+      {/* 🌈 AURORA BACKGROUND */}
+      <div className="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
+        {/* Purple Gradient */}
+        <div
+          className="
+            absolute top-[35%] left-[55%]
+            w-[900px] h-[450px]
+            -translate-x-1/2 -translate-y-1/2
+            rotate-[25deg]
+            rounded-[9999px] blur-[160px] opacity-60
+          "
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
+          }}
+        ></div>
+
+        {/* Gold Gradient */}
+        <div
+          className="
+            absolute top-[60%] left-[40%]
+            w-[1000px] h-[550px]
+            -translate-x-1/2 -translate-y-1/2
+            rotate-[-30deg]
+            rounded-[9999px] blur-[100px] opacity-60
+          "
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
+          }}
+        ></div>
+      </div>
+
+      <main className="min-h-screen w-full text-white relative">
+        {/* Dark Overlay to enhance readability */}
+        <div className="fixed inset-0 z-[-1] bg-black/50"></div>
+
+        <section className="py-46 bg-transparent">
+          <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-xl rounded-xl shadow-lg p-12 space-y-8">
+            <h1 className="text-[40px] font-bold text-center text-white leading-[1.3]">
+              Get questions? <br />
+              We'll answer.
+            </h1>
+
+            <p className="text-lg text-center text-white/80">
+              We are here to help! Please fill out the form below, and we'll get back to you soon.
+            </p>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* Subject */}
+              <input
+                type="text"
+                placeholder="Subject*"
+                required
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                className="w-full border border-white/30 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978] text-white"
+              />
+
+              {/* Message */}
+              <textarea
+                placeholder="Message*"
+                required
+                rows={5}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                className="w-full border border-white/30 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978] text-white"
+              />
+
+              {/* Error or Success Messages */}
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+              {success && (
+                <p className="text-green-600 text-sm">Message sent successfully!</p>
+              )}
+
+              {/* Submit Button */}
+              <div className="flex justify-center">
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-[#f9c03f] hover:bg-[#f9c03f]/90 text-black font-semibold py-3 px-8 rounded-full transition"
+              >
+                {loading ? "Sending..." : "Send Message"}
+              </button>
               </div>
-      
-              <h1 className="text-center text-5xl text-gray-700 font-extrabold text-white leading-relaxed">
-                Get questions?
-                <br />
-                We'll answer.
-              </h1>
-            </section>
+            </form>
 
-      <section className="py-16 bg-[#ffffff]">
-        <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-lg p-12 space-y-8 text-center">
-          <p className="text-lg text-gray-700 font-medium">
-            Fill out this form and we will get back to you shortly.
-          </p>
-
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* ✅ حذف input ایمیل */}
-
-            <input
-              type="text"
-              placeholder="Subject*"
-              required
-              value={subject}
-              onChange={(e) => setSubject(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978]"
-            />
-            <textarea
-              placeholder="Message*"
-              required
-              rows={5}
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="w-full border border-gray-300 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978]"
-            ></textarea>
-
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-            {success && (
-              <p className="text-green-600 text-sm">
-                Message sent successfully.
-              </p>
-            )}
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="bg-[#f9c03f] hover:bg-[#fcc978] text-white font-semibold py-3 px-8 rounded-full transition"
-            >
-              {loading ? "Sending..." : "Send Message"}
-            </button>
-          </form>
-
-          <p className="text-sm text-gray-600">
-            For support inquiries, contact us at{" "}
-            <a
-              href="mailto:analytubeapp@gmail.com"
-              className="text-purple font-semibold"
-            >
-              support@analytubeapp.com
-            </a>
-            .
-          </p>
-        </div>
-      </section>
+            <p className="text-sm text-white/70 text-center">
+              For support inquiries, contact us at{" "}
+              <a
+                href="mailto:analytubeapp@gmail.com"
+                className="text-[#F9C03F] font-semibold"
+              >
+                support@analytubeapp.com
+              </a>
+            </p>
+          </div>
+        </section>
+      </main>
 
       <Footer />
     </>
