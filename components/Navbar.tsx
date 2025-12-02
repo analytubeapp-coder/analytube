@@ -107,7 +107,7 @@ export default function Navbar() {
               {isDropdownOpen && (
   <div
     className="
-      absolute right-0 top-[46px]
+      absolute right-0 top-[45px]
       w-64 rounded-2xl shadow-xl py-4 z-50
       bg-[#181818] backdrop-blur-xl 
       border border-white/20 transition-all duration-150 pointer-events-auto
