@@ -122,11 +122,11 @@ export default function Home() {
 <section className="py-32">
   <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 place-items-center">
     <div className="text-center">
-      <h3 className="text-[62px] font-bold mb-6 text-white">
+      <h3 className="text-3xl md:text-[62px] font-bold mb-6 text-white">
         Make Viral Thumbnails in seconds
       </h3>
 
-      <p className="text-white/75 leading-relaxed text-[22px] mx-auto">
+      <p className="text-white/75 leading-relaxed text-xl md:text-[22px] mx-auto">
         Generate eye catching thumbnails that instantly boost your video clicks. Powered by AI trained on trending styles, <br />
         proven creator patterns and high-performing visuals. Just write your idea AI does the rest.
       </p>
@@ -174,12 +174,12 @@ export default function Home() {
 
           {/* TEXT BLOCK (with bottom spacing) */}
           <div className="flex flex-col leading-tight text-white">
-            <span className="text-[18px] md:text-[28px] font-regular">
+            <span className="text-[20px] md:text-[28px] font-regular">
               {item.words[0]}
             </span>
 
             {/* فاصله از پایین کارت */}
-            <span className="text-[18px] md:text-[28px] font-regular mt-1 mb-1">
+            <span className="text-[20px] md:text-[28px] font-regular mt-1 mb-1">
               {item.words[1]}
             </span>
           </div>
