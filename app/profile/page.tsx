@@ -141,108 +141,148 @@ export default function ProfilePage() {
     );
 
   return (
-    <div className="max-w-2xl mx-auto py-16 px-6">
-      <h1 className="text-3xl font-bold mb-8">Your Profile</h1>
-      {/* Avatar Section */}
-      <div className="flex flex-col items-center mb-10">
-        <div className="relative">
-          <Image
-            src={avatarUrl || "/default-avatar.png"}
-            alt="Avatar"
-            width={130}
-            height={130}
-            className="rounded-full object-cover border-2 border-gray-300"
-          />
-          <label
-            htmlFor="avatar-upload"
-            className="absolute bottom-0 right-0 bg-[#E94C88] text-[#FFFFFF] p-2 rounded-full cursor-pointer hover:opacity-80 transition"
-          >
-            <Upload size={18} />
-          </label>
-          <input
-            id="avatar-upload"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleAvatarUpload}
-            disabled={uploading}
-          />
-        </div>
+    <div className="relative min-h-screen w-full text-white">
 
-        {uploading && <p className="text-sm text-gray-500 mt-2">Uploading...</p>}
-        {avatarUrl && (
-          <button
-            onClick={handleRemoveAvatar}
-            className="mt-3 flex items-center gap-1 text-sm text-red-600 hover:text-red-700 transition"
-          >
-            <Trash2 size={16} /> Remove Avatar
-          </button>
-        )}
+      {/* 🌈 AURORA FIXED BACKGROUND */}
+      <div className="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
+        {/* Purple Glow */}
+        <div
+          className="
+            absolute top-[35%] left-[55%]
+            w-[900px] h-[450px]
+            -translate-x-1/2 -translate-y-1/2
+            rotate-[25deg]
+            rounded-[9999px] blur-[160px] opacity-100
+          "
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
+          }}
+        ></div>
+
+        {/* Gold Glow */}
+        <div
+          className="
+            absolute top-[60%] left-[40%]
+            w-[1000px] h-[550px]
+            -translate-x-1/2 -translate-y-1/2
+            rotate-[-30deg]
+            rounded-[9999px] blur-[100px] opacity-100
+          "
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
+          }}
+        ></div>
       </div>
 
-      {/* Profile Fields */}
-      <div className="space-y-8">
-        {/* Email */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
-          <input
-            type="text"
-            value={email}
-            disabled
-            className="w-full border rounded-md px-4 py-3 bg-gray-100 text-gray-500 cursor-not-allowed"
-          />
-        </div>
+      {/* Dark Overlay */}
+      <div className="fixed inset-0 z-[-1] bg-black/50"></div>
 
-        {/* Full Name */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
-          <input
-            type="text"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-            className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#E94C88]"
-          />
-        </div>
+      <div className="max-w-2xl mx-auto py-16 px-6">
+        <h1 className="text-3xl font-bold mb-8">Your Profile</h1>
 
-        {/* Channel Name */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Channel Name (optional)
-          </label>
-          <input
-            type="text"
-            value={channelName}
-            onChange={(e) => setChannelName(e.target.value)}
-            className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#E94C88]"
-          />
-        </div>
-
-        {/* Subscription */}
-        <div className="bg-gray-50 border rounded-lg p-5 flex items-center justify-between">
-          <div>
-            <p className="text-sm text-gray-500">Subscription Plan</p>
-            <p className="font-semibold">
-              {profile?.plan === "pro" ? "Pro Plan ✅" : "Free Plan"}
-            </p>
-          </div>
-          {profile?.plan !== "pro" && (
-            <button
-              onClick={handleUpgrade}
-              className="bg-[#E94C88] text-[#FFFFFF] px-4 py-2 rounded-md font-regular hover:opacity-80 transition"
+        {/* Avatar Section */}
+        <div className="flex flex-col items-center mb-10">
+          <div className="relative">
+            <Image
+              src={avatarUrl || "/default-avatar.png"}
+              alt="Avatar"
+              width={130}
+              height={130}
+              className="rounded-full object-cover border-2 border-gray-300"
+            />
+            <label
+              htmlFor="avatar-upload"
+              className="absolute bottom-0 right-0 bg-[#E94C88] text-[#FFFFFF] p-2 rounded-full cursor-pointer hover:opacity-80 transition"
             >
-              Upgrade to Pro
+              <Upload size={18} />
+            </label>
+            <input
+              id="avatar-upload"
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={handleAvatarUpload}
+              disabled={uploading}
+            />
+          </div>
+
+          {uploading && <p className="text-sm text-gray-500 mt-2">Uploading...</p>}
+          {avatarUrl && (
+            <button
+              onClick={handleRemoveAvatar}
+              className="mt-3 flex items-center gap-1 text-sm text-red-600 hover:text-red-700 transition"
+            >
+              <Trash2 size={16} /> Remove Avatar
             </button>
           )}
         </div>
 
-        {/* Save Button */}
-        <button
-          onClick={handleSave}
-          disabled={loading}
-          className="w-full bg-black text-white py-3 rounded-md font-semibold hover:opacity-90 disabled:opacity-50 transition"
-        >
-          {loading ? "Saving..." : "Save Changes"}
-        </button>
+        {/* Profile Fields */}
+        <div className="space-y-8">
+          {/* Email */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+            <input
+              type="text"
+              value={email}
+              disabled
+              className="w-full border rounded-md px-4 py-3 bg-gray-100 text-gray-500 cursor-not-allowed"
+            />
+          </div>
+
+          {/* Full Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+            <input
+              type="text"
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#E94C88]"
+            />
+          </div>
+
+          {/* Channel Name */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Channel Name (optional)
+            </label>
+            <input
+              type="text"
+              value={channelName}
+              onChange={(e) => setChannelName(e.target.value)}
+              className="w-full border rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#E94C88]"
+            />
+          </div>
+
+          {/* Subscription */}
+          <div className="bg-gray-50 border rounded-lg p-5 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-gray-500">Subscription Plan</p>
+              <p className="font-semibold">
+                {profile?. plan === "pro" ? "Pro Plan ✅" : "Free Plan"}
+              </p>
+            </div>
+            {profile?.plan !== "pro" && (
+              <button
+                onClick={handleUpgrade}
+                className="bg-[#E94C88] text-[#FFFFFF] px-4 py-2 rounded-md font-regular hover:opacity-80 transition"
+              >
+                Upgrade to Pro
+              </button>
+            )}
+          </div>
+
+          {/* Save Button */}
+          <button
+            onClick={handleSave}
+            disabled={loading}
+            className="w-full bg-black text-white py-3 rounded-md font-semibold hover:opacity-90 disabled:opacity-50 transition"
+          >
+            {loading ? "Saving..." : "Save Changes"}
+          </button>
+        </div>
       </div>
     </div>
   );
