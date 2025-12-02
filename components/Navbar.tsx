@@ -105,39 +105,57 @@ export default function Navbar() {
               </div>
 
               {isDropdownOpen && (
-                <div
-                  className="
-                    absolute right-0 top-[50px]
-                    w-56 rounded-2xl shadow-xl py-3 z-50
-                    bg-[rgba(20,20,20,0.85)]
-                    backdrop-blur-xl border border-white/10
-                  "
-                >
-                  <div className="px-4 pb-3 border-b border-white/10">
-                    <p className="font-semibold text-white">
-                      {profile?.full_name || "User"}
-                    </p>
-                    <p className="text-xs text-gray-300 truncate">{user?.email}</p>
-                    <p className="text-xs mt-10 text-purple-300">
-                      {profile?.plan === "pro" ? "⭐ Pro Plan" : "Free Plan"}
-                    </p>
-                  </div>
+  <div
+    className="
+      absolute right-0 top-[50px]
+      w-60 rounded-2xl shadow-xl py-4 z-50
+      bg-[rgba(20,20,20,0.9)]
+      backdrop-blur-xl border border-white/10
+    "
+  >
+    {/* USER INFO */}
+    <div className="px-4 pb-4 border-b border-white/10">
+      <p className="font-semibold text-white text-[15px]">
+        {profile?.full_name || "User"}
+      </p>
 
-                  <Link
-                    href="/profile"
-                    className="block px-4 py-2 text-white/90 hover:bg-white/10 transition"
-                  >
-                    Profile
-                  </Link>
+      <p className="text-xs text-gray-300 mt-1 truncate">
+        {user?.email}
+      </p>
 
-                  <button
-                    onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-red-400 hover:bg-white/10 transition"
-                  >
-                    Sign out
-                  </button>
-                </div>
-              )}
+      {/* PLAN */}
+      <p className="text-xs mt-3 font-medium">
+        {profile?.plan === "pro" && (
+          <span className="text-yellow-300">Pro</span>
+        )}
+        {profile?.plan === "creator" && (
+          <span className="text-blue-300">Creator</span>
+        )}
+        {profile?.plan === "starter" && (
+          <span className="text-purple-300">Starter</span>
+        )}
+        {!profile?.plan && (
+          <span className="text-purple-300">Starter</span>
+        )}
+      </p>
+    </div>
+
+    {/* LINKS */}
+    <Link
+      href="/profile"
+      className="block px-4 py-3 text-white/90 hover:bg-white/10 transition text-[15px]"
+    >
+      Profile
+    </Link>
+
+    <button
+      onClick={handleLogout}
+      className="block w-full text-left px-4 py-3 text-red-400 hover:bg-white/10 transition text-[15px]"
+    >
+      Sign out
+    </button>
+  </div>
+)}
             </div>
           )}
         </div>
