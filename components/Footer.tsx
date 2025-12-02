@@ -4,12 +4,12 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-white text-black py-12">
+    <footer className="text-white! py-12">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="w-full flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-sm font-medium">
 
-          {/* Logo */}
+          {/* Logo 
           <Link href="/" className="flex items-center">
             <Image
               src="/logoo.svg"
@@ -19,7 +19,7 @@ export default function Footer() {
               className="translate-y-[-1px]"
               priority
             />
-          </Link>
+          </Link> */}
 
           {[
             { href: "/blog", label: "Blogs" },

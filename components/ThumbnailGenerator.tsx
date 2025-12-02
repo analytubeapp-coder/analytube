@@ -1,215 +1,181 @@
 "use client";
-import React, { useState, useRef } from "react";
-import { HiChevronDown } from "react-icons/hi";
+
+import { useState, useRef } from "react";
+import { UploadCloud, ArrowRight, Loader2 } from "lucide-react";
 
 export default function ThumbnailGenerator() {
+  const [selectedCategory, setSelectedCategory] = useState("Gaming");
   const [images, setImages] = useState<string[]>([]);
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [style, setStyle] = useState("");
+  const [prompt, setPrompt] = useState("");
+  const [loading, setLoading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
-  const [warning, setWarning] = useState("");
 
-  // عکس موقتی داخل کارت اصلی
-  const [previewImage, setPreviewImage] = useState<string | null>(null);
+  const dragCounter = useRef(0);
 
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
-
-  const styles = [
-    "Gaming", "Vlog", "Tech Review", "Reaction", "Tutorial", "Study With Me",
-    "Motivation", "Cooking", "Travel", "Fitness", "Lifestyle", "Music",
-    "Podcast", "Unboxing", "News", "Educational", "Business", "Comedy",
-    "Storytime", "Documentary",
+  const categories = [
+    "Gaming", "Vlog", "Tech Review", "Reaction",
+    "Tutorial", "Study With Me", "Motivation",
+    "Cooking", "Travel", "Fitness", "Lifestyle",
+    "Music", "Podcast", "Unboxing", "News",
+    "Educational", "Business", "Comedy",
+    "Storytime", "Documentary"
   ];
 
-  /**  نسخه نهایی handleImageFile **/
-  const handleImageFile = (file: File) => {
-    if (!file) return;
-    if (images.length >= 3) {
-  setWarning("You can upload up to 3 images only!");
+  // ---------------------- HANDLE FILES ----------------------
+  const handleFiles = (files: FileList) => {
+    const fileArray = Array.from(files);
 
-  // پیام بعد 3 ثانیه محو شود
-  setTimeout(() => setWarning(""), 3000);
+    if (images.length + fileArray.length > 4) {
+      alert("You can upload up to 4 images.");
+      return;
+    }
 
-  return;
-}
+    const newImgs = fileArray.map((file) => URL.createObjectURL(file));
+    setImages((prev) => [...prev, ...newImgs]);
+  };
 
-    const previewURL = URL.createObjectURL(file);
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) handleFiles(e.target.files);
+  };
 
-    // مرحله ۱ → نمایش داخل کارت
-    setPreviewImage(previewURL);
+  // ---------------------- DRAG EVENTS (NO MORE FLICKER) ----------------------
+  const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    dragCounter.current++;
+    setDragActive(true);
+  };
 
-    // مرحله ۲ → انتقال بعد از ۲.۵ ثانیه
+  const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    dragCounter.current--;
+    if (dragCounter.current === 0) setDragActive(false);
+  };
+
+  const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    dragCounter.current = 0;
+    setDragActive(false);
+
+    if (e.dataTransfer.files) handleFiles(e.dataTransfer.files);
+  };
+
+  // ---------------------- GENERATE ----------------------
+  const handleGenerate = () => {
+    setLoading(true);
+
     setTimeout(() => {
-      setImages((prev) => [...prev, previewURL]);
-      setPreviewImage(null);
-    }, 1000);
-  };
-
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) handleImageFile(file);
-  };
-
-  const removeImage = (index: number) => {
-    setImages((prev) => prev.filter((_, i) => i !== index));
+      setLoading(false);
+      alert("Generated! (fake for now)");
+    }, 2000);
   };
 
   return (
     <div
-      className="relative"
-      onDragOver={(e) => {
-        e.preventDefault();
-        setDragActive(true);
-      }}
-      onDragLeave={() => setDragActive(false)}
-      onDrop={(e) => {
-        e.preventDefault();
-        setDragActive(false);
-        const file = e.dataTransfer.files?.[0];
-        if (file) handleImageFile(file);
-      }}
+      className="w-full flex flex-col items-center text-center mt-24 mb-32 relative"
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
+      onDragOver={handleDragOver}
+      onDrop={handleDrop}
     >
 
-      {/* FULLSCREEN DROP OVERLAY */}
+      {/* ---------------------- DRAG OVERLAY ---------------------- */}
       {dragActive && (
-        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 text-white text-5xl font-bold">
-          Drop Image Anywhere
+        <div className="
+          fixed inset-0 z-[999] 
+          bg-black/30 backdrop-blur-md 
+          flex items-center justify-center
+          animate-fadeIn
+        ">
+          {/* Corners */}
+          <div className="absolute top-8 left-8 w-20 h-20 border-t-10 border-l-10 border-white rounded-tl-4xl"></div>
+          <div className="absolute top-8 right-8 w-20 h-20 border-t-10 border-r-10 border-white rounded-tr-4xl"></div>
+          <div className="absolute bottom-8 left-8 w-20 h-20 border-b-10 border-l-10 border-white rounded-bl-4xl"></div>
+          <div className="absolute bottom-8 right-8 w-20 h-20 border-b-10 border-r-10 border-white rounded-br-4xl"></div>
+
+          <div className="text-center text-white drop-shadow-xl">
+            <div className="text-[50px] font-bold tracking-wide">
+              Drop image anywhere
+            </div>
+          </div>
         </div>
       )}
 
-      {/* MAIN LAYOUT */}
-      <div className="w-full flex flex-col items-center px-6 py-10">
-        <div className="flex flex-col md:flex-row gap-20 w-full max-w-5xl">
-
-          {/* ========== LEFT SIDE ========== */}
-          <div className="w-full md:w-[40%] flex flex-col self-stretch">
-
-            {/* UPLOAD CARD (ثابت + پر شدن کامل با عکس) */}
-            <label
-              className="
-                bg-white/40 rounded-3xl flex flex-col justify-center items-center cursor-pointer 
-                backdrop-blur-xl shadow-2xl
-                shadow-[0_0_40px_rgba(0,0,0,0.15)]
-                w-full h-[285px] relative overflow-hidden
-              "
-              onDragOver={(e) => e.preventDefault()}
-              onDrop={(e) => {
-                e.preventDefault();
-                const file = e.dataTransfer.files?.[0];
-                if (file) handleImageFile(file);
-              }}
-            >
-              <input ref={fileInputRef} type="file" className="hidden" onChange={handleImageUpload} />
-
-              {/* دکمه آپلود */}
-              <div className="bg-[#E94C88] text-white text-[22px] font-semibold px-6 py-4 rounded-full hover:bg-[#f0689d] transition w-[60%] text-center z-10">
-                Upload Image
-              </div>
-
-              <p className="text-gray-500 mt-6 font-medium text-[20px] z-10">or drop a file</p>
-
-              {/* پیش‌نمایش داخل کارت */}
-              {previewImage && (
-                <img
-                  src={previewImage}
-                  className="absolute inset-0 w-full h-full object-contain bg-black"
-                />
-              )}
-            </label>
-
-            {warning && (
-  <p className="text-red-500 text-md font-semibold mt-4 text-center">
-    {warning}
-  </p>
-)}
-
-            {/* THUMBNAILS */}
-            <div className="flex items-center gap-4 mt-8">
-              {images.map((src, index) => (
-                <div
-                  key={index}
-                  className="relative w-15 h-15 rounded-[10px] overflow-hidden border border-gray-300 bg-white"
-                >
-                  <img src={src} className="w-full h-full object-cover" />
-
-                  <button
-                    onClick={() => removeImage(index)}
-                    className="absolute top-1 right-1 bg-black/60 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-
-              {images.length < 3 && (
-                <label className="w-15 h-15 bg-[#E9ECEF] hover:bg-[#DEE2E6] rounded-[10px] flex items-center justify-center text-gray-500 text-3xl cursor-pointer">
-                  +
-                  <input type="file" className="hidden" onChange={handleImageUpload} />
-                </label>
-              )}
-            </div>
-
-            {/* Terms */}
-            <p className="text-gray-500 text-sm mt-4 leading-5">
-              By uploading an image, you agree to our{" "}
-              <a href="/terms" className="text-blue-600 underline">Terms of Service</a>{" "}
-              and confirm you’ve read our{" "}
-              <a href="/privacy" className="text-blue-600 underline">Privacy Policy</a>.
-            </p>
-          </div>
-
-          {/* ========== RIGHT SIDE ========== */}
-          <div className="flex flex-col w-full md:w-[58%]">
-
-            {/* Style */}
-            <label className="text-lg font-bold mb-1">Style</label>
-
-            <div className="relative mb-6">
-              <select
-                className="
-                  border border-gray-200 bg-white rounded-[8px] 
-                  px-4 py-3 w-full outline-none 
-                  pr-10 appearance-none
-                "
-                value={style}
-                onChange={(e) => setStyle(e.target.value)}
-              >
-                <option value="">Select a style</option>
-                {styles.map((s) => (
-                  <option key={s} value={s}>{s}</option>
-                ))}
-              </select>
-
-              <HiChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-xl pointer-events-none" />
-            </div>
-
-            {/* Title */}
-            <label className="text-lg font-bold mb-1">Title</label>
-            <input
-              className="border border-gray-200 rounded-[8px] px-4 py-3 mb-6 outline-none"
-              placeholder="Enter title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-
-            {/* Description */}
-            <label className="text-lg font-bold mb-1">Description</label>
-            <textarea
-              className="border border-gray-200 rounded-[8px] px-4 py-3 h-48 outline-none resize-none"
-              placeholder="Enter description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
-
-            {/* Create Thumbnail Button */}
-            {/* <button className="mt-8 bg-[#E94C88] hover:bg-[#f0689d] text-white text-[22px] font-semibold px-6 py-4 rounded-full transition w-[30%] text-center self-center">
-              Create
-            </button> */}
-          </div>
-
-        </div>
+      {/* ---------------------- CATEGORY SELECTOR ---------------------- */}
+      <div className="flex flex-wrap justify-center gap-3 max-w-4xl mb-10">
+        {categories.map((c) => (
+          <button
+            key={c}
+            onClick={() => setSelectedCategory(c)}
+            className={`
+              px-4 py-1 rounded-full text-sm border transition
+              ${selectedCategory === c
+                ? "bg-[#f9c03f] text-black border-[#f9c03f]"
+                : "bg-white/10 text-white/80 border-white/10 hover:bg-white/20"}
+            `}
+          >
+            {c}
+          </button>
+          ))}
       </div>
+
+      {/* ---------------------- INPUT BOX ---------------------- */}
+      <div
+        className="
+          flex items-center gap-3 w-full max-w-2xl 
+          bg-white/10 border border-white/20 backdrop-blur-xl
+          rounded-full px-6 py-4 shadow-lg
+        "
+      >
+        {/* Upload */}
+        <label className="cursor-pointer flex items-center gap-2 text-white/80 hover:text-white">
+          <UploadCloud size={22} />
+          <input type="file" accept="image/*" multiple className="hidden" onChange={handleUpload} />
+        </label>
+
+        {/* Prompt */}
+        <input
+          type="text"
+          placeholder="Describe your thumbnail..."
+          value={prompt}
+          onChange={(e) => setPrompt(e.target.value)}
+          className="flex-1 bg-transparent outline-none text-white text-lg placeholder-white/50"
+        />
+
+        {/* Generate */}
+        <button
+          onClick={handleGenerate}
+          className="
+            bg-[#f9c03f] hover:bg-[#ffd873]
+            text-black px-6 py-2 rounded-full font-semibold
+            flex items-center gap-2 transition
+          "
+        >
+          {loading ? (
+            <Loader2 size={18} className="animate-spin" />
+          ) : (
+            <>
+              Generate <ArrowRight size={18} />
+            </>
+          )}
+        </button>
+      </div>
+
+      {/* ---------------------- IMAGE PREVIEWS ---------------------- */}
+      {images.length > 0 && (
+        <div className="flex gap-4 mt-14 justify-center flex-wrap">
+          {images.map((src, idx) => (
+            <img
+              key={idx}
+              src={src}
+              className="w-20 h-20 rounded-xl object-cover shadow-lg"
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

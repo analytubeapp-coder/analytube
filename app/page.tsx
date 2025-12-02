@@ -3,46 +3,71 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Price from "@/components/Price";
+import ThumbnailGenerator from "@/components/ThumbnailGenerator";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
+      {/* AURORA FIXED BACKGROUND */}
+      <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
 
-      {/* HERO */}
-      <header className="min-h-screen flex items-center pt-32 pb-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <div className="max-w-3xl text-left">
-            <h1 className="text-4xl md:text-[58px] font-bold leading-tight text-[#000000]">
-              Create High Performance <br />
-              YouTube Thumbnails <br />
-              Automatically.
-            </h1>
+        {/* هاله بنفش — کشیده، انتزاعی، قابل‌تشخیص */}
+        <div
+          className="
+            absolute top-[35%] left-[55%]
+            w-[900px] h-[450px]
+            -translate-x-1/2 -translate-y-1/2
+            rotate-[25deg]
+            rounded-[9999px] blur-[160px] opacity-60
+          "
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
+          }}
+        ></div>
 
-            <p className="text-lg md:text-xl font-medium text-[#403d39] mt-6 max-w-2xl leading-relaxed">
-              Generate scroll stopping, high CTR thumbnails powered by advanced<br />
-              AI trained on creator proven design patterns.<br />
-              No editing skills required.
-            </p>
+        {/* هاله برنزی — بزرگ‌تر، نزدیک‌تر، واضح‌تر */}
+        <div
+          className="
+            absolute top-[60%] left-[40%]
+            w-[1000px] h-[550px]
+            -translate-x-1/2 -translate-y-1/2
+            rotate-[-30deg]
+            rounded-[9999px] blur-[100px] opacity-60
+          "
+          style={{
+            background:
+              "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
+          }}
+        ></div>
 
-            <div className="flex gap-4 mt-10">
-              <a
-                href="/signup"
-                className="px-8 py-4 rounded-full bg-[#f9c03f] hover:bg-[#fcc978] text-white! text-[20px] font-semibold transition"
-              >
-                Start Free Trial
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
-      
-      {/* 3 Cards – Clean, Balanced, Soft Shadow */}
-<section className="pt-24 pb-32 bg-white">
+      </div>
+
+      <main className="min-h-screen w-full text-white relative">
+  <Navbar />
+
+  {/* HERO */}
+  <header className="min-h-screen flex flex-col items-center justify-center text-center pt-58 gap-10">
+
+    {/* TITLE */}
+    <h1 className="text-4xl md:text-[64px] font-bold leading-[1.25] text-white">
+      Create High Performance <br />
+      YouTube <span className="text-[#fcc978]">Thumbnails</span> Automatically.
+    </h1>
+
+    {/* THUMBNAIL GENERATOR */}
+    <div className="w-full max-w-4xl flex justify-center">
+      <ThumbnailGenerator />
+    </div>
+
+  </header>
+
+        {/* 3 Cards – Dark Aurora Style */}
+<section className="pt-24 pb-32">
 
   {/* SECTION TITLE */}
   <div className="max-w-7xl mx-auto px-6 text-center mb-20">
-    <h2 className="text-3xl md:text-[42px] font-bold leading-tight">
+    <h2 className="text-3xl md:text-[42px] font-bold leading-tight text-white">
       Powerful Tools to Accelerate Your YouTube Growth
     </h2>
   </div>
@@ -53,66 +78,73 @@ export default function Home() {
       {
         title: "Smart YouTube Insights",
         text:
-          "Access a powerful set of AI-driven tools designed to grow your channel faster and more efficiently. From smarter content suggestions to optimized upload timing and retention insights, everything works together to sharpen your strategy and keep you ahead of competitors.",
+          "Understand what drives your channel’s growth with clear AI-powered analytics. Track performance, discover patterns, and make smarter decisions with data that actually helps you grow.",
         icon: "/card1.svg",
       },
       {
         title: "AI Revenue Forecasting",
         text:
-          "Get clear and reliable revenue predictions powered by advanced AI. By analyzing your uploads, watch time, audience patterns, and seasonal trends, our system gives you accurate forecasts so you can plan ahead with confidence and optimize your monetization strategy.",
+          "See accurate, detailed revenue predictions based on your uploads, trends, and audience behavior. Plan your content, sponsorships, and earnings with reliable, creator-focused forecasting.",
         icon: "/card2.svg",
       },
       {
         title: "Advanced Growth Tools",
         text:
-          "Access a powerful set of AI-driven tools designed to grow your channel faster and more efficiently. From smarter content suggestions to optimized upload timing and retention insights, everything works together to refine your strategy and keep you ahead of competitors.",
+          "Optimize your content strategy using tools built for modern creators. Improve upload timing, boost engagement, and stay ahead of trends with AI-enhanced recommendations.",
         icon: "/card3.svg",
       },
     ].map((item, idx) => (
       <div
         key={idx}
         className="
-          p-12 rounded-[10px] h-full
-          bg-white
-          shadow-[0_4px_12px_rgba(0,0,0,0.04)]
-          hover:shadow-[0_6px_18px_rgba(0,0,0,0.06)]
+          p-12 rounded-[14px] h-full
+          bg-white/5 backdrop-blur-xl 
+          border border-white/10
+          shadow-[0_0_25px_rgba(0,0,0,0.25)]
+          hover:shadow-[0_0_45px_rgba(0,0,0,0.4)]
           transition-all duration-300
           flex flex-col items-start
         "
       >
-        <img src={item.icon} width={60} height={60} className="mb-8" />
-        <h3 className="font-semibold text-[20px] mb-2">{item.title}</h3>
-        <p className="text-[18px] text-[#403d39] font-meduim leading-relaxed">{item.text}</p>
+        <img src={item.icon} width={60} height={60} className="mb-6" />
+        <h3 className="font-semibold text-[22px] mb-3 text-white">
+          {item.title}
+        </h3>
+        <p className="text-[17px] text-white/75 leading-relaxed">
+          {item.text}
+        </p>
       </div>
     ))}
   </div>
 </section>
 
-      {/* Middle Section */}
-      <section className="py-32">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
-          <div>
-            <h3 className="text-[42px] font-bold mb-6">
-              Make Viral Thumbnails<br />
-              in seconds
-            </h3>
-            <p className="text-[#403d39] leading-relaxed text-[18px]">
-              Create eye catching thumbnails that boost your CTR instantly.
-Our AI analyzes proven creator design patterns and trending styles to generate high quality, viral ready thumbnails from just your video title or idea. No design skills needed.
-Just type, generate, and publish with confidence.
-            </p>
-          </div>
-        </div>
-      </section>
+        {/* Middle Section */}
+<section className="py-32">
+  <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 place-items-center">
+    <div className="text-center">
+      <h3 className="text-[62px] font-bold mb-6 text-white">
+        Make Viral Thumbnails in seconds
+      </h3>
 
-      {/* WHY CREATORS CHOOSE (Title + 4 Minimal Cards) */}
-<section className="py-28 bg-white">
+      <p className="text-white/75 leading-relaxed text-[22px] mx-auto">
+        Generate eye catching thumbnails that instantly boost your video clicks. Powered by AI trained on trending styles, <br />
+        proven creator patterns and high-performing visuals. Just write your idea AI does the rest.
+      </p>
+    </div>
+  </div>
+</section>
+
+        {/* WHY CREATORS CHOOSE (Aurora Dark Cards) */}
+<section className="py-28">
   <div className="max-w-6xl mx-auto px-6">
-    <h3 className="text-center text-3xl md:text-[42px] font-bold mb-16">
-      Why Creators choose ——
+    
+    {/* TITLE */}
+    <h3 className="text-center text-3xl md:text-[42px] font-bold mb-16 text-white">
+      Why Creators Choose ——
     </h3>
 
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 md:gap-4">
+    {/* CARDS GRID */}
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-5">
       {[
         { icon: "/icon-feature1.svg", words: ["Higher", "Engagement"] },
         { icon: "/icon-feature2.svg", words: ["Faster", "Workflow"] },
@@ -125,64 +157,43 @@ Just type, generate, and publish with confidence.
             flex flex-col items-center text-center 
             p-8 md:p-10 
             rounded-xl
-            border border-[#E9ECEF]
-            bg-white
+            bg-white/5 backdrop-blur-md
+            border border-white/10
+            shadow-[0_0_20px_rgba(0,0,0,0.35)]
+            hover:shadow-[0_0_35px_rgba(0,0,0,0.55)]
+            transition-all duration-300
             h-[220px]
           "
         >
+
+          {/* ICON */}
           <img
             src={item.icon}
-            alt=""
-            className="w-12 h-12 md:w-14 md:h-14 mb-8"
+            className="w-12 h-12 md:w-14 md:h-14 mb-6 brightness-110"
           />
 
-          {/* BOTH WORDS EXACT SAME STYLE */}
-          <div className="flex flex-col leading-tight">
-            <span className="text-[18px] md:text-[22px] font-regular text-[#111]">
+          {/* TEXT BLOCK (with bottom spacing) */}
+          <div className="flex flex-col leading-tight text-white">
+            <span className="text-[18px] md:text-[28px] font-regular">
               {item.words[0]}
             </span>
-            <span className="text-[18px] md:text-[22px] font-regular text-[#111] mt-1">
+
+            {/* فاصله از پایین کارت */}
+            <span className="text-[18px] md:text-[28px] font-regular mt-1 mb-1">
               {item.words[1]}
             </span>
           </div>
+
         </div>
       ))}
     </div>
   </div>
 </section>
-      <Price />
 
-      {/* CTA SECTION */}
-<section className="py-32 bg-white">
-  <div className="max-w-5xl mx-auto px-6 text-center">
+        <Price />
+        <Footer />
 
-    <h2 className="text-3xl md:text-5xl font-bold mb-6">
-      Start Creating Better Thumbnails Today
-    </h2>
-
-    <p className="text-[18px] text-[#403d39] max-w-2xl mx-auto leading-relaxed mb-10">
-      Join thousands of creators using AI-powered tools to boost their CTR,
-  grow their audience, and save hours every week all while producing
-  high-quality thumbnails that stand out and drive real results.
-    </p>
-
-    <a
-      href="/signup"
-      className="
-        px-6 py-4 
-        bg-[#F9C03F] hover:bg-[#FCC978] 
-        text-white! text-[20px] font-semibold 
-        rounded-full 
-        transition
-      "
-    >
-      Start Free Trial
-    </a>
-
-  </div>
-</section>
-
-      <Footer />
+      </main>
     </>
   );
 }
