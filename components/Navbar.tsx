@@ -109,24 +109,22 @@ export default function Navbar() {
     className="
       absolute right-0 top-[58px]
       w-64 rounded-2xl shadow-xl py-4 z-50
-      bg-[rgba(30,30,30,0.45)]
-      backdrop-blur-xl border border-white/20
-      transition-all duration-150
-      pointer-events-auto
+      bg-white/20 backdrop-blur-xl 
+      border border-white/20 transition-all duration-150 pointer-events-auto
     "
   >
     {/* USER INFO */}
     <div className="px-5 pb-4 border-b border-white/10">
-      <p className="font-semibold text-white text-[15px] leading-relaxed">
-        {profile?.full_name || "User"}
-      </p>
-
-      <p className="text-xs text-gray-300 mt-1 truncate leading-normal">
-        {user?.email}
-      </p>
+      <div className="flex items-center space-x-3">
+        {/* User Name & Email */}
+        <p className="font-semibold text-white/90 text-[15px] leading-relaxed">
+          {profile?.full_name || "User"}
+        </p>
+        <p className="text-xs text-gray-300 truncate">{user?.email}</p>
+      </div>
 
       {/* PLAN */}
-      <p className="text-xs mt-3 font-medium">
+      <p className="text-[15px] mt-3 font-medium text-[#f9c03f]">
         {(!profile?.plan || profile?.plan === "free") && (
           <span className="text-purple-300">Free</span>
         )}
@@ -146,8 +144,7 @@ export default function Navbar() {
     <Link
       href="/profile"
       className="
-        block px-5 py-3 
-        text-white/90 text-[15px] font-medium 
+        block px-5 py-3 text-white/90 text-[15px] font-medium 
         hover:bg-white/10 transition rounded-xl
       "
     >
@@ -158,8 +155,7 @@ export default function Navbar() {
     <button
       onClick={handleLogout}
       className="
-        block w-full text-left px-5 py-3 
-        text-red-400 text-[15px] font-medium 
+        block w-full text-left px-5 py-3 text-red-400 text-[15px] font-medium 
         hover:bg-white/10 transition rounded-xl
       "
     >
@@ -167,6 +163,7 @@ export default function Navbar() {
     </button>
   </div>
 )}
+
             </div>
           )}
         </div>
