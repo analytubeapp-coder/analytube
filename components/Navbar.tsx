@@ -118,7 +118,7 @@ export default function Navbar() {
                       {profile?.full_name || "User"}
                     </p>
                     <p className="text-xs text-gray-300 truncate">{user?.email}</p>
-                    <p className="text-xs mt-1 text-purple-300">
+                    <p className="text-xs mt-10 text-purple-300">
                       {profile?.plan === "pro" ? "⭐ Pro Plan" : "Free Plan"}
                     </p>
                   </div>
