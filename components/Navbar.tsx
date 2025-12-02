@@ -107,7 +107,7 @@ export default function Navbar() {
               {isDropdownOpen && (
   <div
     className="
-      absolute right-0 top-[50px]
+      absolute right-0 top-[46px]
       w-64 rounded-2xl shadow-xl py-4 z-50
       bg-[#181818] backdrop-blur-xl 
       border border-white/20 transition-all duration-150 pointer-events-auto
@@ -120,7 +120,7 @@ export default function Navbar() {
         <p className="font-medium text-white/90 text-[15px] leading-relaxed">
           {profile?.full_name || "User"}
         </p>
-        <p className="text-[12px] text-white/90 truncate">{user?.email}</p>
+        <p className="text-[13px] text-white/90 truncate">{user?.email}</p>
       </div>
 
       {/* PLAN */}
