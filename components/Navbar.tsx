@@ -107,9 +107,9 @@ export default function Navbar() {
               {isDropdownOpen && (
   <div
     className="
-      absolute right-0 top-[58px]
+      absolute right-0 top-[50px]
       w-64 rounded-2xl shadow-xl py-4 z-50
-      bg-white/20 backdrop-blur-xl 
+      bg-[#181818] backdrop-blur-xl 
       border border-white/20 transition-all duration-150 pointer-events-auto
     "
   >
@@ -117,25 +117,25 @@ export default function Navbar() {
     <div className="px-5 pb-4 border-b border-white/10">
       <div className="flex items-center space-x-3">
         {/* User Name & Email */}
-        <p className="font-semibold text-white/90 text-[15px] leading-relaxed">
+        <p className="font-medium text-white/90 text-[15px] leading-relaxed">
           {profile?.full_name || "User"}
         </p>
-        <p className="text-xs text-gray-300 truncate">{user?.email}</p>
+        <p className="text-[12px] text-white/90 truncate">{user?.email}</p>
       </div>
 
       {/* PLAN */}
       <p className="text-[15px] mt-3 font-medium text-[#f9c03f]">
         {(!profile?.plan || profile?.plan === "free") && (
-          <span className="text-purple-300">Free</span>
+          <span className="text-[#f9c03f]">Free</span>
         )}
         {profile?.plan === "starter" && (
-          <span className="text-indigo-300">Starter</span>
+          <span className="text-[#f9c03f]">Starter</span>
         )}
         {profile?.plan === "creator" && (
-          <span className="text-blue-300">Creator</span>
+          <span className="text-[#f9c03f]">Creator</span>
         )}
         {profile?.plan === "pro" && (
-          <span className="text-yellow-300">Pro</span>
+          <span className="text-[#f9c03f]">Pro</span>
         )}
       </p>
     </div>
