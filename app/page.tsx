@@ -50,7 +50,7 @@ export default function Home() {
   <header className="min-h-screen flex flex-col items-center justify-center text-center pt-58 gap-10">
 
     {/* TITLE */}
-    <h1 className="text-4xl md:text-[64px] font-bold leading-[1.25] text-white">
+    <h1 className="text-[32px] md:text-[64px] font-bold leading-[1.25] text-white">
       Create High Performance <br />
       YouTube <span className="text-[#fcc978]">Thumbnails</span> Automatically.
     </h1>
