@@ -161,7 +161,7 @@ export default function SignInInner() {
               className={`
                 w-full font-semibold rounded-full py-3 text-black text-lg 
                 transition
-                ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-[#fcc978] hover:bg-[#f9c03f]"}
+                ${loading ? "bg-[#fcc978] cursor-not-allowed" : "bg-[#f9c03f] hover:bg-[#fcc978]"}
               `}
             >
               {loading ? "Sending..." : "Sign In"}

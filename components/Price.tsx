@@ -157,7 +157,7 @@ export default function PricingSection() {
               <li>• Thumbnail Generator</li>
               <li>• High resolution</li>
               <li>• Thumbnail Recreation</li>
-              <li>• three Personas</li>
+              <li>• Three Personas</li>
               <li>• Styles</li>
             </ul>
 
@@ -205,7 +205,7 @@ export default function PricingSection() {
               <li>• Thumbnail Generator</li>
               <li>• High resolution</li>
               <li>• Thumbnail Recreation</li>
-              <li>• multiple Persona</li>
+              <li>• Multiple Persona</li>
               <li>• Styles</li>
             </ul>
 
