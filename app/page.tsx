@@ -15,7 +15,7 @@ export default function Home() {
         <div
           className="
             absolute top-[35%] left-[55%]
-            w-[2000px] h-[650px]
+            w-[650px] md:w-[2000px] h-[350px] md:h-[650px]
             -translate-x-1/2 -translate-y-1/2
             rotate-[25deg]
             rounded-[9999px] blur-[150px] opacity-60
