@@ -52,10 +52,10 @@ export default function BlogPage() {
               <div
                 className="
                   absolute top-[35%] left-[55%]
-                  w-[900px] h-[450px]
+                  w-[2000px] h-[650px]
                   -translate-x-1/2 -translate-y-1/2
                   rotate-[25deg]
-                  rounded-[9999px] blur-[160px] opacity-60
+                  rounded-[9999px] blur-[150px] opacity-60
                 "
                 style={{
                   background:
@@ -67,10 +67,10 @@ export default function BlogPage() {
               <div
                 className="
                   absolute top-[60%] left-[40%]
-                  w-[1000px] h-[550px]
+                  w-[1200px] h-[650px]
                   -translate-x-1/2 -translate-y-1/2
                   rotate-[-30deg]
-                  rounded-[9999px] blur-[100px] opacity-60
+                  rounded-[9999px] blur-[150px] opacity-60
                 "
                 style={{
                   background:
