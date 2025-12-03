@@ -76,21 +76,21 @@ export default function Home() {
   <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
     {[
       {
-        title: "Smart YouTube Insights",
+        title: "Intelligent Thumbnail Engine",
         text:
-          "Understand what drives your channel’s growth with clear AI-powered analytics. Track performance, discover patterns, and make smarter decisions with data that actually helps you grow.",
+          "Our AI studies audience behavior, color contrast, emotions, and visual patterns to generate thumbnails engineered for maximum clicks. Every design is optimized to boost CTR and drive predictable, real engagement.",
         icon: "/card1.svg",
       },
       {
-        title: "AI Revenue Forecasting",
+        title: "Adaptive AI Style Generator",
         text:
-          "See accurate, detailed revenue predictions based on your uploads, trends, and audience behavior. Plan your content, sponsorships, and earnings with reliable, creator-focused forecasting.",
+          "Instantly create studio grade thumbnails in any style from cinematic gaming to bold MrBeast layouts. The engine adapts to your visuals and delivers high impact designs with minimal input.",
         icon: "/card2.svg",
       },
       {
-        title: "Advanced Growth Tools",
+        title: "Automatic Pro Enhancement",
         text:
-          "Optimize your content strategy using tools built for modern creators. Improve upload timing, boost engagement, and stay ahead of trends with AI-enhanced recommendations.",
+          "Lighting, cutouts, backgrounds, and composition are all refined automatically for a polished, professional look. Your thumbnails are enhanced end-to-end and optimized for top tier YouTube performance.",
         icon: "/card3.svg",
       },
     ].map((item, idx) => (
@@ -106,8 +106,8 @@ export default function Home() {
           flex flex-col items-start
         "
       >
-        <img src={item.icon} width={60} height={60} className="mb-6" />
-        <h3 className="font-semibold text-[22px] mb-3 text-white">
+        <img src={item.icon} width={60} height={60} className="mb-8" />
+        <h3 className="font-semibold text-[21px] mb-3 text-white">
           {item.title}
         </h3>
         <p className="text-[17px] text-white/75 leading-relaxed">
