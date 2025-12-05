@@ -1,7 +1,5 @@
 // worker/index.ts
 
-// worker/index.ts
-
 import "dotenv/config";
 import fetch from "node-fetch";
 import OpenAI from "openai";
@@ -49,14 +47,17 @@ async function loop() {
 
     try {
       await processJob(job);
-    } catch (err) {
-      console.error("Job failed:", err);
-      await supabase.from("thumbnails").insert({
-        job_id: job.jobId,
-        status: "failed",
-        error: err.message
-      });
-    }
+    } catch (err: unknown) {
+  const message = err instanceof Error ? err.message : String(err);
+
+  console.error("Job failed:", message);
+
+  await supabase.from("thumbnails").insert({
+    job_id: job.jobId,
+    status: "failed",
+    error: message
+  });
+}
   }
 }
 
