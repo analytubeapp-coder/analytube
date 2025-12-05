@@ -5,9 +5,6 @@ import { Queue } from "bullmq";
 import IORedis from "ioredis";
 import { v4 as uuidv4 } from "uuid";
 
-const connection = new IORedis(process.env.REDIS_URL || "redis://localhost:6379");
-const thumbnailQueue = new Queue("thumbnails", { connection });
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
@@ -16,6 +13,10 @@ export async function POST(req: Request) {
     if (!prompt && !title) {
       return NextResponse.json({ error: "Missing prompt/title" }, { status: 400 });
     }
+
+    // LAZY INIT — only run on request (NOT during build)
+    const redis = new IORedis(process.env.REDIS_URL!);
+    const queue = new Queue("thumbnails", { connection: redis });
 
     const jobId = uuidv4();
 
@@ -30,7 +31,7 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString()
     };
 
-    await thumbnailQueue.add("generate", jobPayload, {
+    await queue.add("generate", jobPayload, {
       jobId,
       attempts: 3,
       backoff: { type: "exponential", delay: 2000 }

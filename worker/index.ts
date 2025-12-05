@@ -1,4 +1,5 @@
 // worker/index.ts
+
 import { Worker } from "bullmq";
 import IORedis from "ioredis";
 import { createClient } from "@supabase/supabase-js";

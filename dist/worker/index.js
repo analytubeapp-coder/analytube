@@ -1,9 +1,11 @@
+// dist/worker/index.ts
+
 "use strict";
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// worker/index.ts
+
 const bullmq_1 = require("bullmq");
 const ioredis_1 = __importDefault(require("ioredis"));
 const supabase_js_1 = require("@supabase/supabase-js");
