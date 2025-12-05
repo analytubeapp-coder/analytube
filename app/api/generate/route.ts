@@ -1,9 +1,21 @@
 // app/api/generate/route.ts
 
 import { NextResponse } from "next/server";
-import { Queue } from "bullmq";
-import IORedis from "ioredis";
 import { v4 as uuidv4 } from "uuid";
+
+// Lightweight queue using Upstash REST
+async function enqueue(jobId: string, payload: any) {
+  await fetch(`${process.env.UPSTASH_REDIS_REST_URL}/rpush/jobs`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      value: JSON.stringify({ jobId, ...payload }),
+    }),
+  });
+}
 
 export async function POST(req: Request) {
   try {
@@ -14,14 +26,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing prompt/title" }, { status: 400 });
     }
 
-    // LAZY INIT — only run on request (NOT during build)
-    const redis = new IORedis(process.env.REDIS_URL!);
-    const queue = new Queue("thumbnails", { connection: redis });
-
     const jobId = uuidv4();
 
-    const jobPayload = {
-      jobId,
+    await enqueue(jobId, {
       userId,
       title,
       style,
@@ -29,17 +36,15 @@ export async function POST(req: Request) {
       images,
       options,
       createdAt: new Date().toISOString()
-    };
-
-    await queue.add("generate", jobPayload, {
-      jobId,
-      attempts: 3,
-      backoff: { type: "exponential", delay: 2000 }
     });
 
     return NextResponse.json({ jobId, status: "queued" });
+
   } catch (err: any) {
     console.error("API /generate error:", err);
-    return NextResponse.json({ error: err.message || "Unknown error" }, { status: 500 });
+    return NextResponse.json(
+      { error: err.message || "Unknown error" },
+      { status: 500 }
+    );
   }
 }

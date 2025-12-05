@@ -1,133 +1,119 @@
 // worker/index.ts
 
-import { Worker } from "bullmq";
-import IORedis from "ioredis";
-import { createClient } from "@supabase/supabase-js";
-import OpenAI from "openai";
-import fs from "fs/promises";
-import path from "path";
-import os from "os";
-import sharp from "sharp";
+// worker/index.ts
+
+import "dotenv/config";
 import fetch from "node-fetch";
+import OpenAI from "openai";
+import { createClient } from "@supabase/supabase-js";
+import sharp from "sharp";
+import fs from "fs/promises";
+import os from "os";
+import path from "path";
 import { v4 as uuidv4 } from "uuid";
 
-const redisUrl = process.env.REDIS_URL || "redis://localhost:6379";
-const connection = new IORedis(redisUrl);
-
-const supabase = createClient(process.env.SUPABASE_URL!, process.env.SUPABASE_SERVICE_KEY!);
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL!;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN!;
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! });
 
-async function downloadToTmp(url: string) {
-  const res = await fetch(url);
-  const arrayBuffer = await res.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-  const tmpPath = path.join(os.tmpdir(), uuidv4() + ".jpg");
-  await fs.writeFile(tmpPath, buffer);
-  return tmpPath;
-}
-
-async function uploadToSupabase(filePath: string, destPath: string) {
-  const buf = await fs.readFile(filePath);
-  const { error } = await supabase.storage.from("thumbnails").upload(destPath, buf, {
-    cacheControl: "3600",
-    upsert: true,
-    contentType: "image/png"
-  });
-  if (error) throw error;
-  const { data: publicData } = supabase.storage.from("thumbnails").getPublicUrl(destPath);
-  return publicData.publicUrl;
-}
-
-const worker = new Worker(
-  "thumbnails",
-  async job => {
-    const payload = job.data as any;
-    console.log("Worker: processing", payload.jobId);
-
-    const jobId = payload.jobId || uuidv4();
-    const prompt = payload.prompt || payload.title || "YouTube thumbnail";
-    const style = payload.style || "default";
-    const images = payload.images || [];
-
-    // Build super prompt
-    const superPrompt = `
-You are a pro thumbnail designer. Create a single cinematic, high-contrast, high-CTR YouTube thumbnail.
-STYLE: ${style}
-TITLE: ${payload.title || ""}
-PROMPT: ${prompt}
-OUTPUT: PNG, 1792x1024, sharp composition, space for title, no watermark.
-`.trim();
-
-    // Call OpenAI images API (gpt-image-1). Adjust if using other provider.
-    const resp = await openai.images.generate({
-      model: "gpt-image-1",
-      prompt: superPrompt,
-      size: "1792x1024",
-      n: 1
-    });
-
-    const b64 = resp.data?.[0]?.b64_json;
-    if (!b64) throw new Error("No image data from image generation provider");
-
-    const buffer = Buffer.from(b64, "base64");
-    const tmpOut = path.join(os.tmpdir(), `${jobId}.png`);
-    await fs.writeFile(tmpOut, buffer);
-
-    // If user provided image(s), attempt a simple composite using sharp
-    if (images.length > 0) {
-      try {
-        const userTmp = await downloadToTmp(images[0]);
-        const userBuf = await sharp(userTmp).resize(700, 700, { fit: "cover" }).png().toBuffer();
-        const base = sharp(tmpOut);
-        const baseMeta = await base.metadata();
-
-        const composite = await base
-          .composite([{ input: userBuf, left: 60, top: Math.floor((baseMeta.height! - 700) / 2) }])
-          .png()
-          .toBuffer();
-
-        await fs.writeFile(tmpOut, composite);
-        await fs.unlink(userTmp).catch(() => {});
-      } catch (err) {
-        console.warn("Composite step failed, continuing:", err);
-      }
-    }
-
-    // Ensure final PNG & size
-    const finalPath = path.join(os.tmpdir(), `${jobId}-final.png`);
-    await sharp(tmpOut).resize(1792, 1024, { fit: "cover" }).png().toFile(finalPath);
-
-    // Upload
-    const storagePath = `thumbnails/${jobId}.png`;
-    const publicUrl = await uploadToSupabase(finalPath, storagePath);
-
-    // Insert metadata
-    await supabase.from("thumbnails").insert({
-      job_id: jobId,
-      user_id: payload.userId || null,
-      style,
-      prompt,
-      title: payload.title || null,
-      storage_path: storagePath,
-      width: 1792,
-      height: 1024,
-      status: "done"
-    });
-
-    // cleanup
-    await fs.unlink(tmpOut).catch(() => {});
-    await fs.unlink(finalPath).catch(() => {});
-
-    return { publicUrl };
-  },
-  { connection, concurrency: 1 }
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_KEY!
 );
 
-worker.on("completed", (job, result) => {
-  console.log("Job completed:", job.id, result);
+async function popJob() {
+  const res = await fetch(`${redisUrl}/lpop/jobs`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${redisToken}`,
+      "Content-Type": "application/json"
+    }
   });
 
-worker.on("failed", (job, err) => {
-  console.error("Job failed:", job?.id, err);
-  // optionally update thumbnails table with status failed
+  const text = await res.text();
+  if (!text) return null;
+  return JSON.parse(text);
+}
+
+async function loop() {
+  console.log("Worker running...");
+
+  while (true) {
+    const job = await popJob();
+    if (!job) {
+      await new Promise((r) => setTimeout(r, 2000));
+      continue;
+    }
+
+    console.log("Processing job:", job.jobId);
+
+    try {
+      await processJob(job);
+    } catch (err) {
+      console.error("Job failed:", err);
+      await supabase.from("thumbnails").insert({
+        job_id: job.jobId,
+        status: "failed",
+        error: err.message
+      });
+    }
+  }
+}
+
+async function processJob(job: any) {
+  const jobId = job.jobId;
+
+  const prompt =
+    job.prompt ||
+    job.title ||
+    "Cinematic high contrast professional YouTube thumbnail";
+
+  const finalPrompt = `
+You are a thumbnail designer. Generate 1792x1024 PNG.
+${prompt}
+`;
+
+  // Call OpenAI
+const resp = await openai.images.generate({
+  model: "gpt-image-1",
+  prompt: finalPrompt,
+  size: "1792x1024"
 });
+
+// Fix TypeScript error — full safety check
+const data = resp.data;
+
+if (!data || !data[0] || !data[0].b64_json) {
+  throw new Error("No image data received from OpenAI");
+}
+
+const imageB64: string = data[0].b64_json;
+const buffer = Buffer.from(imageB64, "base64");
+
+  const tmpOutput = path.join(os.tmpdir(), jobId + ".png");
+  await fs.writeFile(tmpOutput, buffer);
+
+  // Resize final image to correct dimensions
+  const finalPath = path.join(os.tmpdir(), jobId + "-final.png");
+  await sharp(tmpOutput).resize(1792, 1024).png().toFile(finalPath);
+
+  const storagePath = `thumbnails/${jobId}.png`;
+  const fileBuffer = await fs.readFile(finalPath);
+
+  await supabase.storage.from("thumbnails").upload(storagePath, fileBuffer, {
+    upsert: true
+  });
+
+  await supabase.from("thumbnails").insert({
+    job_id: jobId,
+    title: job.title,
+    prompt: job.prompt,
+    style: job.style,
+    storage_path: storagePath,
+    status: "done"
+  });
+
+  console.log("Job completed:", jobId);
+}
+
+loop();
