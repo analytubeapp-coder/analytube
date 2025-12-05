@@ -1,15 +1,24 @@
+// app/api/admin/posts/route.ts
+
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabaseClient";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export async function POST(req: Request) {
   const body = await req.json();
   const { title, content, cover_url, slug } = body;
 
-  // چک کن کاربر لاگین هست
+  // auth check
   const { data: { user } } = await supabase.auth.getUser();
-  if (!user) return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  if (!user) {
+    return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
+  }
 
-  // چک کن ادمین هست
+  // admin check
   const { data: profile } = await supabase
     .from("profiles")
     .select("is_admin")
@@ -20,7 +29,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Not authorized" }, { status: 403 });
   }
 
-  // درج پست
+  // insert post
   const { error } = await supabase.from("posts").insert({
     title,
     content,
