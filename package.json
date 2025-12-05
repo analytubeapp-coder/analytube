@@ -10,7 +10,6 @@
     "lint": "eslint",
     "snapshot": "npx tsx workers/daily-snapshot.ts",
     "cron": "npx tsx workers/cron-runner.ts"
-
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.0",
@@ -77,6 +76,7 @@
     "prisma": "^6.17.0",
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }
