@@ -140,7 +140,7 @@ export default function Home() {
     
     {/* TITLE */}
     <h3 className="text-center text-3xl md:text-[42px] font-bold mb-16 text-white">
-      Why Creators Choose ——
+      Why Creators Choose AI.Thum
     </h3>
 
     {/* CARDS GRID */}

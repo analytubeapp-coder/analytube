@@ -71,13 +71,13 @@ export default function Terms() {
           <div>
             <h2 className="text-[24px] font-bold mb-2">1. Introduction</h2>
             <p className="text-white/80 text-[17px]">
-              At <b>——</b>, your privacy, security, and trust are extremely important
+              At <b>AI.Thum</b>, your privacy, security, and trust are extremely important
               to us. This Privacy Policy explains what information we collect,
               how we use it, how it is stored, and what rights you have regarding
               your personal data and activity on the platform.
             </p>
             <p className="text-white/80 text-[17px] mt-2">
-              By accessing or using ——, you agree to the terms outlined in this
+              By accessing or using AI.Thum, you agree to the terms outlined in this
               Privacy Policy. We are committed to full transparency and apply
               industry-standard protection measures to ensure that your data is
               handled responsibly and safely at all times.
@@ -151,7 +151,7 @@ export default function Terms() {
                 or valid legal process.
               </li>
               <li>
-                <b>Business Transfers:</b> if —— is involved in a merger or
+                <b>Business Transfers:</b> if AI.Thum is involved in a merger or
                 acquisition, some data may be transferred appropriately.
               </li>
             </ul>
@@ -198,7 +198,7 @@ export default function Terms() {
                 href="mailto:support@analytubeapp.com"
                 className="text-purple font-semibold"
               >
-                support@analytubeapp.com
+                support@aithum.com
               </a>
             </p>
           </div>

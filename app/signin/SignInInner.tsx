@@ -117,7 +117,7 @@ export default function SignInInner() {
 
           {/* Title */}
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-            Sign in to AnalyTube
+            Sign in to AI.Thum
           </h2>
 
           {/* Google Login Button */}

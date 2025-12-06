@@ -102,7 +102,7 @@ export default function SignUpPage() {
 
           {/* Title */}
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-            Create your AnalyTube Account
+            Create AI.Thum Account
           </h2>
 
           {/* Google Signup */}

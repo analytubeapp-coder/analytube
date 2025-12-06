@@ -16,7 +16,7 @@ export default function Footer() {
               alt="AnalyTube Logo"
               width={130}
               height={40}
-              className="translate-y-[-1px]"
+              className="translate-y-[-1.5px]"
               priority
             />
           </Link>

@@ -52,7 +52,7 @@ export default function Navbar() {
               alt="AnalyTube Logo"
               width={150}
               height={80}
-              className="translate-y-[-2px]"
+              className="translate-y-[-2.5px]"
               priority
             />
           </Link>

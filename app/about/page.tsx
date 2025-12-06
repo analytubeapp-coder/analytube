@@ -91,9 +91,9 @@ export default function About() {
               </h2>
 
               <p className="text-white/90 mb-4 leading-relaxed text-[19px]">
-                At ––, we help creators design scroll stopping YouTube thumbnails effortlessly.
+                At AI.Thum, we help creators design scroll stopping YouTube thumbnails effortlessly.
 Most creators struggle with design tools, lack ideas, or simply don’t have time
-to consistently create high quality visuals. –– uses AI trained on modern
+to consistently create high quality visuals.AI.Thum uses AI trained on modern
 YouTube design trends to instantly generate professional concepts helping you
 save hours of editing while producing thumbnails that actually perform.
               </p>
@@ -124,18 +124,18 @@ optimized for audience engagement.
 
               <ul className="list-disc list-inside text-white/90 space-y-2 leading-relaxed text-[19px]">
                 <li>
-                  <b>Smart</b> – powered by real YouTube design patterns and CTR data.
+                  <b>Smart</b> : powered by real YouTube design patterns and CTR data.
                 </li>
                 <li>
-                  <b>Simple</b> – no design experience required.
+                  <b>Simple</b> : no design experience required.
                 </li>
                 <li>
-                  <b>Instant</b> – ready-to-use thumbnails within seconds.
+                  <b>Instant</b> : ready-to-use thumbnails within seconds.
                 </li>
               </ul>
 
               <p className="text-white/90 mt-4 leading-relaxed text-[19px]">
-                –– generates multiple high quality concepts instantly, giving you options in
+                AI.Thum generates multiple high quality concepts instantly, giving you options in
 emotion, color, layout, and style so you can choose what fits your video best.
 Every generation is built using patterns proven to increase click-through-rate,
 ensuring your content gets discovered faster and reaches the audience it
@@ -225,7 +225,7 @@ deserves.
               </ul>
 
               <p className="text-[19px] text-white/90 mt-4 leading-relaxed">
-                –– is committed to helping you grow with studio quality thumbnails and an AI
+                AI.Thum is committed to helping you grow with studio quality thumbnails and an AI
 system that improves with trends so you can attract viewers and build your
 channel with confidence. Our promise is to continually enhance the tools you
 use, offering better styles, deeper customization, and smarter generation with

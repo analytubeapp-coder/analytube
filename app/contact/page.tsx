@@ -166,7 +166,7 @@ export default function Contact() {
                 href="mailto:analytubeapp@gmail.com"
                 className="text-[#F9C03F] font-semibold"
               >
-                support@analytubeapp.com
+                support@aithum.com
               </a>
             </p>
           </div>
