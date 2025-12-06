@@ -1,6 +1,7 @@
 // worker/index.ts
 
-import "dotenv/config";
+import dotenv from "dotenv";
+dotenv.config();
 import fetch from "node-fetch";
 import OpenAI from "openai";
 import { createClient } from "@supabase/supabase-js";

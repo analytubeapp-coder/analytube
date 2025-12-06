@@ -10,6 +10,7 @@
   "dependencies": {
     "@supabase/supabase-js": "^2.43.1",
     "@upstash/redis": "^1.28.2",
+    "dotenv": "^17.2.3",
     "node-fetch": "^3.3.2",
     "openai": "^4.12.1",
     "sharp": "^0.33.2",
