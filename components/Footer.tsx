@@ -9,7 +9,7 @@ export default function Footer() {
 
         <div className="w-full flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-[16px] font-medium">
 
-          {/* Logo 
+          Logo 
           <Link href="/" className="flex items-center">
             <Image
               src="/logoo.svg"
@@ -19,7 +19,7 @@ export default function Footer() {
               className="translate-y-[-1px]"
               priority
             />
-          </Link> */}
+          </Link>
 
           {[
             { href: "/blog", label: "Blogs" },
