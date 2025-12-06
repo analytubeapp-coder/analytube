@@ -9,7 +9,7 @@ export default function Footer() {
 
         <div className="w-full flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-[16px] font-medium">
 
-          Logo 
+          
           <Link href="/" className="flex items-center">
             <Image
               src="/logoo.svg"
