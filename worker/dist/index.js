@@ -66,7 +66,7 @@ ${prompt}
     const resp = await openai.images.generate({
         model: "gpt-image-1",
         prompt: finalPrompt,
-        size: "1792x1024"
+        size: "1536x1024"
     });
     // Fix TypeScript error — full safety check
     const data = resp.data;
