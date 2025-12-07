@@ -15,10 +15,14 @@ const CACHE_TTL_SEC = 60 * 60 * 24; // 24h cache
 
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY || "" });
 
-// Supabase client (server-side; uses service role key if provided)
-const SUPABASE_URL = process.env.SUPABASE_URL || "";
-const SUPABASE_KEY = process.env.SUPABASE_KEY || "";
-const supabase = createSupabaseClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } });
+// Delay supabase client creation to runtime (NOT build time)
+function getSupabase(req: Request) {
+  return createSupabaseClient(
+    process.env.SUPABASE_URL!,
+    process.env.SUPABASE_KEY!,
+    { auth: { persistSession: false } }
+  );
+}
 
 // optional Upstash Redis for caching & rate-limiting
 let redis: Redis | null = null;
@@ -165,29 +169,38 @@ throw new Error("Invalid JSON from model");
 * If anything fails, returns 'Free'
 */
 async function getPlanFromSupabase(authHeader: string | null): Promise<"Free" | "Starter" | "Pro" | "Business"> {
-try {
-if (!authHeader?.startsWith("Bearer ")) return "Free";
-const token = authHeader.split(" ")[1];
+  try {
+    if (!authHeader?.startsWith("Bearer ")) return "Free";
+    const token = authHeader.split(" ")[1];
 
-// server-side: ask supabase auth to return user
-const { data: userData, error: userErr } = await supabase.auth.getUser(token);
-if (userErr || !userData?.user) {
-// fallback: treat as Free
-return "Free";
-}
-const userId = userData.user.id;
+    // ساخت Supabase client در داخل تابع
+    const supabase = createSupabaseClient(
+      process.env.SUPABASE_URL!,
+      process.env.SUPABASE_KEY!,
+      { auth: { persistSession: false } }
+    );
 
-// read profiles table (you must have a 'profiles' table with 'id' = userId and 'plan' column)
-const { data, error } = await supabase.from("profiles").select("plan").eq("id", userId).single();
-if (error || !data) return "Free";
-const plan = (data.plan ?? "Free") as string;
-if (plan === null) return "Free";
-if (["Starter", "Pro", "Business"].includes(plan)) return plan as any;
-return "Free";
-} catch (e) {
-console.warn("getPlanFromSupabase err", e);
-return "Free";
-}
+    const { data: userData, error: userErr } = await supabase.auth.getUser(token);
+    if (userErr || !userData?.user) return "Free";
+
+    const userId = userData.user.id;
+
+    const { data, error } = await supabase
+      .from("profiles")
+      .select("plan")
+      .eq("id", userId)
+      .single();
+
+    if (error || !data) return "Free";
+
+    const plan = (data.plan ?? "Free") as string;
+
+    if (["Starter", "Pro", "Business"].includes(plan)) return plan as any;
+    return "Free";
+  } catch (e) {
+    console.warn("getPlanFromSupabase error", e);
+    return "Free";
+  }
 }
 
 // ======================= Pipeline prompts (kept concise) =======================
