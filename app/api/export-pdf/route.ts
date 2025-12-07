@@ -1,5 +1,4 @@
 // app/api/export-pdf/route.ts
-export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import { PDFDocument, StandardFonts } from "pdf-lib";
@@ -96,13 +95,15 @@ export async function POST(req: Request) {
     }
 
     const pdfBytes = await pdfDoc.save();
-    return new Response(pdfBytes, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/pdf",
-        "Content-Disposition": `attachment; filename="${(sop.meta?.title || "sop").replace(/\s+/g, "_")}.pdf"`,
-      },
-    });
+const uint8 = new Uint8Array(pdfBytes);
+
+return new Response(uint8, {
+  status: 200,
+  headers: {
+    "Content-Type": "application/pdf",
+    "Content-Disposition": `attachment; filename="output.pdf"`,
+  },
+});
   } catch (err: any) {
     console.error("export-pdf error:", err);
     return NextResponse.json({ error: err.message || String(err) }, { status: 500 });
