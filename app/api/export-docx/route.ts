@@ -165,9 +165,8 @@ export async function POST(req: Request) {
     const buffer = await Packer.toBuffer(doc);
 
 // Convert to Uint8Array for Next.js Response
-const uint8 = new Uint8Array(buffer);
 
-return new Response(uint8, {
+return new Response(buffer, {
   status: 200,
   headers: {
     "Content-Type":
