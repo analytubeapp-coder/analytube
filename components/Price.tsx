@@ -101,15 +101,15 @@ export default function PricingSection() {
               <span className="text-[18px] text-white/70 mb-2">/month</span>
             </div>
 
-            {/* FEATURES */}
-            <ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
-              <li>• 60 thumbnails / month</li>
-              <li>• Thumbnail Generator</li>
-              <li>• High resolution</li>
-              <li>• Thumbnail Recreation</li>
-              <li>• One Persona</li>
-              <li>• Styles</li>
-            </ul>
+            {/* FEATURES — STARTER */}
+<ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
+  <li>• 10 SOPs / month</li>
+  <li>• AI SOP Generator</li>
+  <li>• PDF Export</li>
+  <li>• Basic Dashboard Preview</li>
+  <li>• Standard Structure (Objectives, Scope, Workflow)</li>
+  <li>• No team members</li>
+</ul>
 
             {/* BUTTON */}
             <button
@@ -126,7 +126,7 @@ export default function PricingSection() {
             </button>
           </div>
 
-          {/* CARD — CREATOR (FEATURED) */}
+          {/* CARD — Pro (FEATURED) */}
           <div
             className="
               p-14 rounded-[20px] h-full
@@ -139,7 +139,7 @@ export default function PricingSection() {
             "
           >
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-[24px] font-bold">Creator</h3>
+              <h3 className="text-[24px] font-bold">Pro</h3>
               {billing === "yearly" && (
                 <span className="text-[20px] font-bold text-[#F9C03F]">
                   {prices.yearly.saveCreator}
@@ -152,14 +152,17 @@ export default function PricingSection() {
               <span className="text-[18px] text-white/70 mb-2">/month</span>
             </div>
 
-            <ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
-              <li>• 120 thumbnails / month</li>
-              <li>• Thumbnail Generator</li>
-              <li>• High resolution</li>
-              <li>• Thumbnail Recreation</li>
-              <li>• Three Personas</li>
-              <li>• Styles</li>
-            </ul>
+            {/* FEATURES — Pro */}
+<ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
+  <li>• 40 SOPs / month</li>
+  <li>• AI SOP Generator</li>
+  <li>• Smart Enhancements</li>
+  <li>• PDF + DOCX Export</li>
+  <li>• Full Dashboard Preview</li>
+  <li>• Role Suggestions</li>
+  <li>• Risk Insights</li>
+  <li>• 3 Team Members</li>
+</ul>
 
             <button
               onClick={() => window.location.href = "/signup"}
@@ -174,7 +177,7 @@ export default function PricingSection() {
             </button>
           </div>
 
-          {/* CARD — PRO */}
+          {/* CARD — Business */}
           <div
             className="
               p-14 rounded-[20px] h-full
@@ -187,7 +190,7 @@ export default function PricingSection() {
             "
           >
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-[24px] font-bold">Pro</h3>
+              <h3 className="text-[24px] font-bold">Business</h3>
               {billing === "yearly" && (
                 <span className="text-[20px] font-bold text-[#F9C03F]">
                   {prices.yearly.savePro}
@@ -200,14 +203,17 @@ export default function PricingSection() {
               <span className="text-[18px] text-white/70 mb-2">/month</span>
             </div>
 
-            <ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
-              <li>• 480 thumbnails / month</li>
-              <li>• Thumbnail Generator</li>
-              <li>• High resolution</li>
-              <li>• Thumbnail Recreation</li>
-              <li>• Multiple Persona</li>
-              <li>• Styles</li>
-            </ul>
+            {/* FEATURES — Business*/}
+<ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
+  <li>• Unlimited SOPs</li>
+  <li>• AI SOP Generator</li>
+  <li>• Advanced Recommendations</li>
+  <li>• PDF & DOCX Export</li>
+  <li>• Full Dashboard</li>
+  <li>• Editable Sections</li>
+  <li>• Custom Templates</li>
+  <li>• 10 Team Members</li>
+</ul>
 
             <button
               onClick={() => window.location.href = "/signup"}

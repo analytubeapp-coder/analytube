@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Image from "next/image";
 
 export default function About() {
   const verticalDuration = 0.6;
@@ -53,9 +52,9 @@ export default function About() {
 
       {/* CONTENT */}
       <section className="py-15 md:py-40 md:pb-46">
-        <div className="max-w-6xl mx-auto px-6 space-y-[10rem] md:space-y-[20rem]">
+        <div className="max-w-7xl mx-auto px-6 space-y-[10rem] md:space-y-[20rem]">
           {/* SECTION 01 ------------------------------------------------ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
             {/* number + line */}
             <div className="flex flex-col items-center relative">
               <span className="text-7xl md:text-8xl font-extrabold text-white/90">
@@ -67,13 +66,13 @@ export default function About() {
               <motion.div
                 className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                 initial={{ height: 0 }}
-                whileInView={{ height: 320 }}
+                whileInView={{ height: 280 }}
                 transition={{ duration: verticalDuration }}
                 viewport={{ once: true }}
               />
 
               <motion.div
-                className="bg-[#fcc978] h-1 absolute top-[calc(150%+320px)] left-1/2 hidden md:block"
+                className="bg-[#fcc978] h-1 absolute top-[calc(150%+280px)] left-1/2 hidden md:block"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
@@ -85,31 +84,26 @@ export default function About() {
             </div>
 
             {/* text */}
-            <div className="md:col-span-2">
+            <div className="md:col-span-2 md:max-w-[700px]">
               <h2 className="text-3xl md:text-4xl text-white/90 font-extrabold mb-6">
                 Who We Are
               </h2>
 
               <p className="text-white/90 mb-4 leading-relaxed text-[19px]">
-                At AI.Thum, we help creators design scroll stopping YouTube thumbnails effortlessly.
-Most creators struggle with design tools, lack ideas, or simply don’t have time
-to consistently create high quality visuals.AI.Thum uses AI trained on modern
-YouTube design trends to instantly generate professional concepts helping you
-save hours of editing while producing thumbnails that actually perform.
+                SOPMakerAI is a purpose built platform designed to simplify how businesses create, manage, and standardize their SOPs.
+                We believe that well documented processes unlock a company’s true operational potential reducing errors, improving training, and enabling scalable growth.
               </p>
 
               <p className="text-white/90 leading-relaxed text-[19px]">
-                Our goal is to make high performing thumbnail creation simple, fast, and
-accessible for every creator whether you’re launching your first video or
-already managing a growing channel. We believe great design shouldn’t be behind
-a skill barrier; our tools let you focus on the content while we handle visuals
-optimized for audience engagement.
+                Our team is a mix of AI engineers, operations specialists, workflow architects, and product designers.
+                After years of watching teams struggle with time consuming, repetitive documentation work,
+                we built SOPMakerAI to turn that friction into a fast, intuitive, and intelligent experience.
               </p>
             </div>
           </div>
 
           {/* SECTION 02 ------------------------------------------------ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
             {/* text */}
             <div className="md:col-span-2 order-2 md:order-1">
               <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-white/90">
@@ -117,29 +111,24 @@ optimized for audience engagement.
               </h2>
 
               <p className="text-white/90 mb-4 leading-relaxed text-[19px]">
-                Our mission is to empower creators with AI tools that remove
-                guesswork and deliver consistently high-performing thumbnails.
-                We believe creators deserve tools that are:
+                Our mission is to give every business whether a small startup or a growing enterprise access to clear, repeatable,
+                and measurable operational processes without spending hours writing and editing documents.
               </p>
 
               <ul className="list-disc list-inside text-white/90 space-y-2 leading-relaxed text-[19px]">
                 <li>
-                  <b>Smart</b> : powered by real YouTube design patterns and CTR data.
+                  <b>Faster standardization</b> : Enabling teams to create professional, high quality SOPs in minutes rather than days.
                 </li>
                 <li>
-                  <b>Simple</b> : no design experience required.
+                  <b>Process automation</b> : Transforming your internal knowledge into structured, actionable workflows.
                 </li>
                 <li>
-                  <b>Instant</b> : ready-to-use thumbnails within seconds.
+                  <b>Less error, more productivity</b> : Helping teams work with clarity, consistency, and confidence.
                 </li>
               </ul>
 
               <p className="text-white/90 mt-4 leading-relaxed text-[19px]">
-                AI.Thum generates multiple high quality concepts instantly, giving you options in
-emotion, color, layout, and style so you can choose what fits your video best.
-Every generation is built using patterns proven to increase click-through-rate,
-ensuring your content gets discovered faster and reaches the audience it
-deserves.
+                We believe strong processes build strong companies. SOPMakerAI exists to make that foundation accessible, intelligent, and effortless for everyone.
               </p>
             </div>
 
@@ -154,13 +143,13 @@ deserves.
               <motion.div
                 className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                 initial={{ height: 0 }}
-                whileInView={{ height: 330 }}
+                whileInView={{ height: 410 }}
                 transition={{ duration: verticalDuration }}
                 viewport={{ once: true }}
               />
 
               <motion.div
-                className="bg-[#fcc978] h-1 absolute top-[calc(150%+330px)] right-1/2 hidden md:block"
+                className="bg-[#fcc978] h-1 absolute top-[calc(150%+410px)] right-1/2 hidden md:block"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
@@ -173,7 +162,7 @@ deserves.
           </div>
 
           {/* SECTION 03 ------------------------------------------------ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 items-start relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
             {/* number */}
             <div className="flex flex-col items-center relative">
               <span className="text-7xl md:text-8xl font-extrabold text-white/90">
@@ -185,13 +174,13 @@ deserves.
               <motion.div
                 className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                 initial={{ height: 0 }}
-                whileInView={{ height: 360 }}
+                whileInView={{ height: 370 }}
                 transition={{ duration: verticalDuration }}
                 viewport={{ once: true }}
               />
 
               <motion.div
-                className="bg-[#fcc978] h-1 absolute top-[calc(150%+360px)] left-1/2 hidden md:block"
+                className="bg-[#fcc978] h-1 absolute top-[calc(150%+370px)] left-1/2 hidden md:block"
                 initial={{ width: 0 }}
                 whileInView={{ width: "800px" }}
                 transition={{
@@ -209,27 +198,21 @@ deserves.
               </h2>
 
               <p className="text-[19px] mb-4 leading-relaxed text-white/90">
-                We promise to give creators the ability to produce powerful,
-                high impact thumbnails without needing expert design skills.
-                Great visuals should be accessible to everyone.
+                We’re committed to providing a platform that not only speeds up documentation, but genuinely elevates the quality of your operations.
               </p>
 
               <p className="text-[19px] mb-2 leading-relaxed text-white/90">
-                What we stand for:
+                Here's what you can expect from us:
               </p>
 
               <ul className="list-disc list-inside text-[19px] text-white/90 space-y-2 leading-relaxed">
-                <li>Boosting click-through-rate with ease.</li>
-                <li>Consistent, creator-focused improvements.</li>
-                <li>Tools that level the playing field for all channels.</li>
+                <li>Accuracy and clarity: AI generated SOPs written with structure, precision, and real world applicability.</li>
+                <li>Continuous improvement: Insights, suggestions, and updates that evolve alongside your business.</li>
+                <li>Reliability: A tool you can trust to support daily operations, onboarding, and long-term growth.</li>
               </ul>
 
               <p className="text-[19px] text-white/90 mt-4 leading-relaxed">
-                AI.Thum is committed to helping you grow with studio quality thumbnails and an AI
-system that improves with trends so you can attract viewers and build your
-channel with confidence. Our promise is to continually enhance the tools you
-use, offering better styles, deeper customization, and smarter generation with
-every update.
+                Your processes matter and we’re here to help you document, refine, and scale them with confidence.
               </p>
             </div>
           </div>

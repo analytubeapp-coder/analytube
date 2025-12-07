@@ -7,8 +7,12 @@ const supabaseServer = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
   const { data: post } = await supabaseServer
     .from("posts")
@@ -17,15 +21,19 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     .single();
 
   return {
-    title: post?.title || "AnalyTube Blog",
+    title: post?.title || "Blog",
     description: post?.content?.slice(0, 150) || "",
   };
 }
 
 export const revalidate = 60;
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
 
   const { data: post, error } = await supabaseServer
     .from("posts")
@@ -36,7 +44,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   if (error || !post) {
     return (
       <div className="max-w-3xl mx-auto py-32 text-center">
-        <h1 className="text-2xl font-semibold text-gray-700">Post not found 😕</h1>
+        <h1 className="text-2xl font-semibold text-gray-700">
+          Post not found 😕
+        </h1>
         <Link href="/blog" className="text-[#BFD62E] underline mt-20 block">
           ← Back to Blog
         </Link>
@@ -45,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-32 px-6">
+    <div className="max-w-6xl mx-auto py-32 px-6">
       <Link href="/blog" className="text-[#BFD62E] underline">
         ← Back to Blog
       </Link>
@@ -56,15 +66,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       </p>
 
       {post.cover_url && (
-        <div className="relative w-full h-80 mb-10">
-          <Image
-            src={post.cover_url}
-            alt={post.title}
-            fill
-            className="object-cover rounded-xl shadow"
-          />
-        </div>
-      )}
+  <div className="flex justify-center mb-10">
+    <Image
+      src={post.cover_url}
+      alt={post.title}
+      width={400}   // عرض واقعی تصویر
+      height={100}  // ارتفاع واقعی تصویر
+      className="rounded-xl shadow"
+    />
+  </div>
+)}
 
       <article className="max-w-none mx-auto space-y-6">
         <div dangerouslySetInnerHTML={{ __html: post.content }} />

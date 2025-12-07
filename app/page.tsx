@@ -3,7 +3,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Price from "@/components/Price";
-import ThumbnailGenerator from "@/components/ThumbnailGenerator";
 
 export default function Home() {
   return (
@@ -50,15 +49,9 @@ export default function Home() {
   <header className="min-h-screen flex flex-col items-center justify-center text-center pt-58 gap-10">
 
     {/* TITLE */}
-    <h1 className="text-[32px] md:text-[64px] font-bold leading-[1.25] text-white">
-      Create High Performance <br />
-      YouTube <span className="text-[#fcc978]">Thumbnails</span> Automatically.
+    <h1 className="text-[32px] md:text-[62px] font-bold leading-[1.25] text-white">
+      Create High Performance SOPs. <span className="text-[#fcc978]">Automatically.</span>
     </h1>
-
-    {/* THUMBNAIL GENERATOR */}
-    <div className="w-full max-w-4xl flex justify-center">
-      <ThumbnailGenerator />
-    </div>
 
   </header>
 
@@ -68,7 +61,7 @@ export default function Home() {
   {/* SECTION TITLE */}
   <div className="max-w-7xl mx-auto px-6 text-center mb-20">
     <h2 className="text-3xl md:text-[42px] font-bold leading-tight text-white">
-      Powerful Tools to Accelerate Your YouTube Growth
+      Powerful AI Tools for Creating Exceptional SOPs
     </h2>
   </div>
 
@@ -76,21 +69,19 @@ export default function Home() {
   <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
     {[
       {
-        title: "Intelligent Thumbnail Engine",
+        title: "AI-Generated SOP Blueprints",
         text:
-          "Our AI studies audience behavior, color contrast, emotions, and visual patterns to generate thumbnails engineered for maximum clicks. Every design is optimized to boost CTR and drive predictable, real engagement.",
+          "Our engine creates fully structured SOPs tailored to your business: objectives, scope, roles, workflow, KPIs, risks, templates, and more. Designed for compliance, clarity, and real world execution.",
         icon: "/card1.svg",
       },
       {
-        title: "Adaptive AI Style Generator",
-        text:
-          "Instantly create studio grade thumbnails in any style from cinematic gaming to bold MrBeast layouts. The engine adapts to your visuals and delivers high impact designs with minimal input.",
+        title: "Live Preview & Export",
+        text: "Preview your SOP instantly in a clean dashboard view, then export it to DOCX, PDF, or SVG workflow diagrams with one click. Give your team a professional, consistent documentation system.",
         icon: "/card2.svg",
       },
       {
-        title: "Automatic Pro Enhancement",
-        text:
-          "Lighting, cutouts, backgrounds, and composition are all refined automatically for a polished, professional look. Your thumbnails are enhanced end-to-end and optimized for top tier YouTube performance.",
+        title: "AI Suggestions & Insights",
+        text: "Receive auto generated improvements, missing sections, risk insights, role suggestions, training tips, and implementation guidance making your SOPs stronger, safer, and more actionable.",
         icon: "/card3.svg",
       },
     ].map((item, idx) => (
@@ -123,12 +114,13 @@ export default function Home() {
   <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 place-items-center">
     <div className="text-center">
       <h3 className="text-3xl md:text-[62px] font-bold mb-6 text-white">
-        Make Viral Thumbnails in seconds
+        Build Complete SOPs in Seconds
       </h3>
 
       <p className="text-white/75 leading-relaxed text-xl md:text-[22px] mx-auto">
-        Generate eye catching thumbnails that instantly boost your video clicks. Powered by AI trained on trending styles, <br />
-        proven creator patterns and high-performing visuals. Just write your idea AI does the rest.
+        Just describe your process our AI automatically generates a comprehensive SOP including workflow,<br />
+        roles, procedures, tools, risk matrix, KPIs, and training material.
+        Perfect for startups, agencies, teams, and operational scaling.
       </p>
     </div>
   </div>
@@ -140,16 +132,16 @@ export default function Home() {
     
     {/* TITLE */}
     <h3 className="text-center text-3xl md:text-[42px] font-bold mb-16 text-white">
-      Why Creators Choose AI.Thum
+      Why Teams Choose SOP Maker AI
     </h3>
 
     {/* CARDS GRID */}
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-5">
       {[
-        { icon: "/icon-feature1.svg", words: ["Higher", "Engagement"] },
-        { icon: "/icon-feature2.svg", words: ["Faster", "Workflow"] },
-        { icon: "/icon-feature3.svg", words: ["Smarter", "Decisions"] },
-        { icon: "/icon-feature4.svg", words: ["Consistent", "Quality"] },
+        { icon: "/icon-feature1.svg", words: ["Complete", "Documentation"] },
+        { icon: "/icon-feature2.svg", words: ["Operational", "Clarity"] },
+        { icon: "/icon-feature3.svg", words: ["Automated", "Workflows"] },
+        { icon: "/icon-feature4.svg", words: ["Consistent", "Execution"] },
       ].map((item, idx) => (
         <div
           key={idx}

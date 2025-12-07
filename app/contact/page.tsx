@@ -166,7 +166,7 @@ export default function Contact() {
                 href="mailto:analytubeapp@gmail.com"
                 className="text-[#F9C03F] font-semibold"
               >
-                support@aithum.com
+                support@SOPMakerAI.com
               </a>
             </p>
           </div>
