@@ -1,5 +1,4 @@
 // app/api/export-docx/route.ts
-export const runtime = "nodejs";
 
 import { NextResponse } from "next/server";
 import {
@@ -163,6 +162,7 @@ export async function POST(req: Request) {
 
     const doc = new Document({ sections: [{ children }] });
     const buffer = await Packer.toBuffer(doc);
+    const unit8 = new Uint8Array(buffer);
 
 // Convert to Uint8Array for Next.js Response
 
