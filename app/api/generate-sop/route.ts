@@ -1,4 +1,6 @@
 // app/api/generate-sop/route.ts
+export const runtime = "nodejs";
+
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { Redis } from "@upstash/redis";
@@ -7,20 +9,16 @@ import { z } from "zod";
 
 const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-// optional Redis (Upstash) — only if env provided
+// optional Redis (Upstash)
 let redis: Redis | null = null;
 if (process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN) {
-  redis = new Redis({
-    url: process.env.UPSTASH_REDIS_REST_URL,
-    token: process.env.UPSTASH_REDIS_REST_TOKEN,
-  });
+  redis = new Redis({ url: process.env.UPSTASH_REDIS_REST_URL, token: process.env.UPSTASH_REDIS_REST_TOKEN });
 }
 
 const BodySchema = z.object({
   businessType: z.string().min(2),
   sopTitle: z.string().min(2),
   extraInfo: z.string().optional(),
-  // optional flags for more recommendations depth
   recommendationsDepth: z.number().int().min(1).max(5).optional(),
 });
 
@@ -28,55 +26,49 @@ function hashInput(obj: any) {
   return crypto.createHash("sha256").update(JSON.stringify(obj)).digest("hex");
 }
 
+/** Robust extractor for Responses API output */
 function extractTextFromResponse(resp: any): string {
-  // simple direct text
-  if (typeof resp?.output_text === "string" && resp.output_text.trim()) {
-    return resp.output_text;
-  }
-
-  // check output array
-  if (Array.isArray(resp?.output)) {
-    let out = "";
-
-    for (const item of resp.output) {
-      // If item has content[] array
-      if (Array.isArray(item?.content)) {
-        for (const c of item.content) {
-          if (typeof c?.text === "string") out += c.text;
-          else if (typeof c?.plain_text === "string") out += c.plain_text;
-          else if (typeof c === "string") out += c;
-        }
-      }
-
-      // If item itself is a string
-      if (typeof item === "string") {
-        out += item;
-      }
-
-      // If item.message.content exists
-      if (item?.message?.content) {
-        const c = item.message.content;
-
-        if (Array.isArray(c)) {
-          for (const part of c) {
-            if (typeof part?.text === "string") out += part.text;
-            else if (typeof part === "string") out += part;
+  // 1) Modern responses.create output
+  try {
+    if (resp?.output) {
+      // output may be array of items with content[]
+      let out = "";
+      for (const item of resp.output) {
+        if (Array.isArray(item?.content)) {
+          for (const c of item.content) {
+            // handle different content shapes
+            if (typeof c?.text === "string") out += c.text;
+            else if (typeof c?.html === "string") out += c.html;
+            else if (typeof c?.type === "string" && typeof c?.parts === "object") out += JSON.stringify(c.parts);
+            else if (typeof c === "string") out += c;
           }
-        } else if (typeof c?.text === "string") {
-          out += c.text;
+        } else if (typeof item?.text === "string") {
+          out += item.text;
+        } else if (typeof item === "string") {
+          out += item;
+        } else if (item?.message?.content) {
+          const c = item.message.content;
+          if (Array.isArray(c)) {
+            for (const part of c) {
+              if (typeof part?.text === "string") out += part.text;
+              else if (typeof part === "string") out += part;
+            }
+          } else if (typeof c?.text === "string") out += c.text;
         }
       }
-
-      // If item.text exists AND item isn't an array
-      if (!Array.isArray(item) && typeof item?.text === "string") {
-        out += item.text;
-      }
+      if (out.trim()) return out;
     }
 
-    if (out.trim()) return out;
+    // 2) older top-level output_text
+    if (typeof resp?.output_text === "string" && resp.output_text.trim()) return resp.output_text;
+
+    // 3) fallback to top-level text fields
+    if (typeof resp?.text === "string") return resp.text;
+  } catch (e) {
+    // ignore and fallback
   }
 
-  // fallback
+  // final fallback: stringify
   try {
     return JSON.stringify(resp);
   } catch {
@@ -84,7 +76,6 @@ function extractTextFromResponse(resp: any): string {
   }
 }
 
-/** Template B SOP skeleton generator (guides the model to produce the final JSON) */
 function mainPrompt(businessType: string, sopTitle: string, extraInfo?: string) {
   return `
 You are an expert operations consultant for SaaS startups. Produce a final SOP document in STRICT valid JSON only,
@@ -102,16 +93,12 @@ JSON SCHEMA (produce these exact keys):
     "business_type": "${businessType}",
     "generated_at": ""
   },
-  "overview": "",                  // 1-2 sentences summary for dashboard card
-  "objectives": ["", ""],          // short bullets
-  "scope": "",                     // short text
-  "roles": [                       // suggested roles array
-    { "role": "", "responsibilities": [""], "time_commitment": "" }
-  ],
+  "overview": "",
+  "objectives": ["", ""],
+  "scope": "",
+  "roles": [ { "role": "", "responsibilities": [""], "time_commitment": "" } ],
   "tools": [ { "name":"", "purpose":"" } ],
-  "procedure": [
-    { "step": 1, "title":"", "description":"", "owner":"", "estimated_time": "", "checklist": [""] }
-  ],
+  "procedure": [ { "step": 1, "title":"", "description":"", "owner":"", "estimated_time": "", "checklist": [""] } ],
   "kpis": [ { "name":"", "formula":"", "target":"", "frequency":"" } ],
   "risks": [ { "risk":"", "impact":"", "likelihood":"", "mitigation":"" } ],
   "training": [ { "role":"", "training_title":"", "duration":"", "resources": [""] } ],
@@ -128,29 +115,45 @@ Important:
 
 async function callOpenAI(prompt: string, model = "gpt-4.1", temperature = 0.2, maxTokens = 2500) {
   const res = await client.responses.create({ model, input: prompt, temperature, max_output_tokens: maxTokens });
-  const text = extractTextFromResponse(res as any);
-  return text;
+  return extractTextFromResponse(res as any);
 }
 
-/** Make simple flowchart SVG from procedure steps */
+/** Escape for SVG */
+function escapeXml(unsafe: string) {
+  return (unsafe ?? "").replace(/[<>&'"]/g, (c) => ({ "<": "&lt;", ">": "&gt;", "&": "&amp;", "'": "&apos;", '"': "&quot;" }[c] as string));
+}
+
+/** FIX: Add safeString here */
+function safeString(value: any): string {
+  if (value === null || value === undefined) return "";
+  if (typeof value === "string") return value;
+
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
+}
+
+/** Make simple flowchart SVG */
 function makeFlowchartSVG(procedure: any[]) {
-  // Very simple horizontal boxes SVG (keeps it compact)
   const nodes = procedure.map((p: any, i: number) => ({
     id: `n${i + 1}`,
-    label: `${i + 1}. ${p.title}`
+    label: `${i + 1}. ${safeString(p.title)}`
   }));
   const boxWidth = 180;
   const boxHeight = 48;
   const gap = 30;
-  const svgWidth = nodes.length * (boxWidth + gap) + 40;
+  const svgWidth = Math.max(300, nodes.length * (boxWidth + gap) + 40);
   const svgHeight = 120;
 
   let x = 20;
   let svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" height="${svgHeight}" viewBox="0 0 ${svgWidth} ${svgHeight}">`;
-  svg += `<style> .card{fill:rgba(255,255,255,0.06); stroke: rgba(255,255,255,0.12); rx:12; } .label{fill:#fff; font-family:Inter, Arial, sans-serif; font-size:12px;} </style>`;
+  svg += `<style> .card{fill:rgba(255,255,255,0.06); stroke: rgba(255,255,255,0.12); } .label{fill:#fff; font-family:Inter, Arial, sans-serif; font-size:12px;} </style>`;
   nodes.forEach((n, idx) => {
+    const label = escapeXml(n.label);
     svg += `<rect class="card" x="${x}" y="${(svgHeight - boxHeight) / 2}" width="${boxWidth}" height="${boxHeight}" rx="10" />`;
-    svg += `<text class="label" x="${x + 12}" y="${(svgHeight / 2) + 5}">${escapeXml(n.label)}</text>`;
+    svg += `<text class="label" x="${x + 12}" y="${(svgHeight / 2) + 5}">${label}</text>`;
     if (idx < nodes.length - 1) {
       const x1 = x + boxWidth;
       const y1 = svgHeight / 2;
@@ -164,11 +167,9 @@ function makeFlowchartSVG(procedure: any[]) {
   return svg;
 }
 
-function escapeXml(unsafe: string) {
-  return unsafe.replace(/[<>&'"]/g, (c) => ({ '<':'&lt;','>':'&gt;','&':'&amp;',"'" : '&apos;','"' : '&quot;' }[c] as string));
-}
 
-/** Recommendations generator: improvements, risks, tips, suggested roles */
+
+/** Recommendations generator (returns valid JSON or fallback) */
 async function generateRecommendations(sopJson: any, depth = 2) {
   const prompt = `
 You are an expert operations & risk consultant for SaaS startups.
@@ -186,7 +187,6 @@ Return ONLY valid JSON.
   try {
     return JSON.parse(txt);
   } catch {
-    // graceful fallback: return basic structure
     return { improvements: [], risks: [], tips: [], suggested_roles: [] };
   }
 }
@@ -200,7 +200,6 @@ export async function POST(req: Request) {
     }
     const { businessType, sopTitle, extraInfo, recommendationsDepth } = parsed.data;
 
-    // caching key (optional)
     const key = `sop_pkg:${hashInput({ businessType, sopTitle, extraInfo })}`;
     if (redis) {
       const cached = await redis.get(key);
@@ -208,7 +207,7 @@ export async function POST(req: Request) {
         try {
           const parsedCached = JSON.parse(cached);
           return NextResponse.json({ ...parsedCached, cached: true });
-        } catch { /* ignore bad cache */ }
+        } catch {}
       }
     }
 
@@ -226,8 +225,11 @@ export async function POST(req: Request) {
       const e = mainText.lastIndexOf("}");
       if (s !== -1 && e !== -1) {
         const sub = mainText.slice(s, e + 1);
-        try { sopJson = JSON.parse(String(sub)); }
-        catch { return NextResponse.json({ error: "OpenAI returned invalid JSON for SOP", raw: mainText.slice(0, 2000) }, { status: 500 }); }
+        try {
+          sopJson = JSON.parse(String(sub));
+        } catch {
+          return NextResponse.json({ error: "OpenAI returned invalid JSON for SOP", raw: mainText.slice(0, 2000) }, { status: 500 });
+        }
       } else {
         return NextResponse.json({ error: "OpenAI returned invalid SOP", raw: mainText.slice(0, 2000) }, { status: 500 });
       }
@@ -244,15 +246,15 @@ export async function POST(req: Request) {
     // 3) Recommendations
     const recommendations = await generateRecommendations(sopJson, recommendationsDepth || 2);
 
-    // 4) doc/pdf endpoints to be called by frontend
     const docx_endpoint = "/api/export-docx";
     const pdf_endpoint = "/api/export-pdf";
 
     const packageResult = { sop: sopJson, flowchart_svg, recommendations, docx_endpoint, pdf_endpoint };
 
-    // cache for 24h if redis configured
     if (redis) {
-      try { await redis.set(key, JSON.stringify(packageResult), { ex: 60 * 60 * 24 }); } catch { /* ignore */ }
+      try {
+        await redis.set(key, JSON.stringify(packageResult), { ex: 60 * 60 * 24 });
+      } catch {}
     }
 
     return NextResponse.json(packageResult);
