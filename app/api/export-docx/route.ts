@@ -166,7 +166,7 @@ export async function POST(req: Request) {
 
 // Convert to Uint8Array for Next.js Response
 
-return new Response(buffer, {
+return new Response(unit8, {
   status: 200,
   headers: {
     "Content-Type":
