@@ -164,13 +164,17 @@ export async function POST(req: Request) {
     const doc = new Document({ sections: [{ children }] });
     const buffer = await Packer.toBuffer(doc);
 
-    return new Response(buffer, {
-      status: 200,
-      headers: {
-        "Content-Type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        "Content-Disposition": `attachment; filename="${(sop.meta?.title || "sop").replace(/\s+/g, "_")}.docx"`,
-      },
-    });
+// Convert to Uint8Array for Next.js Response
+const uint8 = new Uint8Array(buffer);
+
+return new Response(uint8, {
+  status: 200,
+  headers: {
+    "Content-Type":
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "Content-Disposition": `attachment; filename="sop.docx"`,
+  },
+});
   } catch (err: any) {
     console.error("export-docx error:", err);
     return NextResponse.json({ error: err.message || String(err) }, { status: 500 });
