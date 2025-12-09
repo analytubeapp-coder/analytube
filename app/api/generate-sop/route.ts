@@ -30,9 +30,9 @@ import { SopSchema } from "@/lib/sopSchema";
 
 // =============================================================
 
-const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1";
+const OPENAI_MODEL = process.env.OPENAI_MODEL || "gpt-4.1-mini";
 
-const OPENAI_TIMEOUT = Number(process.env.OPENAI_TIMEOUT || 45000);
+const OPENAI_TIMEOUT = Number(process.env.OPENAI_TIMEOUT || 120000);
 
 const OPENAI_MAX_TOKENS = Number(process.env.OPENAI_MAX_TOKENS || 3200);
 
@@ -778,13 +778,9 @@ export async function POST(req: Request) {
 
     const payload: BodyType = parsed.data;
 
-
-
     // PLAN
 
     const plan = (payload.planOverride ?? await getPlan(req)) as PlanType;
-
-
 
     // CACHE KEY
 
