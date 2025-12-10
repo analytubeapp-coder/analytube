@@ -19,7 +19,6 @@ export default function DashboardSidebar({ onGenerate, loading }: Props) {
     sopTitle: "",
     mainGoal: "",
     depth: 3,
-    planOverride: "",
   });
 
   function update<K extends keyof typeof form>(key: K, value: any) {
@@ -41,7 +40,8 @@ export default function DashboardSidebar({ onGenerate, loading }: Props) {
       sopTitle: form.sopTitle,
       mainGoal: form.mainGoal,
       depth: form.depth,
-      planOverride: form.planOverride || undefined,
+      // ❌ planOverride removed
+      // plan is fetched from Supabase internally (API side)
     };
 
     await onGenerate(payload);
@@ -55,7 +55,6 @@ export default function DashboardSidebar({ onGenerate, loading }: Props) {
         KPIs, risks, tools, and training.
       </p>
 
-      {/* FORM */}
       <div className="space-y-4">
 
         {/* Company Name */}
@@ -141,7 +140,9 @@ export default function DashboardSidebar({ onGenerate, loading }: Props) {
 
         {/* Depth */}
         <div>
-          <label className="block text-sm mb-1">Detail Depth: {form.depth}</label>
+          <label className="block text-sm mb-1">
+            Detail Depth: {form.depth}
+          </label>
           <input
             type="range"
             min={1}
@@ -150,22 +151,6 @@ export default function DashboardSidebar({ onGenerate, loading }: Props) {
             onChange={(e) => update("depth", Number(e.target.value))}
             className="w-full"
           />
-        </div>
-
-        {/* Plan Override */}
-        <div>
-          <label className="block text-sm mb-1">Plan Override (Optional)</label>
-          <select
-            value={form.planOverride}
-            onChange={(e) => update("planOverride", e.target.value)}
-            className="w-full bg-black/20 border border-white/10 rounded-md p-2"
-          >
-            <option value="">Use user plan</option>
-            <option value="Free">Free</option>
-            <option value="Starter">Starter</option>
-            <option value="Pro">Pro</option>
-            <option value="Business">Business</option>
-          </select>
         </div>
 
         {/* BUTTON */}

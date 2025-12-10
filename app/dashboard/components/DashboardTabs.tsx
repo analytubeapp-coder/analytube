@@ -19,6 +19,8 @@ export default function DashboardTabs({
 }) {
   const [active, setActive] = useState<TabOption>("SOP");
 
+  const noResult = !loading && !result;
+
   return (
     <div className="w-full">
       {/* Tabs */}
@@ -27,15 +29,11 @@ export default function DashboardTabs({
           <button
             key={tab}
             onClick={() => setActive(tab)}
-            className={`
-              pb-3 px-2 text-lg
-              transition-all duration-200
-              ${
-                active === tab
-                  ? "text-white border-b-2 border-[#f4c17f]"
-                  : "text-white/50 hover:text-white"
-              }
-            `}
+            className={`pb-3 px-2 text-lg transition-all duration-200 
+              ${active === tab
+                ? "text-white border-b-2 border-[#f4c17f]"
+                : "text-white/50 hover:text-white"
+              }`}
           >
             {tab}
           </button>
@@ -45,30 +43,23 @@ export default function DashboardTabs({
       {/* Content */}
       <div className="rounded-xl bg-white/5 p-6 border border-white/10 min-h-[500px]">
 
-        {/* Loading */}
         {loading && (
           <p className="text-white/60 text-center py-20 text-lg">
             Generating your SOP... Please wait.
           </p>
         )}
 
-        {/* No result */}
-        {!loading && !result && (
+        {noResult && (
           <p className="text-white/40 text-center py-20 text-lg">
             Fill the form and click <span className="text-white">Generate SOP</span> to begin.
           </p>
         )}
 
-        {/* Results */}
         {!loading && result && (
           <>
             {active === "SOP" && <PreviewSOP sop={result.sop} />}
-            {active === "Flowchart" && (
-              <PreviewFlowchart svg={result.flowchart_svg} />
-            )}
-            {active === "Insights" && (
-              <PreviewInsights data={result.recommendations} />
-            )}
+            {active === "Flowchart" && <PreviewFlowchart svg={result.flowchart_svg} />}
+            {active === "Insights" && <PreviewInsights data={result.recommendations} />}
           </>
         )}
       </div>
