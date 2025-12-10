@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
     remotePatterns: [
-      // فقط Supabase (اگر واقعاً لازم داری، همین یکی کافی است)
       {
         protocol: "https",
         hostname: "orybvrxrlehjactaflwo.supabase.co",
@@ -12,19 +11,10 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  turbopack: {
-    resolveAlias: {
-      tap: false,
-      fastbench: false,
-      desm: false,
-      "pino-elasticsearch": false,
-      "why-is-node-running": false,
-    },
-  },
+  // فقط برای سایلنس کردن ارور Turbopack
+  turbopack: {},
 
-  experimental: {
-    turbopack: true,
-  },
+  experimental: {},
 };
 
 export default nextConfig;
