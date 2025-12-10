@@ -12,14 +12,14 @@ export default function PreviewInsights({ data }: { data: any }) {
       {/* Improvements */}
       <InsightBlock
         title="Recommended Improvements"
-        list={data.improvements}
+        list={data.improvements ?? []}
       />
 
       {/* Risks */}
       <div>
         <h2 className="section-title">Risks & Mitigation</h2>
         <div className="space-y-4">
-          {data.risks.map((r: any, i: number) => (
+          {(data.risks ?? []).map((r: any, i: number) => (
             <div key={i} className="bg-white/5 p-4 rounded-xl border border-white/10">
               <h3 className="font-semibold">{r.risk}</h3>
               <p className="text-white/70 text-sm">Score: {r.score}</p>

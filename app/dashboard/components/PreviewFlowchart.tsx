@@ -29,7 +29,7 @@ export default function PreviewFlowchart({ svg }: { svg: string }) {
       </div>
 
       <div
-        className="p-10"
+        className="min-w-max p-10"
         style={{
           transform: `scale(${zoom})`,
           transformOrigin: "top left",
