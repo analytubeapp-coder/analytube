@@ -11,10 +11,11 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // فقط برای سایلنس کردن ارور Turbopack
-  turbopack: {},
-
+  // ⛔️ Turbopack برای build خاموش
   experimental: {},
+
+  // ✅ این مهمه
+  serverExternalPackages: ["pino", "thread-stream"],
 };
 
 export default nextConfig;
