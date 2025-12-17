@@ -2,12 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabase } from "@/lib/supabaseClient";
+import { Upload } from "lucide-react";
 
 export default function OnboardingPage() {
   const router = useRouter();
@@ -25,14 +21,10 @@ export default function OnboardingPage() {
   const [categories, setCategories] = useState<{ key: string; label: string; is_other: boolean }[]>([]);
   const [languages, setLanguages] = useState<{ code: string; label: string }[]>([]);
 
-  /* =========================
-     Check profile & fetch options
-  ========================= */
+  // 🔹 Check profile & fetch options
   useEffect(() => {
     const init = async () => {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+      const { data: { user } } = await supabase.auth.getUser();
 
       if (!user) {
         router.replace("/signin");
@@ -52,7 +44,7 @@ export default function OnboardingPage() {
         profile?.channel_category &&
         profile?.channel_language
       ) {
-        router.replace("/home");
+        router.replace("/dashboard");
         return;
       }
 
@@ -70,9 +62,7 @@ export default function OnboardingPage() {
 
   if (checkingProfile) return null;
 
-  /* =========================
-     Submit
-  ========================= */
+  // 🔹 Submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -86,39 +76,31 @@ export default function OnboardingPage() {
 
     setLoading(true);
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
+    const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       setError("Authentication error.");
       setLoading(false);
       return;
     }
 
+    // 🔹 Avatar optional
     let avatarUrl: string | null = null;
-
     if (avatarFile) {
       const ext = avatarFile.name.split(".").pop();
-      const path = `avatars/${user.id}.${ext}`;
+      const filePath = `${user.id}/${user.id}.${ext}`;
 
       const { error: uploadError } = await supabase.storage
         .from("avatars")
-        .upload(path, avatarFile, { upsert: true, cacheControl: "3600" });
+        .upload(filePath, avatarFile, { upsert: true });
 
-      if (uploadError) {
-        setError("Avatar upload failed.");
-        setLoading(false);
-        return;
+      if (!uploadError) {
+        const { data } = supabase.storage.from("avatars").getPublicUrl(filePath);
+        avatarUrl = data.publicUrl;
       }
-
-      const { data } = supabase.storage.from("avatars").getPublicUrl(path);
-      avatarUrl = data.publicUrl;
     }
 
+    // 🔹 Update profile
     const payload: any = {
-      id: user.id,
-      email: user.email,
       full_name: fullName,
       channel_name: channelName,
       channel_category: finalCategory,
@@ -128,12 +110,16 @@ export default function OnboardingPage() {
 
     if (avatarUrl) payload.avatar_url = avatarUrl;
 
-    const { error: dbError } = await supabase.from("profiles").upsert(payload);
+    const { error: dbError } = await supabase
+      .from("profiles")
+      .update(payload)
+      .eq("id", user.id);
 
     if (dbError) {
+      console.error(dbError);
       setError("Failed to save profile.");
     } else {
-      router.replace("/home");
+      router.replace("/dashboard");
     }
 
     setLoading(false);
@@ -147,13 +133,18 @@ export default function OnboardingPage() {
       >
         <h1 className="text-3xl font-bold text-center">Set up your channel</h1>
 
-        {/* Avatar */}
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
-          className="w-full text-sm text-white/70"
-        />
+        {/* Avatar (optional) */}
+        <div className="flex items-center gap-3">
+          <label className="flex items-center gap-2 cursor-pointer bg-[#fcc978] text-black px-4 py-2 rounded-lg">
+            <Upload size={20} /> Upload Avatar (optional)
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
+            />
+          </label>
+        </div>
 
         {/* Full Name */}
         <input
@@ -171,7 +162,7 @@ export default function OnboardingPage() {
           className="input"
         />
 
-        {/* Category Select */}
+        {/* Category */}
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -185,7 +176,6 @@ export default function OnboardingPage() {
           ))}
         </select>
 
-        {/* Other Category Input */}
         {category === "other" && (
           <input
             placeholder="Enter your category"
@@ -195,7 +185,7 @@ export default function OnboardingPage() {
           />
         )}
 
-        {/* Language Select */}
+        {/* Language */}
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
@@ -213,12 +203,9 @@ export default function OnboardingPage() {
 
         <button
           disabled={loading}
-          className={`w-full py-3 rounded-full text-black font-semibold text-lg transition
-            ${
-              loading
-                ? "bg-[#fcc978] opacity-70 cursor-not-allowed"
-                : "bg-[#f9c03f] hover:bg-[#fcc978]"
-            }`}
+          className={`w-full py-3 rounded-full text-black font-semibold transition ${
+            loading ? "bg-[#fcc978] opacity-70 cursor-not-allowed" : "bg-[#f9c03f] hover:bg-[#fcc978]"
+          }`}
         >
           {loading ? "Saving..." : "Continue"}
         </button>
