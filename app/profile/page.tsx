@@ -15,6 +15,8 @@ export default function ProfilePage() {
   const [profile, setProfile] = useState<any>(null);
   const [fullName, setFullName] = useState("");
   const [channelName, setChannelName] = useState("");
+  const [channelCategory, setChannelCategory] = useState("");
+  const [channelLanguage, setChannelLanguage] = useState("");
   const [avatarUrl, setAvatarUrl] = useState("");
   const [email, setEmail] = useState("");
   const [uploading, setUploading] = useState(false);
@@ -26,7 +28,9 @@ export default function ProfilePage() {
     const fetchProfile = async () => {
       const { data } = await supabase
         .from("profiles")
-        .select("full_name, channel_name, avatar_url, plan")
+        .select(
+          "full_name, channel_name, channel_category, channel_language, avatar_url, plan"
+        )
         .eq("id", user.id)
         .single();
 
@@ -34,6 +38,8 @@ export default function ProfilePage() {
         setProfile(data);
         setFullName(data.full_name || "");
         setChannelName(data.channel_name || "");
+        setChannelCategory(data.channel_category || "");
+        setChannelLanguage(data.channel_language || "");
         setAvatarUrl(data.avatar_url || "");
         setEmail(user.email || "");
       }
@@ -98,7 +104,12 @@ export default function ProfilePage() {
 
     await supabase
       .from("profiles")
-      .update({ full_name: fullName, channel_name: channelName })
+      .update({
+        full_name: fullName,
+        channel_name: channelName,
+        channel_category: channelCategory,
+        channel_language: channelLanguage,
+      })
       .eq("id", user.id);
 
     alert("Saved!");
@@ -132,7 +143,7 @@ export default function ProfilePage() {
           "
           style={{
             background:
-              "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 80%)",
+            "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 80%)",
           }}
         />
 
@@ -147,7 +158,7 @@ export default function ProfilePage() {
           style={{
             background:
               "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
-              }}
+          }}
         />
       </div>
 
@@ -162,13 +173,12 @@ export default function ProfilePage() {
 
           {/* Avatar */}
           <div className="flex flex-col items-center mb-10">
-            <div className="relative">
+            <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-2 border-white/30">
               <Image
                 src={avatarUrl || "/default-avatar.png"}
                 alt="Avatar"
-                width={130}
-                height={130}
-                className="rounded-full object-cover border-2 border-white/30"
+                fill
+                className="object-cover w-full h-full"
               />
 
               <label
@@ -197,7 +207,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Fields */}
-          <div className="space-y-8">
+          <div className="space-y-6">
 
             <div>
               <label className="text-white/70 text-sm">Email</label>
@@ -222,6 +232,24 @@ export default function ProfilePage() {
               <input
                 value={channelName}
                 onChange={(e) => setChannelName(e.target.value)}
+                className="w-full mt-1 px-4 py-3 bg-black/20 border border-white/20 rounded-xl focus:ring-[#fcc978]"
+              />
+            </div>
+
+            <div>
+              <label className="text-white/70 text-sm">Channel Category</label>
+              <input
+                value={channelCategory}
+                onChange={(e) => setChannelCategory(e.target.value)}
+                className="w-full mt-1 px-4 py-3 bg-black/20 border border-white/20 rounded-xl focus:ring-[#fcc978]"
+              />
+            </div>
+
+            <div>
+              <label className="text-white/70 text-sm">Channel Language</label>
+              <input
+                value={channelLanguage}
+                onChange={(e) => setChannelLanguage(e.target.value)}
                 className="w-full mt-1 px-4 py-3 bg-black/20 border border-white/20 rounded-xl focus:ring-[#fcc978]"
               />
             </div>
