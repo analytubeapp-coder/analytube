@@ -3,8 +3,51 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Price from "@/components/Price";
+import { createClient } from "@supabase/supabase-js";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+);
 
 export default function Home() {
+    const router = useRouter();
+const [loading, setLoading] = useState(false);
+
+const handleStartFree = async () => {
+  setLoading(true);
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  // not logged in
+  if (!user) {
+    router.push("/signup");
+    return;
+  }
+
+  // logged in → check profile
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("full_name, channel_name, channel_category, channel_language")
+    .eq("id", user.id)
+    .single();
+
+  if (
+    !profile ||
+    !profile.full_name ||
+    !profile.channel_name ||
+    !profile.channel_category ||
+    !profile.channel_language
+  ) {
+    router.push("/onboarding");
+  } else {
+    router.push("/dashboard");
+  }
+};
 return (
 <>
 {/* AURORA FIXED BACKGROUND */}
@@ -48,23 +91,24 @@ background:
 <header className="min-h-screen flex flex-col items-center justify-center text-center pt-28 gap-8">
 {/* TITLE */}
 <h1 className="text-[32px] md:text-[68px] font-bold leading-[1.3] text-white max-w-6xl">
-Create High Performance <span className="text-[#f9c03f]"> SOPs.</span> Automatically.
+text <span className="text-[#f9c03f]"> text</span> text.
 </h1>
 
 {/* SUBHEADLINE */}
 <p className="text-white/80 text-lg md:text-[24px] font-regular max-w-5xl leading-relaxed">
-Turn complex processes into clean, professional SOPs complete with workflows, <br/>
-KPIs, risks, and roles. Generate world class documentation in seconds using advanced AI.
+text <br/>
+text
 </p>
 
 {/* CTA BUTTONS */}
 <div className="flex gap-4 mt-4">
-<a
-href="/dashboard"
-className="px-8 py-4 bg-[#f9c03f] rounded-[10px] text-[24px] font-semibold hover:bg-[#fcc978] transition"
+<button
+  onClick={handleStartFree}
+  disabled={loading}
+  className="px-8 py-4 bg-[#f9c03f] rounded-[10px] text-[24px] font-semibold hover:bg-[#fcc978] transition disabled:opacity-70"
 >
-Generate SOP
-</a>
+  {loading ? "Loading..." : "start free"}
+</button>
 </div>
 
 </header>
@@ -73,25 +117,25 @@ Generate SOP
 <section className="pt-32 pb-32">
 <div className="max-w-7xl mx-auto px-6 text-center mb-20">
 <h2 className="text-3xl md:text-[42px] font-bold leading-tight text-white">
-Powerful AI Tools for Creating Exceptional SOPs
+text
 </h2>
 </div>
 
 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
 {[
 {
-title: "AI Generated SOP Blueprints",
-text: "Generate complete SOP structures objectives, workflow, roles, tools, KPIs, risk matrix, and controls. Built for clarity and compliance.",
+title: "text",
+text: "text",
 icon: "/card1.svg",
 },
 {
-title: "Live Preview & Export",
-text: "Preview SOPs instantly in a clean professional layout. Export to DOCX, PDF, and SVG workflow diagrams with one click.",
+title: "text",
+text: "text",
 icon: "/card2.svg",
 },
 {
-title: "AI Suggestions & Insights",
-text: "Receive automatic recommendations, missing elements, risk insights, training suggestions, and optimization guidance.",
+title: "text",
+text: "text",
 icon: "/card3.svg",
 },
 ].map((item, idx) => (
@@ -124,12 +168,12 @@ flex flex-col items-start
 <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 place-items-center">
 <div className="text-center">
 <h3 className="text-3xl md:text-[62px] font-bold mb-6 text-white">
-Build Complete SOPs in Seconds
+text
 </h3>
 
 <p className="text-white/80 leading-relaxed text-xl md:text-[22px] max-w-5xl mx-auto">
-Describe your process the AI transforms it into a complete SOP: workflow diagrams, <br/>
-roles, procedures, KPIs, risks, tools, training, and implementation notes.
+text <br/>
+text
 </p>
 </div>
 </div>
@@ -139,7 +183,7 @@ roles, procedures, KPIs, risks, tools, training, and implementation notes.
 <section className="py-28">
 <div className="max-w-6xl mx-auto px-6">
 <h3 className="text-center text-3xl md:text-[42px] font-bold mb-16 text-white">
-Why Teams Choose SOP Maker AI
+text
 </h3>
 
 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-5">
