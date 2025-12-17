@@ -142,7 +142,7 @@ export default function ProfilePage() {
       <div className="max-w-2xl mx-auto py-12 px-6 relative">
         <div className="backdrop-blur-xl bg-white/10 border border-white/25 rounded-3xl p-8 shadow-2xl">
 
-          <div className="flex justify-between items-start mb-4">
+          <div className="flex justify-between items-start mb-2">
   <h1 className="text-3xl font-bold">Your Profile</h1>
 
   <div className="flex flex-col items-center gap-3">
@@ -179,7 +179,7 @@ export default function ProfilePage() {
     {avatarUrl && (
       <button
         onClick={handleRemoveAvatar}
-        className="flex items-center gap-1 text-red-400 hover:text-red-500 text-sm"
+        className="flex items-center gap-1 text-red-400/80 hover:text-red-400 text-sm"
       >
         <Trash2 size={14} /> Remove Avatar
       </button>
