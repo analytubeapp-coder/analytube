@@ -22,8 +22,8 @@ export default function OnboardingPage() {
   const [language, setLanguage] = useState("");
   const [avatarFile, setAvatarFile] = useState<File | null>(null);
 
-  const [categories, setCategories] = useState<{key:string,label:string,is_other:boolean}[]>([]);
-  const [languages, setLanguages] = useState<{code:string,label:string}[]>([]);
+  const [categories, setCategories] = useState<{ key: string; label: string; is_other: boolean }[]>([]);
+  const [languages, setLanguages] = useState<{ code: string; label: string }[]>([]);
 
   /* =========================
      Check profile & fetch options
