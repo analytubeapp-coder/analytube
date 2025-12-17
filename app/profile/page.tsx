@@ -21,7 +21,6 @@ export default function ProfilePage() {
   const [email, setEmail] = useState("");
   const [uploading, setUploading] = useState(false);
 
-  // 🔹 Load profile
   useEffect(() => {
     if (!user) return;
 
@@ -50,7 +49,6 @@ export default function ProfilePage() {
     fetchProfile();
   }, [user]);
 
-  // Upload avatar
   const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     try {
       setUploading(true);
@@ -74,14 +72,13 @@ export default function ProfilePage() {
       await supabase.from("profiles").update({ avatar_url: url }).eq("id", user.id);
 
       alert("Avatar updated!");
-    } catch (e) {
+    } catch {
       alert("Upload failed.");
     } finally {
       setUploading(false);
     }
   };
 
-  // Remove avatar
   const handleRemoveAvatar = async () => {
     if (!user) return;
     try {
@@ -90,14 +87,12 @@ export default function ProfilePage() {
 
       await supabase.from("profiles").update({ avatar_url: null }).eq("id", user.id);
       setAvatarUrl("");
-
       alert("Avatar removed.");
     } catch (e) {
       console.error(e);
     }
   };
 
-  // Save
   const handleSave = async () => {
     if (!user) return;
     setLoading(true);
@@ -117,13 +112,10 @@ export default function ProfilePage() {
     setLoading(false);
   };
 
-  // Upgrade
   const handleUpgrade = () => router.push("/pricing");
 
   if (!user)
-    return (
-      <div className="text-center py-20 text-white">Please sign in.</div>
-    );
+    return <div className="text-center py-20 text-white">Please sign in.</div>;
 
   if (loading)
     return <div className="text-center py-20 text-gray-400">Loading…</div>;
@@ -134,79 +126,62 @@ export default function ProfilePage() {
       {/* AURORA BACKGROUND */}
       <div className="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
         <div
-          className="
-            absolute top-[35%] left-[55%]
-            w-[550px] md:w-[2000px] h-[450px] md:h-[650px]
-            -translate-x-1/2 -translate-y-1/2
-            rotate-[25deg]
-            rounded-[9999px] blur-[150px] opacity-60
-          "
-          style={{
-            background:
-            "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 80%)",
-          }}
+          className="absolute top-[35%] left-[55%] w-[550px] md:w-[2000px] h-[450px] md:h-[650px] -translate-x-1/2 -translate-y-1/2 rotate-[25deg] rounded-[9999px] blur-[150px] opacity-60"
+          style={{ background: "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 80%)" }}
         />
-
         <div
-          className="
-            absolute top-[60%] left-[40%]
-            w-[550px] md:w-[1200px] h-[450px] md:h-[650px]
-            -translate-x-1/2 -translate-y-1/2
-            rotate-[-30deg]
-            rounded-[9999px] blur-[150px] opacity-60
-          "
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
-          }}
+        className="absolute top-[60%] left-[40%] w-[550px] md:w-[1200px] h-[450px] md:h-[650px] -translate-x-1/2 -translate-y-1/2 rotate-[-30deg] rounded-[9999px] blur-[150px] opacity-60"
+          style={{ background: "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)" }}
         />
       </div>
 
       {/* DARK OVERLAY */}
       <div className="fixed inset-0 bg-black/50 z-[-1]"></div>
 
-      {/* 🌟 GLASS CONTAINER WRAPPER */}
+      {/* GLASS CARD */}
       <div className="max-w-2xl mx-auto py-12 px-6 relative">
+        <div className="backdrop-blur-xl bg-white/10 border border-white/25 rounded-3xl p-8 shadow-2xl">
 
-        {/* AVATAR TOP-RIGHT */}
-        <div className="absolute top-6 right-6 w-[110px] h-[110px] rounded-full overflow-hidden border-2 border-white/30">
-          <Image
-            src={avatarUrl || "/default-avatar.png"}
-            alt="Avatar"
-            fill
-            className="object-cover w-full h-full"
-          />
-          <label
-            htmlFor="avatar-upload"
-            className="absolute bottom-0 right-0 bg-[#fcc978] text-black p-3 rounded-full cursor-pointer"
-          >
-            <Upload size={20} />
-          </label>
-          <input
-            id="avatar-upload"
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={handleAvatarUpload}
-          />
-        </div>
+          {/* HEADER */}
+          <div className="flex justify-between items-center mb-8">
+            <h1 className="text-3xl font-bold">Your Profile</h1>
 
-        {/* REMOVE BUTTON BELOW AVATAR */}
-        {avatarUrl && (
-          <button
-            onClick={handleRemoveAvatar}
-            className="absolute top-[130px] right-6 flex items-center gap-1 text-red-400 hover:text-red-500"
-          >
-            <Trash2 size={16} /> Remove Avatar
-          </button>
-        )}
+            {/* AVATAR */}
+            <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-2 border-white/30">
+              <Image
+                src={avatarUrl || "/default-avatar.png"}
+                alt="Avatar"
+                fill
+                className="object-cover w-full h-full"
+              />
+              <label
+                htmlFor="avatar-upload"
+                className="absolute bottom-0 right-0 bg-[#fcc978] text-black p-3 rounded-full cursor-pointer"
+              >
+                <Upload size={20} />
+              </label>
+              <input
+                id="avatar-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={handleAvatarUpload}
+              />
+            </div>
+          </div>
 
-        <div className="backdrop-blur-xl bg-white/10 border border-white/25 rounded-3xl p-8 shadow-2xl mt-6">
-          <h1 className="text-3xl font-bold mb-8">Your Profile</h1>
+          {/* REMOVE AVATAR BUTTON */}
+          {avatarUrl && (
+            <button
+              onClick={handleRemoveAvatar}
+              className="flex items-center gap-1 text-red-400 hover:text-red-500 mb-6"
+            >
+              <Trash2 size={16} /> Remove Avatar
+            </button>
+          )}
 
-          {/* Fields */}
+          {/* FIELDS */}
           <div className="space-y-6">
-
             <div>
               <label className="text-white/70 text-sm">Email</label>
               <input
@@ -252,7 +227,7 @@ export default function ProfilePage() {
               />
             </div>
 
-            {/* Subscription */}
+            {/* SUBSCRIPTION */}
             <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-5 flex justify-between items-center">
               <div>
                 <p className="text-white/70 text-sm">Subscription Plan</p>
@@ -260,7 +235,6 @@ export default function ProfilePage() {
                   {profile?.plan === "pro" ? "Pro Plan" : "Free Plan"}
                 </p>
               </div>
-
               {profile?.plan !== "pro" && (
                 <button
                   onClick={handleUpgrade}
@@ -271,14 +245,13 @@ export default function ProfilePage() {
               )}
             </div>
 
-            {/* Save Button */}
+            {/* SAVE BUTTON */}
             <button
               onClick={handleSave}
               className="w-full bg-[#fcc978] text-black py-3 rounded-full font-semibold"
             >
               {loading ? "Saving…" : "Save Changes"}
             </button>
-
           </div>
         </div>
       </div>
