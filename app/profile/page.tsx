@@ -149,7 +149,7 @@ export default function ProfilePage() {
     {/* AVATAR */}
     <div className="relative w-[110px] h-[110px]">
   {/* AVATAR IMAGE */}
-  <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/30">
+  <div className="rounded-full overflow-hidden border-2 border-white/30">
     <Image
       src={avatarUrl || "/default-avatar.png"}
       alt="Avatar"
