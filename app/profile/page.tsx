@@ -147,29 +147,33 @@ export default function ProfilePage() {
 
   <div className="flex flex-col items-center gap-2">
     {/* AVATAR */}
-    <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-2 border-white/30">
-      <Image
-        src={avatarUrl || "/default-avatar.png"}
-        alt="Avatar"
-        fill
-        className="object-cover"
-      />
+    <div className="relative w-[110px] h-[110px]">
+  {/* AVATAR IMAGE */}
+  <div className="w-full h-full rounded-full overflow-hidden border-2 border-white/30">
+    <Image
+      src={avatarUrl || "/default-avatar.png"}
+      alt="Avatar"
+      fill
+      className="object-cover"
+    />
+  </div>
 
-      <label
-        htmlFor="avatar-upload"
-        className="absolute -bottom-2 -right-2 bg-[#fcc978] text-black p-3 rounded-full cursor-pointer shadow-lg"
-      >
-        <Upload size={20} />
-      </label>
+  {/* UPLOAD BUTTON */}
+  <label
+    htmlFor="avatar-upload"
+    className="absolute -bottom-2 -right-2 bg-[#fcc978] text-black p-3 rounded-full cursor-pointer shadow-lg hover:scale-105 transition"
+  >
+    <Upload size={20} />
+  </label>
 
-      <input
-        id="avatar-upload"
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={handleAvatarUpload}
-      />
-    </div>
+  <input
+    id="avatar-upload"
+    type="file"
+    accept="image/*"
+    className="hidden"
+    onChange={handleAvatarUpload}
+  />
+</div>
 
     {/* REMOVE AVATAR */}
     {avatarUrl && (
