@@ -147,7 +147,7 @@ export default function ProfilePage() {
 
   <div className="flex flex-col items-center gap-2">
     {/* AVATAR */}
-    <div className="relative w-[110px] h-[110px]">
+    <div className="relative w-[100px] h-[100px] rounded-full">
   {/* AVATAR IMAGE */}
   <div className="rounded-full overflow-hidden border-2 border-white/30">
     <Image
