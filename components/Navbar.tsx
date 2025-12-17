@@ -90,19 +90,20 @@ export default function Navbar() {
               onMouseEnter={() => setIsDropdownOpen(true)}
               onMouseLeave={() => setIsDropdownOpen(false)}
             >
-              <div className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center cursor-pointer hover:bg-white/20 transition">
-                {profile?.avatar_url ? (
-                  <Image
-                    src={profile.avatar_url}
-                    alt="User avatar"
-                    width={44}
-                    height={44}
-                    className="rounded-full object-cover"
-                  />
-                ) : (
-                  <User size={22} color="white" />
-                )}
-              </div>
+              <div className="relative w-11 h-11 rounded-full bg-white/10 overflow-hidden cursor-pointer hover:bg-white/20 transition">
+  {profile?.avatar_url ? (
+    <Image
+      src={profile.avatar_url}
+      alt="User avatar"
+      fill
+      className="object-cover"
+    />
+  ) : (
+    <div className="flex items-center justify-center w-full h-full">
+      <User size={22} color="white" />
+    </div>
+  )}
+</div>
 
               {isDropdownOpen && (
   <div
