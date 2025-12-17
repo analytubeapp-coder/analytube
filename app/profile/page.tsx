@@ -142,43 +142,46 @@ export default function ProfilePage() {
       <div className="max-w-2xl mx-auto py-12 px-6 relative">
         <div className="backdrop-blur-xl bg-white/10 border border-white/25 rounded-3xl p-8 shadow-2xl">
 
-          {/* HEADER */}
-          <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold">Your Profile</h1>
+          <div className="flex justify-between items-start mb-8">
+  <h1 className="text-3xl font-bold">Your Profile</h1>
 
-            {/* AVATAR */}
-            <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-2 border-white/30">
-              <Image
-                src={avatarUrl || "/default-avatar.png"}
-                alt="Avatar"
-                fill
-                className="object-cover w-full h-full"
-              />
-              <label
-                htmlFor="avatar-upload"
-                className="absolute bottom-0 right-0 bg-[#fcc978] text-black p-3 rounded-full cursor-pointer"
-              >
-                <Upload size={20} />
-              </label>
-              <input
-                id="avatar-upload"
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleAvatarUpload}
-              />
-            </div>
-          </div>
+  <div className="flex flex-col items-center gap-2">
+    {/* AVATAR */}
+    <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-2 border-white/30">
+      <Image
+        src={avatarUrl || "/default-avatar.png"}
+        alt="Avatar"
+        fill
+        className="object-cover"
+      />
 
-          {/* REMOVE AVATAR BUTTON */}
-          {avatarUrl && (
-            <button
-              onClick={handleRemoveAvatar}
-              className="flex items-center gap-1 text-red-400 hover:text-red-500 mb-2"
-            >
-              <Trash2 size={16} /> Remove Avatar
-            </button>
-          )}
+      <label
+        htmlFor="avatar-upload"
+        className="absolute -bottom-2 -right-2 bg-[#fcc978] text-black p-3 rounded-full cursor-pointer shadow-lg"
+      >
+        <Upload size={20} />
+      </label>
+
+      <input
+        id="avatar-upload"
+        type="file"
+        accept="image/*"
+        className="hidden"
+        onChange={handleAvatarUpload}
+      />
+    </div>
+
+    {/* REMOVE AVATAR */}
+    {avatarUrl && (
+      <button
+        onClick={handleRemoveAvatar}
+        className="flex items-center gap-1 text-red-400 hover:text-red-500 text-sm"
+      >
+        <Trash2 size={14} /> Remove Avatar
+      </button>
+    )}
+  </div>
+</div>
 
           {/* FIELDS */}
           <div className="space-y-6">
