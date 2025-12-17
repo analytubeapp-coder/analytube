@@ -46,7 +46,7 @@ export default function Navbar() {
 
         {/* LEFT */}
         <div className="flex items-center space-x-16">
-         <Link href="/" className="flex items-center">
+        {/* <Link href="/" className="flex items-center">
             <Image
               src="/logoo.svg"
               alt="AnalyTube Logo"
@@ -56,6 +56,7 @@ export default function Navbar() {
               priority
             />
           </Link>
+          */}
 
           <div className="hidden md:flex items-center space-x-10 text-[16px] font-medium text-white!">
             <Link href="/blog" className="hover:text-white transition">Blog</Link>
