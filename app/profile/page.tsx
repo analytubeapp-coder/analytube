@@ -174,7 +174,7 @@ export default function ProfilePage() {
           {avatarUrl && (
             <button
               onClick={handleRemoveAvatar}
-              className="flex items-center gap-1 text-red-400 hover:text-red-500 mb-6"
+              className="flex items-center gap-1 text-red-400 hover:text-red-500 mb-2"
             >
               <Trash2 size={16} /> Remove Avatar
             </button>
