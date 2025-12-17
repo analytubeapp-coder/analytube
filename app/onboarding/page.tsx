@@ -21,7 +21,6 @@ export default function OnboardingPage() {
   const [categories, setCategories] = useState<{ key: string; label: string; is_other: boolean }[]>([]);
   const [languages, setLanguages] = useState<{ code: string; label: string }[]>([]);
 
-  // 🔹 Check profile & fetch options
   useEffect(() => {
     const init = async () => {
       const { data: { user } } = await supabase.auth.getUser();
@@ -31,7 +30,6 @@ export default function OnboardingPage() {
         return;
       }
 
-      // Fetch profile
       const { data: profile } = await supabase
         .from("profiles")
         .select("full_name, channel_name, channel_category, channel_language")
@@ -48,7 +46,6 @@ export default function OnboardingPage() {
         return;
       }
 
-      // Fetch options from Supabase
       const { data: cats } = await supabase.from("channel_categories").select("*");
       const { data: langs } = await supabase.from("channel_languages").select("*");
 
@@ -62,7 +59,6 @@ export default function OnboardingPage() {
 
   if (checkingProfile) return null;
 
-  // 🔹 Submit
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -83,7 +79,6 @@ export default function OnboardingPage() {
       return;
     }
 
-    // 🔹 Avatar optional
     let avatarUrl: string | null = null;
     if (avatarFile) {
       const ext = avatarFile.name.split(".").pop();
@@ -99,7 +94,6 @@ export default function OnboardingPage() {
       }
     }
 
-    // 🔹 Update profile
     const payload: any = {
       full_name: fullName,
       channel_name: channelName,
@@ -129,86 +123,103 @@ export default function OnboardingPage() {
     <div className="min-h-screen flex items-center justify-center px-6 text-white">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-lg bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-10 space-y-5"
+        className="w-full max-w-2xl bg-white/10 backdrop-blur-xl border border-white/25 rounded-3xl p-10 space-y-6 shadow-2xl relative"
       >
-        <h1 className="text-3xl font-bold text-center">Set up your channel</h1>
+        {/* HEADER + AVATAR */}
+        <div className="flex justify-between items-start mb-6">
+          <h1 className="text-3xl font-bold mt-2">Set up your channel</h1>
 
-        {/* Avatar (optional) */}
-        <div className="flex items-center gap-3">
-          <label className="flex items-center gap-2 cursor-pointer bg-[#fcc978] text-black px-4 py-2 rounded-lg">
-            <Upload size={20} /> Upload Avatar (optional)
-            <input
-              type="file"
-              accept="image/*"
-              className="hidden"
-              onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
-            />
-          </label>
+          <div className="flex flex-col items-center gap-3">
+            {/* AVATAR CIRCLE */}
+            <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden border-2 border-white/30">
+            {avatarFile ? (
+                <img
+                  src={URL.createObjectURL(avatarFile)}
+                  alt="Avatar"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              ) : (
+                <div className="w-full h-full bg-white/20 flex items-center justify-center rounded-full text-black text-sm">
+                  Avatar
+                </div>
+              )}
+
+              {/* UPLOAD BUTTON */}
+              <label
+                htmlFor="avatar-upload"
+                className="absolute -bottom-2 -right-2 bg-[#fcc978] text-black p-2 rounded-full cursor-pointer shadow-lg hover:scale-105 transition"
+              >
+                <Upload size={15} />
+              </label>
+              <input
+                id="avatar-upload"
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => setAvatarFile(e.target.files?.[0] || null)}
+              />
+            </div>
+          </div>
         </div>
 
-        {/* Full Name */}
-        <input
-          placeholder="Your full name"
-          value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
-          className="input"
-        />
-
-        {/* Channel Name */}
-        <input
-          placeholder="YouTube channel name"
-          value={channelName}
-          onChange={(e) => setChannelName(e.target.value)}
-          className="input"
-        />
-
-        {/* Category */}
-        <select
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          className="input"
-        >
-          <option value="">Select category</option>
-          {categories.map((cat) => (
-            <option key={cat.key} value={cat.key}>
-              {cat.label}
-            </option>
-          ))}
-        </select>
-
-        {category === "other" && (
+        {/* INPUT FIELDS */}
+        <div className="space-y-5">
           <input
-            placeholder="Enter your category"
-            value={otherCategory}
-            onChange={(e) => setOtherCategory(e.target.value)}
-            className="input"
+            placeholder="Your full name"
+            value={fullName}
+            onChange={(e) => setFullName(e.target.value)}
+            className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-xl text-white focus:ring-[#fcc978]"
           />
-        )}
+          <input
+            placeholder="YouTube channel name"
+            value={channelName}
+            onChange={(e) => setChannelName(e.target.value)}
+            className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-xl text-white focus:ring-[#fcc978]"
+          />
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-xl text-white focus:ring-[#fcc978]"
+          >
+            <option value="">Select category</option>
+            {categories.map((cat) => (
+              <option key={cat.key} value={cat.key}>
+                {cat.label}
+              </option>
+            ))}
+          </select>
+          {category === "other" && (
+            <input
+              placeholder="Enter your category"
+              value={otherCategory}
+              onChange={(e) => setOtherCategory(e.target.value)}
+              className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-xl text-white focus:ring-[#fcc978]"
+            />
+          )}
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+            className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-xl text-white focus:ring-[#fcc978]"
+          >
+            <option value="">Select language</option>
+            {languages.map((lang) => (
+              <option key={lang.code} value={lang.code}>
+                {lang.label}
+              </option>
+            ))}
+          </select>
 
-        {/* Language */}
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="input"
-        >
-          <option value="">Select language</option>
-          {languages.map((lang) => (
-            <option key={lang.code} value={lang.code}>
-              {lang.label}
-            </option>
-          ))}
-        </select>
+          {error && <p className="text-red-400 text-sm">{error}</p>}
 
-        {error && <p className="text-red-400 text-sm">{error}</p>}
-
-        <button
-          disabled={loading}
-          className={`w-full py-3 rounded-full text-black font-semibold transition ${
-            loading ? "bg-[#fcc978] opacity-70 cursor-not-allowed" : "bg-[#f9c03f] hover:bg-[#fcc978]"
-          }`}
-        >
-          {loading ? "Saving..." : "Continue"}
-        </button>
+          <button
+            disabled={loading}
+            className={`w-full py-3 rounded-full text-black font-semibold transition ${
+              loading ? "bg-[#fcc978] opacity-70 cursor-not-allowed" : "bg-[#fcc978] hover:bg-[#f9c03f]"
+            }`}
+          >
+            {loading ? "Saving..." : "Continue"}
+          </button>
+        </div>
       </form>
     </div>
   );
