@@ -147,7 +147,7 @@ export default function ProfilePage() {
 
   <div className="flex flex-col items-center gap-2">
     {/* AVATAR */}
-    <div className="relative w-[110px] h-[110px]">
+    <div className="relative w-[100px] h-[100px]">
   {/* AVATAR CIRCLE */}
   <div className="relative w-full h-full rounded-full overflow-hidden border-2 border-white/30">
     <Image
@@ -163,7 +163,7 @@ export default function ProfilePage() {
     htmlFor="avatar-upload"
     className="absolute -bottom-2 -right-2 bg-[#fcc978] text-black p-3 rounded-full cursor-pointer shadow-lg hover:scale-105 transition"
   >
-    <Upload size={20} />
+    <Upload size={15} />
   </label>
 
   <input
