@@ -51,171 +51,168 @@ export default function About() {
 
 
       {/* CONTENT */}
-      <section className="py-15 md:py-40 md:pb-46">
-        <div className="max-w-7xl mx-auto px-6 space-y-[10rem] md:space-y-[20rem]">
+      <section className="py-15 md:py-60 md:pb-60">
+        <div className="max-w-7xl mx-auto px-6 space-y-[10rem] md:space-y-[24rem]">
           {/* SECTION 01 ------------------------------------------------ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
-            {/* number + line */}
-            <div className="flex flex-col items-center relative">
-              <span className="text-7xl md:text-8xl font-extrabold text-white/90">
-                01
-              </span>
+<div className="grid grid-cols-1 md:grid-cols-3 items-start relative">
+  {/* number + line */}
+  <div className="flex flex-col items-center relative">
+    <span className="text-7xl md:text-8xl font-extrabold text-white/90">
+      01
+    </span>
 
-              <div className="w-5 h-5 rounded-full bg-[#fcc978] absolute top-[150%] hidden md:block" />
+    <div className="w-5 h-5 rounded-full bg-[#fcc978] absolute top-[150%] hidden md:block" />
 
-              <motion.div
-                className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
-                initial={{ height: 0 }}
-                whileInView={{ height: 280 }}
-                transition={{ duration: verticalDuration }}
-                viewport={{ once: true }}
-              />
+    <motion.div
+      className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
+      initial={{ height: 0 }}
+      whileInView={{ height: 340 }}
+      transition={{ duration: verticalDuration }}
+      viewport={{ once: true }}
+    />
 
-              <motion.div
-                className="bg-[#fcc978] h-1 absolute top-[calc(150%+280px)] left-1/2 hidden md:block"
-                initial={{ width: 0 }}
-                whileInView={{ width: "800px" }}
-                transition={{
-                  delay: horizontalDelay,
-                  duration: horizontalDuration,
-                }}
-                viewport={{ once: true }}
-              />
-            </div>
+    <motion.div
+      className="bg-[#fcc978] h-1 absolute top-[calc(150%+340px)] left-1/2 hidden md:block"
+      initial={{ width: 0 }}
+      whileInView={{ width: "800px" }}
+      transition={{
+        delay: horizontalDelay,
+        duration: horizontalDuration,
+      }}
+      viewport={{ once: true }}
+    />
+  </div>
 
-            {/* text */}
-            <div className="md:col-span-2 md:max-w-[700px]">
-              <h2 className="text-3xl md:text-4xl text-white/90 font-extrabold mb-6">
-                Who We Are
-              </h2>
+  {/* text */}
+  <div className="md:col-span-2 md:max-w-[700px]">
+    <h2 className="text-3xl md:text-5xl text-white/90 font-extrabold mb-6">
+      Who We Are
+    </h2>
 
-              <p className="text-white/90 mb-4 leading-relaxed text-[19px]">
-                SOPMakerAI is a purpose built platform designed to simplify how businesses create, manage, and standardize their SOPs.
-                We believe that well documented processes unlock a company’s true operational potential reducing errors, improving training, and enabling scalable growth.
-              </p>
+    <p className="text-white/90 mb-4 leading-relaxed text-[20px]">
+      Tubly Ai is a next-generation platform designed to empower creators to turn ideas into viral YouTube videos effortlessly. 
+      We combine AI, content strategy, and design to make video creation fast and intuitive for everyone. Our goal is to remove barriers and complexity from content creation so that creators can focus purely on creativity.
+    </p>
 
-              <p className="text-white/90 leading-relaxed text-[19px]">
-                Our team is a mix of AI engineers, operations specialists, workflow architects, and product designers.
-                After years of watching teams struggle with time consuming, repetitive documentation work,
-                we built SOPMakerAI to turn that friction into a fast, intuitive, and intelligent experience.
-              </p>
-            </div>
-          </div>
+    <p className="text-white/90 leading-relaxed text-[20px]">
+      Our team includes AI engineers, video strategists, and creative designers who are passionate about simplifying content creation 
+      while boosting engagement and growth for creators of all levels. With Tubly Ai, every user gains access to tools that were previously available only to large production studios.
+    </p>
+  </div>
+</div>
 
-          {/* SECTION 02 ------------------------------------------------ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
-            {/* text */}
-            <div className="md:col-span-2 order-2 md:order-1">
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-white/90">
-              Our Mission
-              </h2>
+{/* SECTION 02 ------------------------------------------------ */}
+<div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
+  {/* text */}
+  <div className="md:col-span-2 order-2 md:order-1">
+    <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-white/90">
+      Our Mission
+    </h2>
 
-              <p className="text-white/90 mb-4 leading-relaxed text-[19px]">
-                Our mission is to give every business whether a small startup or a growing enterprise access to clear, repeatable,
-                and measurable operational processes without spending hours writing and editing documents.
-              </p>
+    <p className="text-white/90 mb-4 leading-relaxed text-[20px]">
+      Our mission is to make video creation fast, intelligent, and accessible. 
+      Tubly Ai provides AI-powered scripts, SEO optimized titles, thumbnails, and CTAs so creators can focus on producing amazing content. 
+      We want to democratize professional-level video creation for every creator, from hobbyists to full-time YouTubers.
+    </p>
 
-              <ul className="list-disc list-inside text-white/90 space-y-2 leading-relaxed text-[19px]">
-                <li>
-                  <b>Faster standardization</b> : Enabling teams to create professional, high quality SOPs in minutes rather than days.
-                </li>
-                <li>
-                  <b>Process automation</b> : Transforming your internal knowledge into structured, actionable workflows.
-                </li>
-                <li>
-                  <b>Less error, more productivity</b> : Helping teams work with clarity, consistency, and confidence.
-                </li>
-              </ul>
+    <ul className="list-disc list-inside text-white/90 space-y-2 leading-relaxed text-[20px]">
+      <li><b>Speed:</b> Create professional, engaging videos in minutes instead of hours.</li>
+      <li><b>Optimization:</b> Titles, tags, and CTAs designed to maximize views and engagement.</li>
+      <li><b>Growth:</b> Insights and analytics that help your channel reach its full potential.</li>
+    </ul>
 
-              <p className="text-white/90 mt-4 leading-relaxed text-[19px]">
-                We believe strong processes build strong companies. SOPMakerAI exists to make that foundation accessible, intelligent, and effortless for everyone.
-              </p>
-            </div>
+    <p className="text-white/90 mt-4 leading-relaxed text-[20px]">
+      We believe in empowering creators to focus on their passion while Tubly Ai handles the technical optimization and growth strategy. 
+      Every feature we build is focused on saving time, increasing engagement, and helping creators succeed in a highly competitive landscape.
+    </p>
+  </div>
 
-            {/* number + line */}
-            <div className="flex flex-col items-center relative order-1 md:order-2">
-              <span className="text-7xl md:text-8xl font-extrabold text-white/90">
-                02
-              </span>
+  {/* number + line */}
+  <div className="flex flex-col items-center relative order-1 md:order-2">
+    <span className="text-7xl md:text-8xl font-extrabold text-white/90">
+      02
+    </span>
 
-              <div className="w-5 h-5 rounded-full bg-[#fcc978] absolute top-[150%] hidden md:block" />
+    <div className="w-5 h-5 rounded-full bg-[#fcc978] absolute top-[150%] hidden md:block" />
 
-              <motion.div
-                className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
-                initial={{ height: 0 }}
-                whileInView={{ height: 410 }}
-                transition={{ duration: verticalDuration }}
-                viewport={{ once: true }}
-              />
+    <motion.div
+      className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
+      initial={{ height: 0 }}
+      whileInView={{ height: 410 }}
+      transition={{ duration: verticalDuration }}
+      viewport={{ once: true }}
+    />
 
-              <motion.div
-                className="bg-[#fcc978] h-1 absolute top-[calc(150%+410px)] right-1/2 hidden md:block"
-                initial={{ width: 0 }}
-                whileInView={{ width: "800px" }}
-                transition={{
-                  delay: horizontalDelay,
-                  duration: horizontalDuration,
-                }}
-                viewport={{ once: true }}
-              />
-            </div>
-          </div>
+    <motion.div className="bg-[#fcc978] h-1 absolute top-[calc(150%+410px)] right-1/2 hidden md:block"
+      initial={{ width: 0 }}
+      whileInView={{ width: "800px" }}
+      transition={{
+        delay: horizontalDelay,
+        duration: horizontalDuration,
+      }}
+      viewport={{ once: true }}
+    />
+  </div>
+</div>
 
-          {/* SECTION 03 ------------------------------------------------ */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
-            {/* number */}
-            <div className="flex flex-col items-center relative">
-              <span className="text-7xl md:text-8xl font-extrabold text-white/90">
-                03
-              </span>
+{/* SECTION 03 ------------------------------------------------ */}
+<div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
+  {/* number */}
+  <div className="flex flex-col items-center relative">
+    <span className="text-7xl md:text-8xl font-extrabold text-white/90">
+      03
+    </span>
 
-              <div className="w-5 h-5 rounded-full bg-[#fcc978] absolute top-[150%] hidden md:block" />
+    <div className="w-5 h-5 rounded-full bg-[#fcc978] absolute top-[150%] hidden md:block" />
 
-              <motion.div
-                className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
-                initial={{ height: 0 }}
-                whileInView={{ height: 370 }}
-                transition={{ duration: verticalDuration }}
-                viewport={{ once: true }}
-              />
+    <motion.div
+      className="bg-[#fcc978] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
+      initial={{ height: 0 }}
+      whileInView={{ height: 440 }}
+      transition={{ duration: verticalDuration }}
+      viewport={{ once: true }}
+    />
 
-              <motion.div
-                className="bg-[#fcc978] h-1 absolute top-[calc(150%+370px)] left-1/2 hidden md:block"
-                initial={{ width: 0 }}
-                whileInView={{ width: "800px" }}
-                transition={{
-                  delay: horizontalDelay,
-                  duration: horizontalDuration,
-                }}
-                viewport={{ once: true }}
-              />
-            </div>
+    <motion.div
+      className="bg-[#fcc978] h-1 absolute top-[calc(150%+440px)] left-1/2 hidden md:block"
+      initial={{ width: 0 }}
+      whileInView={{ width: "800px" }}
+      transition={{
+        delay: horizontalDelay,
+        duration: horizontalDuration, }}
+      viewport={{ once: true }}
+    />
+  </div>
 
-            {/* text */}
-            <div className="md:col-span-2">
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-white/90">
-                Our Promise
-              </h2>
+  {/* text */}
+  <div className="md:col-span-2">
+    <h2 className="text-3xl md:text-5xl font-extrabold mb-6 text-white/90">
+      Our Promise
+    </h2>
 
-              <p className="text-[19px] mb-4 leading-relaxed text-white/90">
-                We’re committed to providing a platform that not only speeds up documentation, but genuinely elevates the quality of your operations.
-              </p>
+    <p className="text-[20px] mb-4 leading-relaxed text-white/90">
+      We are dedicated to helping creators produce high quality content efficiently while maximizing channel growth and engagement. 
+      Every tool and feature in Tubly Ai is designed to save time, increase viewership, and simplify the creative process.
+    </p>
 
-              <p className="text-[19px] mb-2 leading-relaxed text-white/90">
-                Here's what you can expect from us:
-              </p>
+    <p className="text-[20px] mb-2 leading-relaxed text-white/90">
+      Here's what you can expect from Tubly Ai:
+    </p>
 
-              <ul className="list-disc list-inside text-[19px] text-white/90 space-y-2 leading-relaxed">
-                <li>Accuracy and clarity: AI generated SOPs written with structure, precision, and real world applicability.</li>
-                <li>Continuous improvement: Insights, suggestions, and updates that evolve alongside your business.</li>
-                <li>Reliability: A tool you can trust to support daily operations, onboarding, and long-term growth.</li>
-              </ul>
+    <ul className="list-disc list-inside text-[19px] text-white/90 space-y-2 leading-relaxed">
+      <li>Accuracy and clarity: AI-powered scripts, titles, thumbnails, CTAs crafted to maximize results.</li>
+      <li>Continuous improvement: AI suggestions and updates that evolve with your channel.</li>
+      <li>Reliability: A trusted AI tool to help you create, optimize, and grow your content every day.</li>
+      <li>User-first approach: Designed with creators’ workflow and experience as the top priority.</li>
+      <li>Scalability: Supports channels of all sizes, from single creators to multi-person studios.</li>
+    </ul>
 
-              <p className="text-[19px] text-white/90 mt-4 leading-relaxed">
-                Your processes matter and we’re here to help you document, refine, and scale them with confidence.
-              </p>
-            </div>
-          </div>
+    <p className="text-[20px] text-white/90 mt-4 leading-relaxed">
+      Tubly Ai is here to help you turn ideas into viral content confidently, every time. 
+      Our commitment is to make your creative process smarter, faster, and more rewarding.
+    </p>
+  </div>
+</div>
         </div>
       </section>
 

@@ -1,15 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: "class", // ← فعال کردن حالت Dark Mode
+  darkMode: "class", // فعال کردن حالت Dark Mode
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./lib/**/*.{js,ts,jsx,tsx,mdx}", // ← اضافه شد
+    "./lib/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
       colors: {
-        brand: "#bfd62e", // رنگ اصلی برند
+        brand: "#122056",
       },
       borderColor: {
         DEFAULT: "hsl(var(--border))",
@@ -20,25 +21,13 @@ module.exports = {
       textColor: {
         DEFAULT: "hsl(var(--foreground))",
       },
+      fontFamily: {
+        sans: ['var(--font-archivo)', 'ui-sans-serif', 'system-ui'], // ← اضافه شد
+      },
     },
   },
   plugins: [
     require("@tailwindcss/typography"),
     require("@tailwindcss/line-clamp"),
-  ],
-};
-
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}", 
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}"
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [
-    require('@tailwindcss/typography'), // اضافه کردن پلاگین
   ],
 };

@@ -1,17 +1,17 @@
-import { Poppins } from "next/font/google";
+import { Archivo } from "next/font/google";
 import "./globals.css";
 import { SupabaseProvider } from "@/lib/SupabaseProvider";
 import { Analytics } from "@vercel/analytics/react";
 
-const poppins = Poppins({
+const archivo = Archivo({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-poppins",
+  weight: ["400", "500", "600", "700"], // وزن‌های لازم
+  variable: "--font-archivo",
 });
 
 export const metadata = {
-  title: "AnalyTube",
-  description: "YouTube analytics made simple",
+  title: "mm",
+  description: "lll",
   icons: {
     icon: "/favicon.png",
   },
@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} antialiased`}>
+      <body className={`${archivo.variable} antialiased`}>
         <SupabaseProvider>
           {children}
         </SupabaseProvider>

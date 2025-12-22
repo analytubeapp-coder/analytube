@@ -160,13 +160,13 @@ export default function Contact() {
               </div>
             </form>
 
-            <p className="text-sm text-white/70 text-center">
+            <p className="text-[16px] text-white/70 text-center">
               For support inquiries, contact us at{" "}
               <a
                 href="mailto:analytubeapp@gmail.com"
                 className="text-[#F9C03F] font-semibold"
               >
-                support@SOPMakerAI.com
+                support@tublyai.com
               </a>
             </p>
           </div>

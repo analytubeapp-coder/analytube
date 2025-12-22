@@ -101,8 +101,8 @@ export default function SignUpPage() {
         <div className="w-full max-w-lg bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl p-10">
 
           {/* Title */}
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-            Create SOP Maker AI Account
+          <h2 className="text-[22px] md:text-[32px] font-bold text-center mb-8">
+            Create Tubly AI Account
           </h2>
 
           {/* Google Signup */}
@@ -146,7 +146,7 @@ export default function SignUpPage() {
               className={`
                 w-full font-semibold rounded-full py-3 text-black text-lg 
                 transition
-                ${loading ? "bg-[#fcc978] cursor-not-allowed" : "bg-[#f9c03f] hover:bg-[#fcc978]"}
+                ${loading ? "bg-[#fcc978] cursor-not-allowed" : "bg-[#f9c03f] hover:bg-[#f9c03f]/90"}
               `}
             >
               {loading ? "Sending..." : "Sign Up"}
@@ -154,16 +154,16 @@ export default function SignUpPage() {
           </form>
 
           {/* Terms */}
-          <p className="text-[13px] text-white/60 mt-8 text-center">
+          <p className="text-[15px] text-white/60 mt-8 text-center">
             By continuing, you agree to our{" "}
-            <a href="/terms" className="underline">Terms</a> and{" "}
-            <a href="/privacy" className="underline">Privacy Policy</a>.
+            <a href="/terms" className="underline!">Terms</a> and{" "}
+            <a href="/privacy" className="underline!">Privacy Policy</a>.
           </p>
 
           {/* Already have an account */}
-          <p className="text-[13px] text-white/60 mt-2 text-center">
+          <p className="text-[15px] text-white/60 mt-1 text-center">
             Already have an account?{" "}
-            <a href="/signin" className="underline">Sign in</a>
+            <a href="/signin" className="underline!">Sign in</a>
           </p>
 
         </div>

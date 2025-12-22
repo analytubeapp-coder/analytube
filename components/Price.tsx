@@ -8,16 +8,16 @@ export default function PricingSection() {
   const prices = {
     yearly: {
       starter: 9,
-      creator: 19,
-      pro: 62,
+      creator: 15,
+      pro: 32,
       saveStarter: "save $60",
-      saveCreator: "save $120",
+      saveCreator: "save $108",
       savePro: "save $204",
     },
     monthly: {
       starter: 14,
-      creator: 29,
-      pro: 79,
+      creator: 24,
+      pro: 49,
     },
   };
 
@@ -102,13 +102,13 @@ export default function PricingSection() {
             </div>
 
             {/* FEATURES — STARTER */}
-<ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
-  <li>• 10 SOPs / month</li>
-  <li>• AI SOP Generator</li>
-  <li>• PDF Export</li>
-  <li>• Basic Dashboard Preview</li>
-  <li>• Standard Structure (Objectives, Scope, Workflow)</li>
-  <li>• No team members</li>
+<ul className="text-left text-[18px] text-white/80 leading-relaxed space-y-3 mb-12">
+  <li>• 10 Generations per day</li>
+  <li>• Full script generation</li>
+  <li>• SEO-optimized titles & tags</li>
+  <li>• Hook & CTA suggestions</li>
+  <li>• Standard speed</li>
+  <li>• Email support</li>
 </ul>
 
             {/* BUTTON */}
@@ -153,15 +153,14 @@ export default function PricingSection() {
             </div>
 
             {/* FEATURES — Pro */}
-<ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
-  <li>• 40 SOPs / month</li>
-  <li>• AI SOP Generator</li>
-  <li>• Smart Enhancements</li>
-  <li>• PDF + DOCX Export</li>
-  <li>• Full Dashboard Preview</li>
-  <li>• Role Suggestions</li>
-  <li>• Risk Insights</li>
-  <li>• 3 Team Members</li>
+<ul className="text-left text-[18px] text-white/80 leading-relaxed space-y-3 mb-12">
+  <li>• Unlimited generations</li>
+  <li>• Advanced SEO analysis</li>
+  <li>• Monetization optimization</li>
+  <li>• Thumbnail text & hooks</li>
+  <li>• Trend-aware suggestions</li>
+  <li>• Faster generation speed</li>
+  <li>• Priority support</li>
 </ul>
 
             <button
@@ -177,7 +176,7 @@ export default function PricingSection() {
             </button>
           </div>
 
-          {/* CARD — Business */}
+          {/* CARD — Studio */}
           <div
             className="
               p-14 rounded-[20px] h-full
@@ -190,7 +189,7 @@ export default function PricingSection() {
             "
           >
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-[24px] font-bold">Business</h3>
+              <h3 className="text-[24px] font-bold">Studio</h3>
               {billing === "yearly" && (
                 <span className="text-[20px] font-bold text-[#F9C03F]">
                   {prices.yearly.savePro}
@@ -204,15 +203,15 @@ export default function PricingSection() {
             </div>
 
             {/* FEATURES — Business*/}
-<ul className="text-left text-[18px] text-white/70 leading-relaxed space-y-3 mb-12">
-  <li>• Unlimited SOPs</li>
-  <li>• AI SOP Generator</li>
-  <li>• Advanced Recommendations</li>
-  <li>• PDF & DOCX Export</li>
-  <li>• Full Dashboard</li>
-  <li>• Editable Sections</li>
-  <li>• Custom Templates</li>
-  <li>• 10 Team Members</li>
+<ul className="text-left text-[18px] text-white/80 leading-relaxed space-y-3 mb-12">
+  <li>• Unlimited generations</li>
+  <li>• Advanced SEO analysis</li>
+  <li>• Monetization optimization</li>
+  <li>• Thumbnail text & hooks</li>
+  <li>• Trend-aware suggestions</li>
+  <li>• Faster generation speed</li>
+  <li>• Priority support</li>
+  <li>• Team collaboration</li>
 </ul>
 
             <button

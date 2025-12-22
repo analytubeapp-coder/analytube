@@ -46,7 +46,7 @@ export default function Terms() {
         <Navbar />
 
         {/* ---------------- HEADER SECTION ---------------- */}
-        <section className="py-32 text-center">
+        <section className="pt-34 pb-18 text-center">
           <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
             Terms & Conditions
           </h1>
@@ -69,142 +69,159 @@ export default function Terms() {
           <div>
   <h2 className="text-[24px] font-bold mb-2">Terms of Service</h2>
   <p className="text-white/80 text-[17px]">
-    These Terms of Service (“Terms”) govern your access and use of 
-    <b> SOPMakerAI</b> . By using our website, dashboard, 
-    or AI-powered SOP generation tools (“Services”), you agree to follow these Terms.  
+    These Terms of Service (“Terms”) govern your access and use of <b>Tubly Ai</b>. 
+    By using our website, dashboard, or AI-powered video creation tools (“Services”), you agree to follow these Terms.  
   </p>
   <p className="text-white/80 text-[17px] mt-2">
-    Please read everything carefully. If you do not agree, you may stop using 
-    the platform at any time.
+    Tubly Ai is designed to help creators produce high-quality, engaging content quickly and efficiently. 
+    Please read everything carefully. If you do not agree, you may stop using the platform at any time.
   </p>
 </div>
+
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">1. Using SOPMakerAI</h2>
+  <h2 className="text-[24px] font-bold mb-2">1. Using Tubly Ai</h2>
   <p className="text-white/80 text-[17px]">
     You must be at least 16 years old and legally able to enter agreements.  
-    You agree to use our services responsibly and in compliance with all applicable laws.
+    You agree to use our services responsibly, ethically, and in compliance with all applicable laws.
   </p>
   <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>You are responsible for the content you generate using the platform</li>
-    <li>You agree not to misuse or attempt to abuse the system</li>
-    <li>You will not use the Services to create harmful, illegal, or fraudulent content</li>
-    <li>You may not attempt to reverse-engineer, copy, or replicate our technology</li>
+    <li>You are responsible for the content you generate using Tubly Ai</li>
+    <li>You agree not to misuse, manipulate, or attempt to abuse the system</li>
+    <li>You will not use the Services to create harmful, illegal, or misleading content</li>
+    <li>You may not attempt to reverse-engineer, copy, or replicate our proprietary AI technology</li>
+    <li>All use must respect platform rules and community standards of content platforms</li>
   </ul>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">2. Your Account</h2>
   <p className="text-white/80 text-[17px]">
-    You must provide accurate account information and keep your login credentials secure.
-    You are fully responsible for anything done through your account.
+    You must provide accurate and current account information and keep your login credentials secure.
+    You are fully responsible for any activity that occurs under your account.
   </p>
   <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Do not share passwords with others</li>
+    <li>Do not share passwords or access with others</li>
     <li>Notify us immediately if you suspect unauthorized access</li>
-    <li>We may suspend accounts that violate these Terms</li>
+    <li>We may suspend or terminate accounts that violate these Terms or show suspicious activity</li>
+    <li>Ensure that your account reflects only content and activity you are authorized to create</li>
   </ul>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">3. AI-Generated Content</h2>
   <p className="text-white/80 text-[17px]">
-    SOPMakerAI generates Standard Operating Procedures based on your inputs.  
-    While we strive for accuracy, AI content may not always be perfect.
+    Tubly Ai generates video scripts, titles, thumbnails, CTAs, and other content based on your inputs.  
+    While we strive for accuracy, AI-generated content may not always be perfect or guaranteed to perform a certain way.
   </p>
   <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>You are responsible for reviewing and validating the generated SOPs</li>
-    <li>We do not guarantee legal, operational, or regulatory compliance</li>
-    <li>You hold the rights to your generated outputs</li>
-    <li>We do not resell, publish, or use your SOPs for model training</li>
+    <li>You are responsible for reviewing, refining, and editing generated content before publishing</li>
+    <li>We do not guarantee success or specific performance metrics on any platform</li>
+    <li>You retain full ownership and copyright of all content you generate</li>
+    <li>We do not reuse, publish, or share your content for training purposes without your consent</li>
+    <li>Always ensure compliance with platform-specific rules and regulations</li>
   </ul>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">4. Payments & Subscriptions</h2>
   <p className="text-white/80 text-[17px]">
-    Paid plans grant access to premium features.  
-    By subscribing, you authorize us or our payment processors to charge your chosen payment method.
+    Paid plans grant access to premium AI features and additional tools for enhanced video creation.  
+    By subscribing, you authorize us or our payment processors to charge your selected payment method.
   </p>
   <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>All fees are listed on our Pricing page</li>
-    <li>Subscriptions renew automatically unless canceled</li>
-    <li>We do not store credit card or private wallet data</li>
-    <li>Refunds are processed according to our refund policy</li>
+    <li>All fees and subscription options are listed on our Pricing page</li>
+    <li>Subscriptions automatically renew unless canceled prior to the renewal date</li>
+    <li>We do not store credit card or private payment information directly</li>
+    <li>Refunds are handled according to our refund policy and subscription terms</li>
+    <li>Any disputes or payment issues should be reported to our support team promptly</li>
   </ul>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">5. Acceptable Use</h2>
   <p className="text-white/80 text-[17px]">
-    You agree not to use the Services for harmful or unauthorized activities, including:
+    You agree to use Tubly Ai responsibly and not engage in harmful or unauthorized activities, including:
   </p>
   <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Generating illegal, dangerous, or fraudulent SOPs</li>
-    <li>Attempting to hack, overload, or disrupt the platform</li>
-    <li>Scraping or harvesting data from the Services</li>
-    <li>Sharing copyrighted material without permission</li>
+    <li>Creating content that violates laws, platform rules, or intellectual property rights</li>
+    <li>Attempting to hack, overload, or disrupt the Services</li>
+    <li>Scraping, harvesting, or copying data from the platform</li>
+    <li>Sharing copyrighted material without appropriate rights or permissions</li>
+    <li>Using the AI to deceive or manipulate audiences intentionally</li>
   </ul>
   <p className="text-white/80 text-[17px] mt-3">
-    Violations may result in temporary or permanent account suspension.
+    Violations may result in temporary or permanent suspension of your account and access to Services.
   </p>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">6. Intellectual Property</h2>
   <p className="text-white/80 text-[17px]">
-    All platform code, features, design, branding, and technology belong to SOPMakerAI.  
+    All Tubly Ai code, AI models, features, branding, and technology remain the property of Tubly Ai.  
     You may not claim or redistribute our system as your own.
-    </p>
+  </p>
   <p className="text-white/80 text-[17px] mt-2">
-    You own your generated SOPs and inputs.  
-    We only process them to provide the service.
+    You retain full ownership of all content you generate, including scripts, thumbnails, titles, and other assets.  
+    We process your inputs solely to provide the service and do not claim ownership of your work.
   </p>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">7. Service Availability</h2>
   <p className="text-white/80 text-[17px]">
     We aim for high uptime and stable performance, but interruptions may occur due to:
   </p>
   <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Scheduled maintenance</li>
-    <li>System upgrades</li>
-    <li>External service provider outages</li>
-    <li>Security or safety actions</li>
+    <li>Scheduled maintenance or system upgrades</li>
+    <li>Unexpected technical issues or outages from third-party providers</li>
+    <li>Security, safety, or emergency interventions</li>
+    <li>Force majeure or other circumstances beyond our control</li>
   </ul>
   <p className="text-white/80 text-[17px] mt-3">
-    We are not liable for losses caused by downtime or AI inaccuracies.
+    Tubly Ai is not liable for any losses, damages, or interruptions caused by downtime or AI limitations.  
+    We continuously work to improve reliability and performance.
   </p>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">8. Termination</h2>
   <p className="text-white/80 text-[17px]">
     You may cancel your subscription or delete your account at any time.  
-    We may suspend or terminate accounts that violate these Terms.
+    Tubly Ai reserves the right to suspend or terminate accounts that violate these Terms or engage in prohibited activities.
   </p>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">9. Limitation of Liability</h2>
   <p className="text-white/80 text-[17px]">
-    SOPMakerAI is provided “as is”.  
+    Tubly Ai is provided “as is” without warranties of any kind.  
     We are not responsible for:
   </p>
   <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Business losses resulting from incorrect SOPs</li>
-    <li>Misuse of generated content</li>
-    <li>Downtime caused by external providers</li>
+    <li>Any losses resulting from inaccurate or underperforming AI-generated content</li>
+    <li>Misuse of scripts, videos, thumbnails, or other assets</li>
+    <li>Downtime, service interruptions, or issues caused by external providers</li>
     <li>Any indirect, incidental, or consequential damages</li>
   </ul>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">10. Changes to These Terms</h2>
   <p className="text-white/80 text-[17px]">
-    We may update these Terms occasionally.  
-    If changes are significant, we’ll notify users via email or dashboard alerts.
+    Tubly Ai may update these Terms from time to time.  
+    If changes are significant, users will be notified via email, dashboard alerts, or prominent notices on the website.  
+    Continued use of Tubly Ai constitutes acceptance of the updated Terms.
   </p>
 </div>
+
 <div className="mt-8">
   <h2 className="text-[24px] font-bold mb-2">11. Contact Us</h2>
   <p className="text-white/80 text-[17px]">
-    If you have questions about these Terms, contact:
+    If you have any questions regarding these Terms, please contact our support team:
   </p>
   <p className="text-white/80 text-[17px] mt-2">
-    📩 Email: <b>support@SOPMakerAI.com</b><br />
-    🌐 Website: <b>SOPMakerAI.com</b>
+    📩 Email: <b>support@tublyai.com</b><br />
+    🌐 Website: <b>tublyai.com</b>
   </p>
 </div>
           

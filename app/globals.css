@@ -21,7 +21,7 @@ body {
 body {
   background: #121212;
   color: #ffffff;
-  font-family: ui-sans-serif, system-ui;
+  font-family: var(--font-archivo);
 }
 
 /* Prevent image dragging */
