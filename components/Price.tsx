@@ -24,12 +24,12 @@ export default function PricingSection() {
   const p = billing === "yearly" ? prices.yearly : prices.monthly;
 
   return (
-    <section className="py-32">
+    <section className="py-52">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* TITLE */}
-        <h2 className="text-center text-4xl md:text-5xl font-bold mb-10 text-white">
-          Accelerate your growth with AI tools
+        <h2 className="text-center text-4xl md:text-5xl font-bold mb-10 text-black">
+          Accelerate Your Growth With [YourBrand]
         </h2>
 
         {/* BILLING TOGGLE */}
@@ -37,7 +37,7 @@ export default function PricingSection() {
           <div
             className="
               flex p-1 rounded-full text-[18px] select-none
-              bg-white/10 backdrop-blur-xl border border-white/10
+              bg-[#eeeffd] backdrop-blur-xl border border-[#5b65dc]/20
             "
           >
             <button
@@ -46,8 +46,8 @@ export default function PricingSection() {
                 px-4 py-2 rounded-full transition
                 ${
                   billing === "monthly"
-                    ? "bg-[#121212] text-white font-semibold"
-                    : "text-white/80"
+                    ? "bg-[#5b65dc] text-white font-semibold"
+                    : "text-black"
                 }
               `}
             >
@@ -60,8 +60,8 @@ export default function PricingSection() {
                 px-4 py-2 rounded-full transition
                 ${
                   billing === "yearly"
-                    ? "bg-[#121212] text-white font-semibold"
-                    : "text-white/80"
+                    ? "bg-[#5b65dc] text-white font-semibold"
+                    : "text-black"
                 }
               `}
             >
@@ -71,25 +71,25 @@ export default function PricingSection() {
         </div>
 
         {/* PRICING GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-0">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-14 py-0">
 
-          {/* CARD — STARTER */}
-          <div
-            className="
-              p-14 rounded-[20px] h-full
-              bg-white/5 backdrop-blur-xl
-              border border-white/10
-              shadow-[0_0_25px_rgba(0,0,0,0.4)]
-              hover:shadow-[0_0_40px_rgba(0,0,0,0.6)]
-              transition-all duration-300
-              flex flex-col text-white
-            "
-          >
+          {/* CARD — 1 */}
+<div
+  className="
+    p-14 rounded-[20px] h-full
+    bg-[#eeeffd] backdrop-blur-xl
+    border border-[#5b65dc]/20
+    shadow-[0_8px_24px_rgba(0,0,0,0.15)]
+    hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)]
+    transition-all duration-300
+    flex flex-col text-black
+  "
+>
             {/* Title + Save */}
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-[24px] font-bold text-white">Starter</h3>
+              <h3 className="text-[24px] font-bold text-black">Starter</h3>
               {billing === "yearly" && (
-                <span className="text-[20px] font-semibold text-[#F9C03F]">
+                <span className="text-[20px] font-medium text-[#5b65dc]">
                   {prices.yearly.saveStarter}
                 </span>
               )}
@@ -98,17 +98,17 @@ export default function PricingSection() {
             {/* PRICE */}
             <div className="flex items-end gap-2 mb-10">
               <span className="text-[62px] font-bold leading-none">${p.starter}</span>
-              <span className="text-[18px] text-white/70 mb-2">/month</span>
+              <span className="text-[18px] text-black/80 mb-2">/month</span>
             </div>
 
-            {/* FEATURES — STARTER */}
-<ul className="text-left text-[18px] text-white/80 leading-relaxed space-y-3 mb-12">
-  <li>• 10 Generations per day</li>
-  <li>• Full script generation</li>
-  <li>• SEO-optimized titles & tags</li>
-  <li>• Hook & CTA suggestions</li>
-  <li>• Standard speed</li>
-  <li>• Email support</li>
+            {/* FEATURES — 1 */}
+<ul className="text-left text-[18px] text-black/80 leading-relaxed space-y-3 mb-12">
+  <li>• asdfghj</li>
+  <li>• dfghj</li>
+  <li>• Svgbhj</li>
+  <li>• qwertyu</li>
+  <li>• Stsdfgh</li>
+  <li>• dfghj</li>
 </ul>
 
             {/* BUTTON */}
@@ -116,32 +116,31 @@ export default function PricingSection() {
               onClick={() => window.location.href = "/signup"}
               className="
                 mt-auto block px-1 py-3 w-[140px]
-                border border-[2.5px] border-[#F9C03F]
-                text-white text-[18px]
+                border border-[2.5px] border-[#5b65dc]
+                text-black text-[18px]
                 rounded-full font-semibold transition mx-auto text-center
-                hover:bg-[#F9C03F] hover:text-black
               "
             >
               Subscribe
             </button>
           </div>
 
-          {/* CARD — Pro (FEATURED) */}
-          <div
-            className="
-              p-14 rounded-[20px] h-full
-              bg-white/10 backdrop-blur-xl
-              border border-[#F9C03F] border-[3px]
-              shadow-[0_0_20px_rgba(249,192,63,0.35)]
-              hover:shadow-[0_0_30px_rgba(249,192,63,0.55)]
-              transition-all duration-300
-              flex flex-col text-white
-            "
-          >
+          {/* CARD — 2 */}
+<div
+  className="
+    p-14 rounded-[20px] h-full
+    bg-[#eeeffd]/80 backdrop-blur-xl
+    border border-[#5b65dc] border-[3px]
+    shadow-[0_8px_24px_rgba(91,101,220,0.25)]
+    hover:shadow-[0_12px_32px_rgba(91,101,220,0.35)]
+    transition-all duration-300
+    flex flex-col text-black
+  "
+>
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-[24px] font-bold">Pro</h3>
               {billing === "yearly" && (
-                <span className="text-[20px] font-bold text-[#F9C03F]">
+                <span className="text-[20px] font-medium text-[#5b65dc]">
                   {prices.yearly.saveCreator}
                 </span>
               )}
@@ -149,26 +148,26 @@ export default function PricingSection() {
 
             <div className="flex items-end gap-2 mb-10">
               <span className="text-[58px] font-bold leading-none">${p.creator}</span>
-              <span className="text-[18px] text-white/70 mb-2">/month</span>
+              <span className="text-[18px] text-black/80 mb-2">/month</span>
             </div>
 
-            {/* FEATURES — Pro */}
-<ul className="text-left text-[18px] text-white/80 leading-relaxed space-y-3 mb-12">
-  <li>• Unlimited generations</li>
-  <li>• Advanced SEO analysis</li>
-  <li>• Monetization optimization</li>
-  <li>• Thumbnail text & hooks</li>
-  <li>• Trend-aware suggestions</li>
-  <li>• Faster generation speed</li>
-  <li>• Priority support</li>
+            {/* FEATURES — 2 */}
+<ul className="text-left text-[18px] text-black/80 leading-relaxed space-y-3 mb-12">
+  <li>• uuuuuuuu</li>
+  <li>• oooooooo</li>
+  <li>• kkkkkkk</li>
+  <li>• jjjjjj</li>
+  <li>• mnhhhhh</li>
+  <li>• hhhhhhh</li>
+  <li>• jjjjjjjj</li>
 </ul>
 
             <button
               onClick={() => window.location.href = "/signup"}
               className="
                 mt-auto block px-1 py-3 w-[140px]
-                bg-[#F9C03F] hover:bg-[#ffd873]
-                text-black text-[20px] rounded-full
+                bg-[#5b65dc] hover:bg-[#5b65dc]/80
+                text-white text-[20px] rounded-full
                 font-semibold transition mx-auto text-center
               "
             >
@@ -176,22 +175,22 @@ export default function PricingSection() {
             </button>
           </div>
 
-          {/* CARD — Studio */}
-          <div
-            className="
-              p-14 rounded-[20px] h-full
-              bg-white/5 backdrop-blur-xl
-              border border-white/10
-              shadow-[0_0_25px_rgba(0,0,0,0.4)]
-              hover:shadow-[0_0_40px_rgba(0,0,0,0.6)]
-              transition-all duration-300
-              flex flex-col text-white
-            "
-          >
+          {/* CARD — 3 */}
+<div
+  className="
+    p-14 rounded-[20px] h-full
+    bg-[#eeeffd] backdrop-blur-xl
+    border border-[#5b65dc]/20
+    shadow-[0_8px_24px_rgba(0,0,0,0.15)]
+    hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)]
+    transition-all duration-300
+    flex flex-col text-black
+  "
+>
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-[24px] font-bold">Studio</h3>
               {billing === "yearly" && (
-                <span className="text-[20px] font-bold text-[#F9C03F]">
+                <span className="text-[20px] font-medium text-[#5b65dc]">
                   {prices.yearly.savePro}
                 </span>
               )}
@@ -199,28 +198,28 @@ export default function PricingSection() {
 
             <div className="flex items-end gap-2 mb-10">
               <span className="text-[58px] font-bold leading-none">${p.pro}</span>
-              <span className="text-[18px] text-white/70 mb-2">/month</span>
+              <span className="text-[18px] text-black/80 mb-2">/month</span>
             </div>
 
-            {/* FEATURES — Business*/}
-<ul className="text-left text-[18px] text-white/80 leading-relaxed space-y-3 mb-12">
-  <li>• Unlimited generations</li>
-  <li>• Advanced SEO analysis</li>
-  <li>• Monetization optimization</li>
-  <li>• Thumbnail text & hooks</li>
-  <li>• Trend-aware suggestions</li>
-  <li>• Faster generation speed</li>
-  <li>• Priority support</li>
-  <li>• Team collaboration</li>
+            {/* FEATURES — 3*/}
+<ul className="text-left text-[18px] text-black/80 leading-relaxed space-y-3 mb-12">
+  <li>• iiiiiiiiii</li>
+  <li>• iiiiiiii</li>
+  <li>• kkkkkkkk</li>
+  <li>• oooooooo</li>
+  <li>• kkkkkkkk</li>
+  <li>• mmmmmmmmm</li>
+  <li>• yyyyyyy</li>
+  <li>• uuuuuu</li>
 </ul>
 
             <button
               onClick={() => window.location.href = "/signup"}
               className="
                 mt-auto block px-1 py-3 w-[140px]
-                border border-[2.5px] border-[#F9C03F]
-                text-white text-[18px] rounded-full
-                hover:bg-[#F9C03F] hover:text-black
+                border border-[2.5px] border-[#5b65dc]
+                text-black text-[18px] rounded-full
+                hover:text-black
                 font-semibold transition mx-auto text-center
               "
             >
