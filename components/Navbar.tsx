@@ -36,12 +36,14 @@ export default function Navbar() {
 
   return (
     <nav
-      className="
-        w-full fixed top-0 left-0 z-50
-        backdrop-blur-[5px]
-        border-b border-white/10
-      "
-    >
+  className="
+    w-full fixed top-0 left-0 z-50
+    backdrop-blur-[5px]
+    border-b border-black/10
+
+    bg-white/95 md:bg-transparent
+  "
+>
       <div className="w-full px-6 md:px-20 py-4 md:py-5 flex items-center justify-between gap-6 md:gap-16">
 
         {/* LEFT */}
@@ -218,7 +220,7 @@ export default function Navbar() {
         <Link
           href="/signin"
           className="
-            block bg-black text-white
+            block bg-black text-white!
             text-center px-4 py-3 rounded-full font-semibold
             hover:bg-black/90 transition
           "
