@@ -190,6 +190,7 @@ export default function Navbar() {
           <Link href="/blog" className="block hover:text-white">Blog</Link>
           <Link href="/pricing" className="block hover:text-white">Pricing</Link>
           <Link href="/about" className="block hover:text-white">About Us</Link>
+          <Link href="/#faq" className="block hover:text-white">FAQ</Link>
 
           {!user ? (
             <>
