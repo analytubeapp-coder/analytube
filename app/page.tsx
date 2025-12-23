@@ -47,12 +47,12 @@ export default function Home() {
   <div className="max-w-[100rem] mx-auto text-center text-white">
     
     <h2 className="text-[32px] md:text-[52px] font-bold mb-6 leading-[1.15]">
-      What Can [YourBrand]<br />
+      What Can [YourBrand]
       Do For Your Email?
     </h2>
 
     <p className="text-base md:text-[20px] mb-16 max-w-4xl mx-auto opacity-90">
-      It instantly makes your business look more professional and credible, giving customers, partners,<br />
+      It instantly makes your business look more professional and credible, giving customers, partners,
       <br className="hidden md:block" />
       and clients the confidence to take you seriously from the very first email.
     </p>
@@ -101,9 +101,9 @@ export default function Home() {
     <div className="max-w-[52rem] ml-auto text-left">
 
       <h3 className="text-[28px] md:text-[52px] font-bold leading-[1.2] mb-8">
-        “Why businesses choose<br />
+        “Why businesses choose
         <br className="hidden md:block" />
-        [YourBrand] for<br />
+        [YourBrand] for
         <br className="hidden md:block" />
         professional email”
       </h3>
@@ -130,17 +130,17 @@ export default function Home() {
   <div className="max-w-5xl mx-auto text-center">
     
     <h2 className="text-[25px] md:text-[52px] font-bold mb-8 leading-[1.2]">
-      A professional email address<br />
+      A professional email address
       <br className="hidden md:block" />
-      is the smallest change that makes the<br />
+      is the smallest change that makes the
       <br className="hidden md:block" />
       biggest difference for your brand
     </h2>
 
     <p className="text-[14px] md:text-[20px] text-black/80 leading-relaxed">
-      It’s the detail that quietly transforms how your business is perceived. A professional email<br />
+      It’s the detail that quietly transforms how your business is perceived. A professional email
       <br className="hidden md:block" />
-      address builds trust before conversations begin, adds legitimacy to every message, and positions your brand<br />
+      address builds trust before conversations begin, adds legitimacy to every message, and positions your brand
       <br className="hidden md:block" />
       as established and reliable — without changing how you work or adding new tools.
     </p>
