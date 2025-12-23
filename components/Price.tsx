@@ -28,7 +28,7 @@ export default function PricingSection() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* TITLE */}
-        <h2 className="text-center text-[22px] md:text-5xl font-bold mb-10 text-black">
+        <h2 className="text-center text-[24px] md:text-5xl font-bold mb-10 text-black">
           Accelerate Your Growth With [YourBrand]
         </h2>
 

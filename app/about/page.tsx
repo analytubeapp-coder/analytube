@@ -14,14 +14,13 @@ export default function About() {
             <main className="min-h-screen w-full bg-white text-black relative">
         <Navbar />
 
-
       {/* CONTENT */}
-      <section className="py-15 md:py-60 md:pb-60">
+      <section className="py-15 md:py-52 md:pb-60">
         <div className="max-w-7xl mx-auto px-6 space-y-[10rem] md:space-y-[24rem]">
           {/* SECTION 01 ------------------------------------------------ */}
 <div className="grid grid-cols-1 md:grid-cols-3 items-start relative">
   {/* number + line */}
-  <div className="flex flex-col items-center relative">
+  <div className="flex flex-col items-center relative mb-10 md:mb-0">
     <span className="text-7xl md:text-8xl font-extrabold text-black">
       01
     </span>
@@ -103,7 +102,7 @@ Because tools should adapt to people not the other way around.
   </div>
 
   {/* number + line */}
-  <div className="flex flex-col items-center relative order-1 md:order-2">
+  <div className="flex flex-col items-center relative mb-10 md:mb-0 order-1 md:order-2">
     <span className="text-7xl md:text-8xl font-extrabold text-black">
       02
     </span>
@@ -133,7 +132,7 @@ Because tools should adapt to people not the other way around.
 {/* SECTION 03 ------------------------------------------------ */}
 <div className="grid grid-cols-1 md:grid-cols-3 gap-1 items-start relative">
   {/* number */}
-  <div className="flex flex-col items-center relative">
+  <div className="flex flex-col items-center relative mb-10 md:mb-0">
     <span className="text-7xl md:text-8xl font-extrabold text-black">
       03
     </span>
