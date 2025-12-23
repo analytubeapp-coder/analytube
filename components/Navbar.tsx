@@ -179,48 +179,73 @@ export default function Navbar() {
       </div>
 
       {/* MOBILE MENU */}
-      {isOpen && (
-        <div
+{isOpen && (
+  <div
+    className="
+      md:hidden
+      px-6 py-6 space-y-5 text-[15px] font-medium text-black
+      bg-white/95 backdrop-blur-xl
+      border-t border-black/10
+      shadow-lg
+    "
+  >
+    {/* LINKS */}
+    <Link href="/blog" className="block hover:text-black/70 transition">
+      Blog
+    </Link>
+    <Link href="/pricing" className="block hover:text-black/70 transition">
+      Pricing
+    </Link>
+    <Link href="/about" className="block hover:text-black/70 transition">
+      About Us
+    </Link>
+    <Link href="/#faq" className="block hover:text-black/70 transition">
+      FAQ
+    </Link>
+
+    {/* DIVIDER */}
+    <div className="pt-3 border-t border-black/10" />
+
+    {!user ? (
+      <>
+        <Link
+          href="/signup"
+          className="block text-center font-medium hover:text-black/70 transition"
+        >
+          Sign up
+        </Link>
+
+        <Link
+          href="/signin"
           className="
-            md:hidden px-6 py-4 space-y-4 text-sm font-medium text-white
-            bg-[rgba(20,20,20,0.95)] backdrop-blur-2xl
-            border-t border-white/10
+            block bg-black text-white
+            text-center px-4 py-3 rounded-full font-semibold
+            hover:bg-black/90 transition
           "
         >
-          <Link href="/blog" className="block hover:text-white">Blog</Link>
-          <Link href="/pricing" className="block hover:text-white">Pricing</Link>
-          <Link href="/about" className="block hover:text-white">About Us</Link>
-          <Link href="/#faq" className="block hover:text-white">FAQ</Link>
+          Log in
+        </Link>
+      </>
+    ) : (
+      <div className="space-y-4">
+        <Link
+          href="/profile"
+          className="block hover:text-black/70 transition"
+        >
+          Profile
+        </Link>
 
-          {!user ? (
-            <>
-              <Link href="/signup" className="block hover:text-white">Sign up</Link>
+        <button
+          onClick={handleLogout}
+          className="block text-left text-red-500 hover:text-red-600 transition"
+        >
+          Sign out
+        </button>
+      </div>
+    )}
+  </div>
+)}
 
-              <Link
-                href="/signin"
-                className="
-                  block bg-white/10 hover:bg-white/20
-                  text-center px-4 py-3 rounded-full font-semibold
-                  border border-white/20
-                "
-              >
-                Log in
-              </Link>
-            </>
-          ) : (
-            <div className="pt-3 border-t border-white/10">
-              <Link href="/profile" className="block hover:text-white">Profile</Link>
-
-              <button
-                onClick={handleLogout}
-                className="block text-left text-red-400 hover:text-red-500"
-              >
-                Sign out
-              </button>
-            </div>
-          )}
-        </div>
-      )}
     </nav>
   );
 }
