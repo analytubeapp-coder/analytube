@@ -40,6 +40,7 @@ export default function Navbar() {
     w-full fixed top-0 left-0 z-50
     backdrop-blur-[5px]
     border-b border-black/10
+    border-transparent md:border-black/10
 
     bg-white/95 md:bg-transparent
   "
