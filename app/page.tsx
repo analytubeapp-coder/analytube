@@ -16,12 +16,12 @@ export default function Home() {
         <div className="max-w-[100rem] mx-auto flex flex-col-reverse md:flex-row items-center">
           {/* Text */}
           <div className="w-full text-left">
-            <h1 className="text-[28px] md:text-[68px] font-bold mb-6 leading-[1.15]">
+            <h1 className="text-[25px] md:text-[68px] font-bold mb-6 leading-[1.15]">
               PROFESSIONAL EMAIL FOR<br />
               YOUR BRAND. WITHOUT<br />
               A NEW INBOX.
             </h1>
-            <p className="text-base md:text-[22px] mb-8">
+            <p className="text-[14px] md:text-[22px] mb-8">
               Create branded email addresses for your business and receive all messages directly in <br />
               your existing Gmail or Outlook — no new inbox, no learning curve, no hassle.
             </p>
