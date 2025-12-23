@@ -12,7 +12,7 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-40 md:py-54 px-6 md:px-12">
+      <section className="relative py-32 md:py-52 px-6 md:px-12">
         <div className="max-w-[100rem] mx-auto flex flex-col-reverse md:flex-row items-center">
           {/* Text */}
           <div className="w-full text-left">
