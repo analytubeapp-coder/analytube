@@ -186,7 +186,6 @@ export default function Navbar() {
       md:hidden
       px-6 py-6 space-y-5 text-[15px] font-medium text-black
       bg-white/95 backdrop-blur-xl
-      border-t border-black/10
       shadow-lg
     "
   >
