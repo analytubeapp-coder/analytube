@@ -6,222 +6,181 @@ import Footer from "@/components/Footer";
 export default function Terms() {
   return (
     <>
-      {/* ---------------- AURORA BACKGROUND ---------------- */}
-      <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-
-        {/* Purple Aura */}
-        <div
-          className="
-            absolute top-[60%] left-[40%]
-            w-[550px] md:w-[2000px] h-[450px] md:h-[650px]
-            -translate-x-1/2 -translate-y-1/2
-            rotate-[25deg]
-            rounded-[9999px] blur-[150px] opacity-60
-          "
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
-          }}
-        ></div>
-
-        {/* Bronze Aura */}
-        <div
-          className="
-            absolute top-[60%] left-[40%]
-            w-[550px] md:w-[1200px] h-[450px] md:h-[650px]
-            -translate-x-1/2 -translate-y-1/2
-            rotate-[-30deg]
-            rounded-[9999px] blur-[150px] opacity-60
-          "
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
-          }}
-        ></div>
-
-      </div>
-
       {/* ---------------- PAGE CONTENT ---------------- */}
-      <main className="min-h-screen w-full text-white relative">
+      <main className="min-h-screen w-full text-black bg-white relative">
         <Navbar />
 
         {/* ---------------- HEADER SECTION ---------------- */}
         <section className="pt-34 pb-18 text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
+          <h1 className="text-4xl md:text-5xl font-semibold text-black">
             Terms & Conditions
           </h1>
-          <p className="text-white/70 mt-8 text-lg">Last updated: Dec 7, 2025</p>
+          <p className="text-black mt-8 text-[16px]">Last updated: Dec 7, 2025</p>
         </section>
 
         {/* ---------------- CONTENT BOX ---------------- */}
         <section className="py-0">
-          <div
-            className="
-              max-w-4xl mx-auto 
-              bg-white/10 backdrop-blur-xl 
-              border border-white/10 
-              rounded-2xl 
-              p-12 space-y-8 
-              text-white 
-              shadow-[0_0_35px_rgba(0,0,0,0.25)]
-            "
-          >
+          <div className="max-w-4xl mx-auto px-6 md:px-0 space-y-8">
           <div>
-  <h2 className="text-[24px] font-bold mb-2">Terms of Service</h2>
-  <p className="text-white/80 text-[17px]">
-    These Terms of Service (“Terms”) govern your access and use of <b>Tubly Ai</b>. 
-    By using our website, dashboard, or AI-powered video creation tools (“Services”), you agree to follow these Terms.  
+  <h2 className="text-[24px] text-black font-bold mb-2">Terms of Service</h2>
+  <p className="text-black text-[17px]">
+    These Terms & Conditions govern your access to and use of [YourBrand] and its services.
+    By accessing or using our website and services, you agree to be bound by these Terms.
+    If you do not agree, please do not use the service.
   </p>
-  <p className="text-white/80 text-[17px] mt-2">
-    Tubly Ai is designed to help creators produce high-quality, engaging content quickly and efficiently. 
-    Please read everything carefully. If you do not agree, you may stop using the platform at any time.
+  <p className="text-black text-[17px] mt-2">
+    [YourBrand] provides professional email routing and related services designed to enhance business communication without replacing existing inbox providers.
   </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">1. Using Tubly Ai</h2>
-  <p className="text-white/80 text-[17px]">
-    You must be at least 16 years old and legally able to enter agreements.  
-    You agree to use our services responsibly, ethically, and in compliance with all applicable laws.
+  <h2 className="text-[24px] text-black font-bold mb-2">1. Use of the Service</h2>
+  <p className="text-black text-[17px]">
+    You may use [YourBrand] only in compliance with these Terms and all applicable laws and regulations.<br />
+    You agree not to misuse the service, including but not limited to:
   </p>
-  <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>You are responsible for the content you generate using Tubly Ai</li>
-    <li>You agree not to misuse, manipulate, or attempt to abuse the system</li>
-    <li>You will not use the Services to create harmful, illegal, or misleading content</li>
-    <li>You may not attempt to reverse-engineer, copy, or replicate our proprietary AI technology</li>
-    <li>All use must respect platform rules and community standards of content platforms</li>
+  <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+    <li>Attempting to access systems or data without authorization</li>
+    <li>Using the service for illegal, deceptive, or harmful purposes</li>
+    <li>Interfering with the integrity or performance of the service</li>
+    <li>Reselling or exploiting the service without permission</li>
   </ul>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">2. Your Account</h2>
-  <p className="text-white/80 text-[17px]">
-    You must provide accurate and current account information and keep your login credentials secure.
-    You are fully responsible for any activity that occurs under your account.
+  <h2 className="text-[24px] text-black font-bold mb-2">2. Your Account</h2>
+  <p className="text-black text-[17px]">
+    To use certain features, you may be required to create an account.
   </p>
-  <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Do not share passwords or access with others</li>
-    <li>Notify us immediately if you suspect unauthorized access</li>
-    <li>We may suspend or terminate accounts that violate these Terms or show suspicious activity</li>
-    <li>Ensure that your account reflects only content and activity you are authorized to create</li>
+  <p className="text-black text-[17px]">
+    You are responsible for:
+  </p>
+  <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+    <li>Maintaining the confidentiality of your account credentials</li>
+    <li>All activity that occurs under your account</li>
+    <li>Providing accurate and up-to-date information</li>
   </ul>
+  <p className="text-black text-[17px] mt-2">
+    [YourBrand] is not responsible for unauthorized access resulting from your failure to secure your account.
+  </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">3. AI-Generated Content</h2>
-  <p className="text-white/80 text-[17px]">
-    Tubly Ai generates video scripts, titles, thumbnails, CTAs, and other content based on your inputs.  
-    While we strive for accuracy, AI-generated content may not always be perfect or guaranteed to perform a certain way.
+  <h2 className="text-[24px] text-black font-bold mb-2">3. Email & Service Functionality</h2>
+  <p className="text-black text-[17px]">
+    [YourBrand] routes branded email addresses to third-party inbox providers such as Gmail or Outlook.
   </p>
-  <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>You are responsible for reviewing, refining, and editing generated content before publishing</li>
-    <li>We do not guarantee success or specific performance metrics on any platform</li>
-    <li>You retain full ownership and copyright of all content you generate</li>
-    <li>We do not reuse, publish, or share your content for training purposes without your consent</li>
-    <li>Always ensure compliance with platform-specific rules and regulations</li>
+ <p className="text-black text-[17px] mt-2">
+    We do not control or operate third-party services and are not responsible for their availability, policies, or performance.
+    Use of third-party providers is subject to their own terms.
+  </p>
+</div>
+
+<div className="mt-8">
+  <h2 className="text-[24px] text-black font-bold mb-2">4. Payments & Subscriptions</h2>
+  <p className="text-black text-[17px]">
+    Some features require a paid subscription.
+  </p>
+  <p className="text-black text-[17px] mt-4">
+    By subscribing, you agree that:
+  </p>
+  <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+    <li>Fees are billed in advance on a recurring basis</li>
+    <li>Payments are non-refundable unless required by law</li>
+    <li>We may update pricing with prior notice</li>
   </ul>
+  <p className="text-black text-[17px] mt-4">
+    Failure to complete payment may result in suspension or termination of service.
+  </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">4. Payments & Subscriptions</h2>
-  <p className="text-white/80 text-[17px]">
-    Paid plans grant access to premium AI features and additional tools for enhanced video creation.  
-    By subscribing, you authorize us or our payment processors to charge your selected payment method.
+  <h2 className="text-[24px] text-black font-bold mb-2">5. Acceptable Use</h2>
+  <p className="text-black text-[17px]">
+    You agree not to use [YourBrand] for:
   </p>
-  <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>All fees and subscription options are listed on our Pricing page</li>
-    <li>Subscriptions automatically renew unless canceled prior to the renewal date</li>
-    <li>We do not store credit card or private payment information directly</li>
-    <li>Refunds are handled according to our refund policy and subscription terms</li>
-    <li>Any disputes or payment issues should be reported to our support team promptly</li>
+  <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+    <li>Spam, phishing, or unsolicited communications</li>
+    <li>Fraudulent, misleading, or impersonation activities</li>
+    <li>Distribution of malware or harmful content</li>
+    <li>Violations of privacy or intellectual property rights</li>
   </ul>
+  <p className="text-black text-[17px] mt-3">
+    We reserve the right to suspend or terminate accounts that violate these rules.
+  </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">5. Acceptable Use</h2>
-  <p className="text-white/80 text-[17px]">
-    You agree to use Tubly Ai responsibly and not engage in harmful or unauthorized activities, including:
+  <h2 className="text-[24px] text-black font-bold mb-2">6. Intellectual Property</h2>
+  <p className="text-black text-[17px]">
+    All content, trademarks, and technology associated with [YourBrand] are the exclusive property of [YourBrand].
   </p>
-  <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Creating content that violates laws, platform rules, or intellectual property rights</li>
-    <li>Attempting to hack, overload, or disrupt the Services</li>
-    <li>Scraping, harvesting, or copying data from the platform</li>
-    <li>Sharing copyrighted material without appropriate rights or permissions</li>
-    <li>Using the AI to deceive or manipulate audiences intentionally</li>
+  <p className="text-black text-[17px] mt-2">
+    You may not copy, modify, distribute, or reverse engineer any part of the service without written permission.
+  </p>
+</div>
+
+<div className="mt-8">
+  <h2 className="text-[24px] text-black font-bold mb-2">7. Service Availability</h2>
+  <p className="text-black text-[17px]">
+    We strive to provide reliable service but do not guarantee uninterrupted availability.
+  </p>
+  <p className="text-black mt-4 text-[17px]">
+    Service interruptions may occur due to:
+  </p>
+  <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+    <li>Maintenance or upgrades</li>
+    <li>Technical issues</li>
+    <li>Events beyond our reasonable control</li>
   </ul>
-  <p className="text-white/80 text-[17px] mt-3">
-    Violations may result in temporary or permanent suspension of your account and access to Services.
+  <p className="text-black text-[17px] mt-3">
+    We are not liable for any loss resulting from service downtime.
   </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">6. Intellectual Property</h2>
-  <p className="text-white/80 text-[17px]">
-    All Tubly Ai code, AI models, features, branding, and technology remain the property of Tubly Ai.  
-    You may not claim or redistribute our system as your own.
+  <h2 className="text-[24px] text-black font-bold mb-2">8. Termination</h2>
+  <p className="text-black text-[17px]">
+     We may suspend or terminate your access to the service at any time if you violate these Terms.
   </p>
-  <p className="text-white/80 text-[17px] mt-2">
-    You retain full ownership of all content you generate, including scripts, thumbnails, titles, and other assets.  
-    We process your inputs solely to provide the service and do not claim ownership of your work.
+  <p className="text-black mt-2 text-[17px]">
+    You may cancel your subscription at any time. Upon termination, access to the service will be discontinued. 
   </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">7. Service Availability</h2>
-  <p className="text-white/80 text-[17px]">
-    We aim for high uptime and stable performance, but interruptions may occur due to:
+  <h2 className="text-[24px] text-black font-bold mb-2">9. Limitation of Liability</h2>
+  <p className="text-black text-[17px]">
+    To the maximum extent permitted by law, [YourBrand] shall not be liable for
   </p>
-  <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Scheduled maintenance or system upgrades</li>
-    <li>Unexpected technical issues or outages from third-party providers</li>
-    <li>Security, safety, or emergency interventions</li>
-    <li>Force majeure or other circumstances beyond our control</li>
+  <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+    <li>Indirect or consequential damages</li>
+    <li>Loss of data, revenue, or business opportunities</li>
+    <li>Issues caused by third-party providers</li>
   </ul>
-  <p className="text-white/80 text-[17px] mt-3">
-    Tubly Ai is not liable for any losses, damages, or interruptions caused by downtime or AI limitations.  
-    We continuously work to improve reliability and performance.
+  <p className="text-black mt-2 text-[17px]">
+    Use of the service is at your own risk.
   </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">8. Termination</h2>
-  <p className="text-white/80 text-[17px]">
-    You may cancel your subscription or delete your account at any time.  
-    Tubly Ai reserves the right to suspend or terminate accounts that violate these Terms or engage in prohibited activities.
+  <h2 className="text-[24px] text-black font-bold mb-2">10. Changes to These Terms</h2>
+  <p className="text-black text-[17px]">
+    We may update these Terms from time to time.
+  </p>
+  <p className="text-black mt-2 text-[17px]">
+  Continued use of the service after changes take effect constitutes acceptance of the updated Terms.
   </p>
 </div>
 
 <div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">9. Limitation of Liability</h2>
-  <p className="text-white/80 text-[17px]">
-    Tubly Ai is provided “as is” without warranties of any kind.  
-    We are not responsible for:
+  <h2 className="text-[24px] text-black font-bold mb-2">11. Contact Us</h2>
+  <p className="text-black text-[17px]">
+    If you have any questions about these Terms, please contact us:
   </p>
-  <ul className="list-disc ml-6 text-white/80 text-[17px] mt-2">
-    <li>Any losses resulting from inaccurate or underperforming AI-generated content</li>
-    <li>Misuse of scripts, videos, thumbnails, or other assets</li>
-    <li>Downtime, service interruptions, or issues caused by external providers</li>
-    <li>Any indirect, incidental, or consequential damages</li>
-  </ul>
-</div>
-
-<div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">10. Changes to These Terms</h2>
-  <p className="text-white/80 text-[17px]">
-    Tubly Ai may update these Terms from time to time.  
-    If changes are significant, users will be notified via email, dashboard alerts, or prominent notices on the website.  
-    Continued use of Tubly Ai constitutes acceptance of the updated Terms.
-  </p>
-</div>
-
-<div className="mt-8">
-  <h2 className="text-[24px] font-bold mb-2">11. Contact Us</h2>
-  <p className="text-white/80 text-[17px]">
-    If you have any questions regarding these Terms, please contact our support team:
-  </p>
-  <p className="text-white/80 text-[17px] mt-2">
-    📩 Email: <b>support@tublyai.com</b><br />
-    🌐 Website: <b>tublyai.com</b>
+  <p className="text-black mb-14 text-[17px] mt-2">
+    📩 Email: <b>support@[YourBrand].com</b><br />
+    🌐 Website: <b>[YourBrand].com</b>
   </p>
 </div>
           

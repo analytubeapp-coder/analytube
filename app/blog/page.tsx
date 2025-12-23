@@ -1,3 +1,4 @@
+// /blog/page.tsx
 "use client";
 
 import { useEffect, useState } from "react";
@@ -30,7 +31,7 @@ export default function BlogPage() {
 
   if (loading)
     return (
-      <p className="text-center mt-10 text-white animate-pulse">Loading posts...</p>
+      <p className="text-center mt-10 text-black animate-pulse">Loading posts...</p>
     );
 
   if (errorMsg)
@@ -41,56 +42,21 @@ export default function BlogPage() {
     );
 
   if (!posts.length)
-    return <p className="text-center mt-10 text-white/75">No posts found yet.</p>;
+    return <p className="text-center mt-10 text-black">No posts found yet.</p>;
 
   return (
-    <div className="flex flex-col min-h-screen text-white relative">
-      {/* AURORA FIXED BACKGROUND */}
-            <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-      
-              {/* هاله بنفش — کشیده، انتزاعی، قابل‌تشخیص */}
-              <div
-                className="
-                  absolute top-[35%] left-[55%]
-                  w-[550px] md:w-[2000px] h-[450px] md:h-[650px]
-                  -translate-x-1/2 -translate-y-1/2
-                  rotate-[25deg]
-                  rounded-[9999px] blur-[150px] opacity-60
-                "
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
-                }}
-              ></div>
-      
-              {/* هاله برنزی — بزرگ‌تر، نزدیک‌تر، واضح‌تر */}
-              <div
-                className="
-                  absolute top-[60%] left-[40%]
-                  w-[550px] md:w-[1200px] h-[450px] md:h-[650px]
-                  -translate-x-1/2 -translate-y-1/2
-                  rotate-[-30deg]
-                  rounded-[9999px] blur-[150px] opacity-60
-                "
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
-                }}
-              ></div>
-      
-            </div>
-      
-        <Navbar />
-
+    <div className="flex flex-col min-h-screen bg-white">
+      <Navbar />
       <main className="flex-grow pt-32 pb-16">
-        <div className="max-w-7xl mx-auto px-6">
-          <h1 className="text-5xl font-extrabold text-center mb-12">Blogs</h1>
+        <div className="max-w-7xl mx-auto px-6 md:px-10">
+          <h1 className="text-4xl font-extrabold text-center text-black mb-12">Blogs</h1>
 
-          <div className="grid md:grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 gap-8">
             {posts.map((post) => (
-              <div
+              <Link
                 key={post.id}
-                className="flex flex-col md:flex-row bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+                href={`/blog/${post.slug}`}
+                className="flex flex-col md:flex-row bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300"
               >
                 {post.cover_url && (
                   <div className="relative w-full md:w-1/2 h-48 md:h-auto">
@@ -105,25 +71,21 @@ export default function BlogPage() {
 
                 <div className="p-6 flex flex-col justify-between w-full md:w-1/2">
                   <div>
-                    <h2 className="text-2xl font-semibold mb-2 line-clamp-2">{post.title}</h2>
-                    <p className="text-sm text-white/70 mb-3">
+                    <h2 className="text-2xl font-semibold text-black mb-2 line-clamp-2">{post.title}</h2>
+                    <p className="text-sm text-gray-500 mb-3">
                       {new Date(post.created_at).toLocaleDateString()}
                     </p>
-                    <p className="text-white/80 mb-4 line-clamp-3">{post.excerpt}</p>
+                    <p className="text-gray-700 mb-4 line-clamp-3">{post.excerpt}</p>
                   </div>
-                  <Link
-                    href={`/blog/${post.slug}`}
-                    className="inline-flex items-center text-[#BFD62E] hover:text-[#9bb325] font-medium transition-colors"
-                  >
+                  <span className="inline-flex items-center text-[#5b65dc] font-medium">
                     Read more →
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </main>
-
       <Footer />
     </div>
   );

@@ -19,14 +19,14 @@ export default function SignInInner() {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
-  // -------------------- GOOGLE LOGIN (UNCHANGED) --------------------
+  const redirectTo =
+    redirect === "contact"
+      ? `${process.env.NEXT_PUBLIC_SITE_URL}/contact`
+      : process.env.NEXT_PUBLIC_SITE_URL;
+
+  // ---------------- GOOGLE LOGIN ----------------
   const handleGoogleLogin = async () => {
     setError("");
-
-    const redirectTo =
-      redirect === "contact"
-        ? `${process.env.NEXT_PUBLIC_SITE_URL}/contact`
-        : process.env.NEXT_PUBLIC_SITE_URL;
 
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
@@ -36,7 +36,7 @@ export default function SignInInner() {
     if (error) setError("Google sign-in failed. Please try again.");
   };
 
-  // -------------------- EMAIL SIGN-IN (UNCHANGED) --------------------
+  // ---------------- EMAIL LOGIN ----------------
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -49,11 +49,6 @@ export default function SignInInner() {
 
     setLoading(true);
 
-    const redirectTo =
-      redirect === "contact"
-        ? `${process.env.NEXT_PUBLIC_SITE_URL}/contact`
-        : process.env.NEXT_PUBLIC_SITE_URL;
-
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: { emailRedirectTo: redirectTo },
@@ -62,7 +57,7 @@ export default function SignInInner() {
     if (error) {
       setError("Failed to send magic link. Try again later.");
     } else {
-      setMessage("Magic link sent! Check your email inbox.");
+      setMessage("Magic link sent! Check your inbox.");
       setEmail("");
     }
 
@@ -71,120 +66,95 @@ export default function SignInInner() {
 
   return (
     <>
+      {/* ---------------- PAGE ---------------- */}
+      <div className="min-h-screen bg-white grid grid-cols-1 md:grid-cols-2">
 
-      {/* AURORA FIXED BACKGROUND */}
-<div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+        {/* ---------------- LEFT / FORM ---------------- */}
+        <div className="flex items-center justify-center px-8 md:px-16">
+          <div className="w-full max-w-md space-y-8 text-center">
 
-  {/* Purple Glow — same as Home */}
-  <div
-    className="
-      absolute top-[35%] left-[55%]
-      w-[550px] md:w-[2000px] h-[450px] md:h-[650px]
-      -translate-x-1/2 -translate-y-1/2
-      rotate-[25deg]
-      rounded-[9999px] blur-[150px] opacity-60
-    "
-    style={{
-      background:
-        "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
-    }}
-  ></div>
+            <h1 className="text-2xl md:text-3xl font-bold text-black">
+              Sign in to [YourBrand]
+            </h1>
 
-  {/* Gold Glow — same as Home */}
-  <div
-    className="
-      absolute top-[60%] left-[40%]
-      w-[550px] md:w-[1200px] h-[450px] md:h-[650px]
-      -translate-x-1/2 -translate-y-1/2
-      rotate-[-30deg]
-      rounded-[9999px] blur-[150px] opacity-60
-    "
-    style={{
-      background:
-        "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
-    }}
-  ></div>
+            <p className="text-black/70">
+              Access your account using Google or a secure magic link.
+            </p>
 
+            {/* Google */}
+            <button
+              onClick={handleGoogleLogin}
+              className="
+                w-full border border-gray-300 rounded-full py-3 
+                flex items-center justify-center gap-3 text-black text-base 
+                bg-white hover:bg-gray-50 transition
+              "
+            >
+              <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
+              Continue with Google
+            </button>
+
+            <div className="text-center text-black/60 text-sm">or</div>
+
+            {/* Email */}
+            <form onSubmit={handleEmailSignIn} className="space-y-5">
+              <input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                disabled={loading}
+                className="
+                  w-full rounded-md px-4 py-3 border border-gray-300
+                  text-black outline-none
+                  focus:ring-2 focus:ring-[#5b65dc]/20
+                "
+                required
+              />
+
+              {error && <p className="text-red-500 text-sm">{error}</p>}
+              {message && <p className="text-green-600 text-sm">{message}</p>}
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="
+                  w-full bg-[#5b65dc] hover:bg-[#5b65dc]/80 
+                  text-white font-semibold rounded-full py-3 
+                  transition disabled:opacity-60
+                "
+              >
+                {loading ? "Sending..." : "Sign In"}
+              </button>
+            </form>
+
+            {/* WRAPPER FOR FOOTER TEXT */}
+<div className="space-y-1 leading-snug">
+  <p className="text-sm text-black/60">
+    By continuing, you agree to our{" "}
+    <a href="/terms" className="underline!">Terms</a> and{" "}
+    <a href="/privacy" className="underline!">Privacy Policy</a>.
+  </p>
+
+  <p className="text-sm text-black/60">
+    Don’t have an account?{" "}
+    <a href="/signup" className="underline!">Sign up</a>
+  </p>
 </div>
 
-{/* Dark overlay — same as Home */}
-<div className="fixed inset-0 z-[-0] bg-black/50"></div>
+          </div>
+        </div>
 
-      {/* -------------------- MAIN CONTENT -------------------- */}
-      <div className="flex items-center justify-center min-h-screen px-6 py-20 text-white">
-
-        <div className="w-full max-w-lg bg-white/10 backdrop-blur-xl border border-white/20 shadow-xl rounded-2xl p-10">
-
-          {/* Title */}
-          <h2 className="text-[22px] md:text-[32px] font-bold text-center mb-8">
-            Sign in to Tubly AI
-          </h2>
-
-          {/* Google Login Button */}
-          <button
-            onClick={handleGoogleLogin}
-            className="
-              w-full border border-white/20 rounded-full py-3 
-              flex items-center justify-center gap-3 text-base 
-              bg-white/5 hover:bg-white/10 transition
-            "
-          >
-            <img src="/google-icon.svg" alt="Google" className="w-5 h-5" />
-            Continue with Google
-          </button>
-
-          <div className="text-center text-white/60 text-sm my-6">or</div>
-
-          {/* EMAIL FORM */}
-          <form onSubmit={handleEmailSignIn} className="space-y-5">
-
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="
-                w-full rounded-lg px-4 py-3 bg-white/10 border border-white/20 
-                text-white placeholder-white/40 outline-none
-                focus:ring-2 focus:ring-[#fcc978]
-              "
-              required
-            />
-
-            {error && <p className="text-red-400 text-sm">{error}</p>}
-            {message && <p className="text-green-400 text-sm">{message}</p>}
-
-            {/* Submit */}
-            <button
-              type="submit"
-              disabled={loading}
-              className={`
-                w-full font-semibold rounded-full py-3 text-black text-lg 
-                transition
-                ${loading ? "bg-[#fcc978] cursor-not-allowed" : "bg-[#f9c03f] hover:bg-[#f9c03f]/90"}
-              `}
-            >
-              {loading ? "Sending..." : "Sign In"}
-            </button>
-          </form>
-
-          {/* Terms */}
-          <p className="text-[15px] text-white/60 mt-8 text-center">
-            By continuing, you agree to our{" "}
-            <a href="/terms" className="underline!">Terms</a> and{" "}
-            <a href="/privacy" className="underline!">Privacy Policy</a>.
-          </p>
-
-          {/* Signup */}
-          <p className="text-[15px] text-white/60 mt-1 text-center">
-            Don't have an account?{" "}
-            <a href="/signup" className="underline!">Sign up</a>
-          </p>
-
+        {/* ---------------- RIGHT / IMAGE (DESKTOP ONLY) ---------------- */}
+        <div className="hidden md:flex items-center justify-center bg-gray-50">
+          <img
+            src="/signin-visual.png"
+            alt="Sign in visual"
+            className="max-w-[80%] h-auto"
+          />
         </div>
 
       </div>
-
     </>
   );
 }

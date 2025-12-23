@@ -33,7 +33,10 @@ export default function FAQ() {
   ];
 
   return (
-    <section className="bg-[#5B65DC] py-24 px-6 md:px-12">
+    <section
+  id="faq"
+  className="bg-[#5B65DC] py-24 px-6 md:px-12 scroll-mt-[20vh]"
+>
       <div className="max-w-[100rem] mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
 
         {/* Left: Title */}

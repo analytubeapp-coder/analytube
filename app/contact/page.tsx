@@ -2,7 +2,6 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useSupabaseAuth } from "@/lib/SupabaseProvider";
 import { useRouter } from "next/navigation";
@@ -17,7 +16,7 @@ export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  // ✅ بازیابی مقادیر ذخیره‌شده بعد از بازگشت از لاگین
+  // Restore saved form after login redirect
   useEffect(() => {
     const savedSubject = localStorage.getItem("contact_subject");
     const savedMessage = localStorage.getItem("contact_message");
@@ -25,23 +24,30 @@ export default function Contact() {
     if (savedSubject) setSubject(savedSubject);
     if (savedMessage) setMessage(savedMessage);
 
-    // پاکشون کن که دفعه بعدی نمونه
     localStorage.removeItem("contact_subject");
     localStorage.removeItem("contact_message");
   }, []);
 
+  // Auto-hide success message
+  useEffect(() => {
+    if (!success) return;
+    const timer = setTimeout(() => setSuccess(false), 4000);
+    return () => clearTimeout(timer);
+  }, [success]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (loading) return;
+
     setError("");
     setSuccess(false);
 
-    if (!subject || !message) {
+    if (!subject.trim() || !message.trim()) {
       setError("Please fill out all fields.");
       return;
     }
 
     if (!user) {
-      // ✅ اگر لاگین نکرده، فرم رو ذخیره کن
       localStorage.setItem("contact_subject", subject);
       localStorage.setItem("contact_message", message);
       router.push("/signin?redirect=contact");
@@ -53,7 +59,11 @@ export default function Contact() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: user.email, subject, message }), // ✅ ایمیل از supabase گرفته می‌شود
+        body: JSON.stringify({
+          email: user.email,
+          subject: subject.trim(),
+          message: message.trim(),
+        }),
       });
 
       const data = await res.json();
@@ -73,102 +83,68 @@ export default function Contact() {
     <>
       <Navbar />
 
-      {/* 🌈 AURORA BACKGROUND */}
-      <div className="fixed inset-0 z-[-2] pointer-events-none overflow-hidden">
-        {/* Purple Gradient */}
-        <div
-          className="
-            absolute top-[35%] left-[55%]
-            w-[550px] md:w-[2000px] h-[450px] md:h-[650px]
-            -translate-x-1/2 -translate-y-1/2
-            rotate-[25deg]
-            rounded-[9999px] blur-[150px] opacity-60
-          "
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
-          }}
-        ></div>
+      <main className="min-h-screen w-full bg-white relative">
+        <section className="py-46">
+          <div className="max-w-3xl mx-auto px-6 space-y-8">
 
-        {/* Gold Gradient */}
-        <div
-          className="
-            absolute top-[60%] left-[40%]
-            w-[550px] md:w-[1200px] h-[450px] md:h-[650px]
-            -translate-x-1/2 -translate-y-1/2
-            rotate-[-30deg]
-            rounded-[9999px] blur-[150px] opacity-60
-          "
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
-          }}
-        ></div>
-      </div>
-
-      <main className="min-h-screen w-full text-white relative">
-        {/* Dark Overlay to enhance readability */}
-        <div className="fixed inset-0 z-[-1] bg-black/50"></div>
-
-        <section className="py-46 bg-transparent">
-          <div className="max-w-3xl mx-auto bg-white/10 backdrop-blur-xl rounded-xl shadow-lg p-12 space-y-8">
-            <h1 className="text-[40px] font-bold text-center text-white leading-[1.3]">
-              Get questions? <br />
-              We'll answer.
+            <h1 className="text-[40px] font-bold text-center text-black leading-[1.3]">
+              Get Questions?
+              <br />
+              We'll Answer.
             </h1>
 
-            <p className="text-lg text-center text-white/80">
-              We are here to help! Please fill out the form below, and we'll get back to you soon.
+            <p className="text-[17px] text-center text-black">
+              We are here to help. Fill out the form below and our team will get
+              back to you as soon as possible.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Subject */}
               <input
                 type="text"
-                placeholder="Subject*"
-                required
+                placeholder="Subject *"
                 value={subject}
+                disabled={loading}
                 onChange={(e) => setSubject(e.target.value)}
-                className="w-full border border-white/30 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978] text-white"
+                className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#5b65dc]/20"
               />
 
-              {/* Message */}
               <textarea
-                placeholder="Message*"
-                required
-                rows={5}
+                placeholder="Message *"
+                rows={7}
                 value={message}
+                disabled={loading}
                 onChange={(e) => setMessage(e.target.value)}
-                className="w-full border border-white/30 rounded-md px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#fcc978] text-white"
+                className="w-full border border-gray-300 rounded-md px-4 py-3 text-black focus:outline-none focus:ring-2 focus:ring-[#5b65dc]/20"
               />
 
-              {/* Error or Success Messages */}
               {error && <p className="text-red-500 text-sm">{error}</p>}
               {success && (
-                <p className="text-green-600 text-sm">Message sent successfully!</p>
+                <p className="text-green-600 text-sm">
+                  Message sent successfully!
+                </p>
               )}
 
-              {/* Submit Button */}
               <div className="flex justify-center">
-              <button
-                type="submit"
-                disabled={loading}
-                className="bg-[#f9c03f] hover:bg-[#f9c03f]/90 text-black font-semibold py-3 px-8 rounded-full transition"
-              >
-                {loading ? "Sending..." : "Send Message"}
-              </button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-[#5b65dc] hover:bg-[#5b65dc]/80 text-white text-[18px] font-semibold py-4 px-8 rounded-full transition disabled:opacity-60"
+                >
+                  {loading ? "Sending..." : "Send Message"}
+                </button>
               </div>
             </form>
 
-            <p className="text-[16px] text-white/70 text-center">
+            <p className="text-[16px] text-gray-600 text-center">
               For support inquiries, contact us at{" "}
               <a
-                href="mailto:analytubeapp@gmail.com"
-                className="text-[#F9C03F] font-semibold"
+                href="mailto:support@tublyai.com"
+                className="text-[#5b65dc] font-semibold"
               >
-                support@tublyai.com
+                support@[YourBrand].com
               </a>
             </p>
+
           </div>
         </section>
       </main>

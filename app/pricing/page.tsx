@@ -7,46 +7,13 @@ import Price from "@/components/Price";
 export default function PricePage() {
   return (
     <>
-      {/* AURORA FIXED BACKGROUND */}
-            <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
-      
-              {/* هاله بنفش — کشیده، انتزاعی، قابل‌تشخیص */}
-              <div
-                className="
-                  absolute top-[35%] left-[55%]
-                  w-[550px] md:w-[2000px] h-[450px] md:h-[650px]
-                  -translate-x-1/2 -translate-y-1/2
-                  rotate-[25deg]
-                  rounded-[9999px] blur-[150px] opacity-60
-                "
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(170,110,255,0.55), transparent 90%)",
-                }}
-              ></div>
-      
-              {/* هاله برنزی — بزرگ‌تر، نزدیک‌تر، واضح‌تر */}
-              <div
-                className="
-                  absolute top-[60%] left-[40%]
-                  w-[550px] md:w-[1200px] h-[450px] md:h-[650px]
-                  -translate-x-1/2 -translate-y-1/2
-                  rotate-[-30deg]
-                  rounded-[9999px] blur-[150px] opacity-60
-                "
-                style={{
-                  background:
-                    "radial-gradient(ellipse at center, rgba(255,180,100,0.55), transparent 90%)",
-                }}
-              ></div>
-      
-            </div>
-      
+      <main className="min-h-screen w-full bg-white relative">
         <Navbar />
 
       <Price />
 
       <Footer />
+      </main>
     </>
   );
 }

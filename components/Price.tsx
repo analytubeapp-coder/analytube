@@ -37,7 +37,7 @@ export default function PricingSection() {
           <div
             className="
               flex p-1 rounded-full text-[18px] select-none
-              bg-[#eeeffd] backdrop-blur-xl border border-[#5b65dc]/20
+              bg-[#eeeffd]/30 backdrop-blur-xl border border-[#5b65dc]/20
             "
           >
             <button
@@ -77,7 +77,7 @@ export default function PricingSection() {
 <div
   className="
     p-14 rounded-[20px] h-full
-    bg-[#eeeffd] backdrop-blur-xl
+    bg-[#eeeffd]/30 backdrop-blur-xl
     border border-[#5b65dc]/20
     shadow-[0_8px_24px_rgba(0,0,0,0.15)]
     hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)]
@@ -179,7 +179,7 @@ export default function PricingSection() {
 <div
   className="
     p-14 rounded-[20px] h-full
-    bg-[#eeeffd] backdrop-blur-xl
+    bg-[#eeeffd]/30 backdrop-blur-xl
     border border-[#5b65dc]/20
     shadow-[0_8px_24px_rgba(0,0,0,0.15)]
     hover:shadow-[0_12px_32px_rgba(0,0,0,0.2)]

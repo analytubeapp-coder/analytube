@@ -46,27 +46,27 @@ export default function Navbar() {
 
         {/* LEFT */}
         <div className="flex items-center space-x-16">
-        {/* <Link href="/" className="flex items-center">
+        <Link href="/" className="flex items-center">
             <Image
               src="/logoo.svg"
-              alt="AnalyTube Logo"
+              alt="Logo"
               width={150}
               height={80}
               className="translate-y-[-2.5px]"
               priority
             />
           </Link>
-          */}
 
-          <div className="hidden md:flex items-center space-x-10 text-[16px] font-medium text-white!">
+          <div className="hidden md:flex items-center space-x-10 text-[16px] font-semibold text-black!">
             <Link href="/blog" className="hover:text-white transition">Blog</Link>
             <Link href="/pricing" className="hover:text-white transition">Pricing</Link>
             <Link href="/about" className="hover:text-white transition">About Us</Link>
+            <Link href="/#faq" className="hover:text-white transition">FAQ</Link>
           </div>
         </div>
 
         {/* RIGHT */}
-        <div className="hidden md:flex items-center space-x-4 text-[16px] font-medium relative text-white!">
+        <div className="hidden md:flex items-center space-x-4 text-[16px] font-medium relative text-black!">
           {!user ? (
             <>
               <Link href="/signup" className="hover:text-white transition">
@@ -76,8 +76,8 @@ export default function Navbar() {
               <Link
                 href="/signin"
                 className="
-                  bg-[#121212] hover:bg-white/5
-                  text-white px-6 py-3 rounded-full
+                  bg-[#121212] hover:bg-[#121212]/90
+                  text-white! px-6 py-3 rounded-full
                   backdrop-blur-md border border-white/20
                   font-semibold transition
                 "
