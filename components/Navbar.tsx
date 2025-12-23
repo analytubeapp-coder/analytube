@@ -39,7 +39,7 @@ export default function Navbar() {
   className="
     w-full fixed top-0 left-0 z-50
     backdrop-blur-[5px]
-    border-b md:border-b
+    md:border-b
     border-transparent md:border-black/10
 
     bg-white/95 md:bg-transparent
