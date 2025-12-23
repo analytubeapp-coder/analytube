@@ -22,9 +22,10 @@ export default function Home() {
               A NEW INBOX.
             </h1>
             <p className="text-[14px] md:text-[22px] mb-8">
-              Create branded email addresses for your business and receive all messages directly in <br />
-              your existing Gmail or Outlook — no new inbox, no learning curve, no hassle.
-            </p>
+  Create branded email addresses for your business and receive all messages directly in
+  <br className="hidden md:block" />
+  your existing Gmail or Outlook — no new inbox, no learning curve, no hassle.
+</p>
 
 {/* Email Signup Box */}
 <div className="mt-12 relative max-w-[38rem] w-full">
@@ -52,6 +53,7 @@ export default function Home() {
 
     <p className="text-base md:text-[20px] mb-16 max-w-4xl mx-auto opacity-90">
       It instantly makes your business look more professional and credible, giving customers, partners,<br />
+      <br className="hidden md:block" />
       and clients the confidence to take you seriously from the very first email.
     </p>
 
@@ -100,7 +102,9 @@ export default function Home() {
 
       <h3 className="text-[28px] md:text-[52px] font-bold leading-[1.2] mb-8">
         “Why businesses choose<br />
+        <br className="hidden md:block" />
         [YourBrand] for<br />
+        <br className="hidden md:block" />
         professional email”
       </h3>
 
@@ -125,15 +129,19 @@ export default function Home() {
 <section className="bg-white py-32 px-6 md:px-12">
   <div className="max-w-5xl mx-auto text-center">
     
-    <h2 className="text-[32px] md:text-[52px] font-bold mb-8 leading-[1.2]">
+    <h2 className="text-[25px] md:text-[52px] font-bold mb-8 leading-[1.2]">
       A professional email address<br />
+      <br className="hidden md:block" />
       is the smallest change that makes the<br />
+      <br className="hidden md:block" />
       biggest difference for your brand
     </h2>
 
-    <p className="text-base md:text-[20px] text-black/80 leading-relaxed">
+    <p className="text-[14px] md:text-[20px] text-black/80 leading-relaxed">
       It’s the detail that quietly transforms how your business is perceived. A professional email<br />
+      <br className="hidden md:block" />
       address builds trust before conversations begin, adds legitimacy to every message, and positions your brand<br />
+      <br className="hidden md:block" />
       as established and reliable — without changing how you work or adding new tools.
     </p>
 
