@@ -24,7 +24,7 @@ export default function Home() {
             <p className="text-[14px] md:text-[22px] mb-8">
   Create branded email addresses for your business and receive all messages directly in
   <br className="hidden md:block" />
-  your existing Gmail or Outlook — no new inbox, no learning curve, no hassle.
+  your existing Gmail or Outlook no new inbox, no learning curve, no hassle.
 </p>
 
 {/* Email Signup Box */}
