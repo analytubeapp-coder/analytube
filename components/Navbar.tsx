@@ -171,7 +171,7 @@ export default function Navbar() {
         </div>
 
         {/* MOBILE BUTTON */}
-        <div className="md:hidden text-white">
+        <div className="md:hidden text-black">
           <button onClick={() => setIsOpen(!isOpen)}>
             {isOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
