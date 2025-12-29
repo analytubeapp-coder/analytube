@@ -77,3 +77,76 @@ a {
 .animate-fadeIn {
   animation: fadeIn 0.25s ease-out;
 }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulseSlow {
+  0%,100% { opacity: 1; }
+  50% { opacity: .4; }
+}
+
+
+
+
+
+
+
+
+
+
+.star {
+  position: absolute;
+  bottom: 6px;
+  width: 36px;
+  height: 36px;
+  will-change: transform, opacity;
+}
+
+/* ⭐ ستاره راست */
+.star-1 {
+  right: 6px;
+  animation: starRightFade 4s infinite ease-in-out;
+}
+
+/* ⭐ ستاره چپ */
+.star-2 {
+  right: 6px;
+  transform: translateX(-48px); /* کنار ستاره راست */
+  animation: starLeftSlide 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ستاره راست: دیرتر محو میشه */
+@keyframes starRightFade {
+  0%, 45% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ستاره چپ: حرکت نرم و پیوسته */
+@keyframes starLeftSlide {
+  /* هر دو کنار هم */
+  0%, 60% {
+    opacity: 1;
+    transform: translateX(-48px);
+  }
+
+  /* اسلاید نرم */
+  100% {
+    transform: translateX(0);
+  }
+}

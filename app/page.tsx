@@ -12,35 +12,52 @@ export default function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative py-40 md:py-52 px-6 md:px-12">
-        <div className="max-w-[100rem] mx-auto flex flex-col-reverse md:flex-row items-center">
-          {/* Text */}
-          <div className="w-full text-left">
-            <h1 className="text-[25px] md:text-[68px] font-bold mb-6 leading-[1.15]">
-              PROFESSIONAL EMAIL FOR<br />
-              YOUR BRAND. WITHOUT<br />
-              A NEW INBOX.
-            </h1>
-            <p className="text-[14px] md:text-[22px] mb-8">
-  Create branded email addresses for your business and receive all messages directly in
-  <br className="hidden md:block" />
-  your existing Gmail or Outlook no new inbox, no learning curve, no hassle.
-</p>
+<section className="relative py-40 md:py-52 px-6 md:px-12">
+  <div className="max-w-[100rem] mx-auto flex flex-col-reverse md:flex-row items-center gap-16">
 
-{/* Email Signup Box */}
-<div className="mt-12 relative max-w-[38rem] w-full">
-  <input
-    type="email"
-    placeholder="Enter your email"
-    className="w-full px-6 py-5 pr-40 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-[#5b65dc]/20"
+    {/* LEFT — Text */}
+    <div className="w-full md:w-1/2 text-left">
+      <h1 className="text-[25px] md:text-[70px] font-bold mb-6 leading-[1.15]">
+        Professional Email For<br />
+        Your Brand. Without<br />
+        A New Inbox.
+      </h1>
+
+      <p className="text-[14px] md:text-[20px] mt-10">
+        Create branded email addresses for your business and receive all messages directly in
+        <br className="hidden md:block" />
+        your existing Gmail or Outlook no new inbox, no learning curve, no hassle.
+      </p>
+
+      <div className="mt-12">
+        <button className="px-8 py-4 bg-[#5b65dc] text-white text-[20px] font-semibold rounded-full hover:bg-[#5b65dc]/80 transition">
+          Get Started
+        </button>
+      </div>
+    </div>
+
+    {/* RIGHT — Image */}
+<div className="w-full md:w-1/2 flex justify-center md:justify-end relative">
+  
+  <img
+    src="/header.svg"
+    alt="Hero Image"
+    className="w-full max-w-[580px]"
   />
-  <button className="absolute right-2 top-1/2 -translate-y-1/2 px-6 py-3 bg-[#5b65dc] text-white font-semibold rounded-full hover:bg-[#5b65dc]/80 transition">
-    Get Started
-  </button>
+
+  {/* ⭐ Stars INSIDE the image */}
+  <div className="absolute bottom-43 left-56 w-[96px] h-[48px] flex justify-end items-center pointer-events-none">
+    <img src="/star.svg" className="star star-1" alt="star" />
+    <img src="/star.svg" className="star star-2" alt="star" />
+  </div>
+
 </div>
-          </div>
-        </div>
-      </section>
+
+
+
+  </div>
+</section>
+
 
       {/* Section 2 */}
 <section className="bg-[#5B65DC] mt-32 py-24 px-6 md:px-12">
@@ -58,38 +75,64 @@ export default function Home() {
     </p>
 
     {/* Cards */}
-<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 
-                gap-y-6 gap-x-4 
-                max-w-[68rem] mx-auto justify-items-center">
-  
+{/* Cards */}
+<div
+  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4
+             gap-y-6 gap-x-4
+             max-w-[68rem] mx-auto justify-items-center"
+>
+
+  {/* Card 1 */}
   <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
-    <div className="text-4xl mb-5">🔒</div>
+    <img
+      src="1.svg"
+      alt="Secure Delivery"
+      className="w-10 h-10 mb-5"
+    />
     <p className="font-regular text-[30px] leading-[1.1]">
       Secure<br />Delivery
     </p>
   </div>
 
+  {/* Card 2 */}
   <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
-    <div className="text-4xl mb-5">⚡</div>
+    <img
+      src="2.svg"
+      alt="Instant Setup"
+      className="w-10 h-10 mb-5"
+    />
     <p className="font-regular text-[30px] leading-[1.1]">
       Instant<br />Setup
     </p>
   </div>
 
+  {/* Card 3 */}
   <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
-    <div className="text-4xl mb-5">🚀</div>
+    <img
+      src="3.svg"
+      alt="Brand Boost"
+      className="w-10 h-10 mb-5"
+    />
     <p className="font-regular text-[30px] leading-[1.1]">
       Brand<br />Boost
     </p>
   </div>
 
+  {/* Card 4 */}
   <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
-    <div className="text-4xl mb-5">🔗</div>
+    <img
+      src="4.svg"
+      alt="Easy Integration"
+      className="w-10 h-10 mb-5"
+    />
     <p className="font-regular text-[30px] leading-[1.1]">
       Easy<br />Integration
     </p>
   </div>
+
 </div>
+
+
   </div>
 </section>
 

@@ -28,7 +28,7 @@ export default function FAQ() {
     },
     {
       q: "How much does it cost?",
-      a: "Our flexible plans start at just $5 per month per email.",
+      a: "Our flexible plans start at just $9 per month per email.",
     },
   ];
 
