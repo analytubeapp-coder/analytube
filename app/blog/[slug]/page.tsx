@@ -1,5 +1,4 @@
-//blog/[slug]/page.tsx
-
+// /blog/[slug]/page.tsx
 import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,9 +11,9 @@ const supabaseServer = createClient(
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const { data: post } = await supabaseServer
     .from("posts")
@@ -33,9 +32,9 @@ export const revalidate = 60;
 export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: { slug: string };
 }) {
-  const { slug } = await params;
+  const { slug } = params;
 
   const { data: post, error } = await supabaseServer
     .from("posts")
@@ -49,7 +48,7 @@ export default async function BlogPostPage({
         <h1 className="text-2xl font-semibold text-gray-700">
           Post not found 😕
         </h1>
-        <Link href="/blog" className="text-[#BFD62E] underline mt-20 block">
+        <Link href="/blog" className="text-[#5b65dc] underline mt-20 block">
           ← Back to Blog
         </Link>
       </div>
@@ -58,7 +57,7 @@ export default async function BlogPostPage({
 
   return (
     <div className="max-w-6xl mx-auto py-32 px-6">
-      <Link href="/blog" className="text-[#BFD62E] underline">
+      <Link href="/blog" className="text-[#5b65dc] underline">
         ← Back to Blog
       </Link>
 
@@ -68,18 +67,18 @@ export default async function BlogPostPage({
       </p>
 
       {post.cover_url && (
-  <div className="flex justify-center mb-10">
-    <Image
-      src={post.cover_url}
-      alt={post.title}
-      width={400}   // عرض واقعی تصویر
-      height={100}  // ارتفاع واقعی تصویر
-      className="rounded-xl shadow"
-    />
-  </div>
-)}
+        <div className="flex justify-center mb-10">
+          <Image
+            src={post.cover_url}
+            alt={post.title}
+            width={800}
+            height={400}
+            className="rounded-xl shadow"
+          />
+        </div>
+      )}
 
-      <article className="max-w-none mx-auto space-y-6">
+      <article className="prose max-w-none mx-auto">
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
     </div>

@@ -74,20 +74,16 @@ export default function Home() {
       and clients the confidence to take you seriously from the very first email.
     </p>
 
-    {/* Cards */}
 {/* Cards */}
-<div
-  className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4
-             gap-y-6 gap-x-4
-             max-w-[68rem] mx-auto justify-items-center"
->
+<div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-4 max-w-[68rem] mx-auto justify-items-center">
 
   {/* Card 1 */}
-  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
+  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]
+                  flex flex-col items-center text-center">
     <img
       src="1.svg"
       alt="Secure Delivery"
-      className="w-10 h-10 mb-5"
+      className="w-10 h-10 mb-8"
     />
     <p className="font-regular text-[30px] leading-[1.1]">
       Secure<br />Delivery
@@ -95,11 +91,12 @@ export default function Home() {
   </div>
 
   {/* Card 2 */}
-  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
+  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]
+                  flex flex-col items-center text-center">
     <img
       src="2.svg"
       alt="Instant Setup"
-      className="w-10 h-10 mb-5"
+      className="w-10 h-10 mb-8"
     />
     <p className="font-regular text-[30px] leading-[1.1]">
       Instant<br />Setup
@@ -107,11 +104,12 @@ export default function Home() {
   </div>
 
   {/* Card 3 */}
-  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
+  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]
+                  flex flex-col items-center text-center">
     <img
       src="3.svg"
       alt="Brand Boost"
-      className="w-10 h-10 mb-5"
+      className="w-10 h-10 mb-8"
     />
     <p className="font-regular text-[30px] leading-[1.1]">
       Brand<br />Boost
@@ -119,11 +117,12 @@ export default function Home() {
   </div>
 
   {/* Card 4 */}
-  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]">
+  <div className="bg-white/10 backdrop-blur p-8 rounded-2xl w-full max-w-[15rem]
+                  flex flex-col items-center text-center">
     <img
       src="4.svg"
       alt="Easy Integration"
-      className="w-10 h-10 mb-5"
+      className="w-10 h-10 mb-8"
     />
     <p className="font-regular text-[30px] leading-[1.1]">
       Easy<br />Integration
@@ -131,6 +130,7 @@ export default function Home() {
   </div>
 
 </div>
+
 
 
   </div>
