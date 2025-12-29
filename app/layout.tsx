@@ -10,7 +10,7 @@ const archivo = Archivo({
 });
 
 export const metadata = {
-  title: "mm",
+  title: "analytube",
   description: "lll",
   icons: {
     icon: "/favicon.png",
