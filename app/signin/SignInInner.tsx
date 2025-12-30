@@ -146,13 +146,15 @@ export default function SignInInner() {
         </div>
 
         {/* ---------------- RIGHT / IMAGE (DESKTOP ONLY) ---------------- */}
-        <div className="hidden md:flex items-center justify-center bg-gray-50">
-          <img
-            src="/signin-visual.png"
-            alt="Sign in visual"
-            className="max-w-[80%] h-auto"
-          />
-        </div>
+        
+        <div
+  className="
+    hidden md:flex h-screen bg-gray-50
+    rounded-tl-[20px] rounded-bl-[20px]
+    bg-no-repeat bg-center bg-cover
+  "
+  style={{ backgroundImage: "url('/signin.svg')" }}
+/>
 
       </div>
     </>
