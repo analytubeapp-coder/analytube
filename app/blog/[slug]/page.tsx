@@ -1,4 +1,3 @@
-// /blog/[slug]/page.tsx
 import { createClient } from "@supabase/supabase-js";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,12 +7,15 @@ const supabaseServer = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
+export const revalidate = 60;
+
+/* ---------- Metadata ---------- */
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const { data: post } = await supabaseServer
     .from("posts")
@@ -22,19 +24,18 @@ export async function generateMetadata({
     .single();
 
   return {
-    title: post?.title || "Blog",
-    description: post?.content?.slice(0, 150) || "",
+    title: post?.title ?? "Blog",
+    description: post?.content?.slice(0, 150) ?? "",
   };
 }
 
-export const revalidate = 60;
-
+/* ---------- Page ---------- */
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   const { data: post, error } = await supabaseServer
     .from("posts")
@@ -48,7 +49,10 @@ export default async function BlogPostPage({
         <h1 className="text-2xl font-semibold text-gray-700">
           Post not found 😕
         </h1>
-        <Link href="/blog" className="text-[#5b65dc] underline mt-20 block">
+        <Link
+          href="/blog"
+          className="text-[#5b65dc] underline mt-10 block"
+        >
           ← Back to Blog
         </Link>
       </div>
@@ -61,7 +65,10 @@ export default async function BlogPostPage({
         ← Back to Blog
       </Link>
 
-      <h1 className="text-4xl font-bold mt-6 mb-8">{post.title}</h1>
+      <h1 className="text-4xl font-bold mt-6 mb-4">
+        {post.title}
+      </h1>
+
       <p className="text-gray-500 text-sm mb-8">
         {new Date(post.created_at).toLocaleDateString()}
       </p>
@@ -71,8 +78,8 @@ export default async function BlogPostPage({
           <Image
             src={post.cover_url}
             alt={post.title}
-            width={800}
-            height={400}
+            width={600}
+            height={200}
             className="rounded-xl shadow"
           />
         </div>

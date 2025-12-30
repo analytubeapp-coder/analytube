@@ -87,13 +87,13 @@ export default function Contact() {
         <section className="py-46">
           <div className="max-w-3xl mx-auto px-6 space-y-8">
 
-            <h1 className="text-[40px] font-bold text-center text-black leading-[1.3]">
+            <h1 className="text-[24px] md:text-[44px] font-bold text-center text-black leading-[1.3]">
               Get Questions?
               <br />
               We'll Answer.
             </h1>
 
-            <p className="text-[17px] text-center text-black">
+            <p className="text-[16px] text-center text-black">
               We are here to help. Fill out the form below and our team will get
               back to you as soon as possible.
             </p>

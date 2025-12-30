@@ -6,31 +6,31 @@ export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
-    {
-      q: "What is [YourBrand]?",
-      a: "[YourBrand] lets you create professional branded email addresses that deliver directly to your existing inbox Gmail or Outlook without adding a new inbox.",
-    },
-    {
-      q: "Do I need technical skills to set it up?",
-      a: "Not at all. Setup is fast, simple, and requires no technical knowledge.",
-    },
-    {
-      q: "Can I use my own domain?",
-      a: "Yes! Connect your existing domain and start sending professional emails immediately.",
-    },
-    {
-      q: "Will my emails be secure?",
-      a: "Absolutely. We ensure secure delivery with full encryption and trusted email standards.",
-    },
-    {
-      q: "Can I integrate with Gmail or Outlook?",
-      a: "Yes, [YourBrand] works seamlessly with your existing Gmail or Outlook account.",
-    },
-    {
-      q: "How much does it cost?",
-      a: "Our flexible plans start at just $9 per month per email.",
-    },
-  ];
+  {
+    q: "Who is this kit for?",
+    a: "The Canada Rental Survival Kit is perfect for anyone renting in Canada—first-time renters, people moving across provinces, or those who want to stay protected and informed."
+  },
+  {
+    q: "Which provinces does it cover?",
+    a: "The kit currently includes general guidance applicable across Canada, with province-specific sections starting with Ontario. More provinces will be added soon."
+  },
+  {
+    q: "What’s included in the kit?",
+    a: "You’ll get clear guides on tenant rights, ready-to-use templates for deposits and payments, and checklists to make moving in and out stress-free."
+  },
+  {
+    q: "Is this a legal service?",
+    a: "No, the kit provides guidance and templates based on publicly available information. It’s not a substitute for professional legal advice."
+  },
+  {
+    q: "How do I access the kit after purchase?",
+    a: "After purchase, you’ll get instant access to downloadable files directly on the website—no emails or extra steps required."
+  },
+  {
+    q: "Can I use it for multiple rentals?",
+    a: "Absolutely! The templates and checklists are reusable, so you can use them for any rental property across Canada."
+  },
+];
 
   return (
     <section
