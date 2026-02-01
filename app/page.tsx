@@ -17,7 +17,7 @@ export default function Home() {
 
     {/* LEFT — Text */}
     <div className="w-full text-left">
-      <h1 className="text-[24px] md:text-[56px] mt-2 md:mt-10 font-bold mb-6 leading-[1.15]">
+      <h1 className="text-[28px] md:text-[56px] mt-2 md:mt-10 font-bold mb-6 leading-[1.15]">
         Check Your Email Health in Seconds
         <br className="hidden md:block" />
         Keep Your Business Communication
@@ -25,14 +25,14 @@ export default function Home() {
         Reliable and Spam-Free
       </h1>
 
-      <p className="text-[12px] md:text-[20px] mt-4 md:mt-10">
+      <p className="text-[16px] md:text-[20px] mt-4 md:mt-10">
         Instantly analyze <strong>SPF</strong>, <strong>DKIM</strong>, <strong>DMARC</strong>, and forwarding settings to ensure your emails always reach the inbox,
         <br className="hidden md:block" />
         stay out of spam, and maintain smooth, reliable business communication.
       </p>
 
       <div className="mt-12">
-        <button className="px-4 md:px-8 py-3 md:py-4 bg-[#5b65dc] text-white text-[12px] md:text-[20px] font-semibold rounded-full hover:bg-[#5b65dc]/80 transition">
+        <button className="px-6 md:px-8 py-3 md:py-4 bg-[#5b65dc] text-white text-[16px] md:text-[20px] font-semibold rounded-full hover:bg-[#5b65dc]/80 transition">
           Start Free Check
         </button>
       </div>
@@ -64,11 +64,11 @@ export default function Home() {
 <section className="bg-[#5B65DC] mt-10 md:mt-32 py-24 px-6 md:px-12">
   <div className="max-w-[100rem] mx-auto text-center text-white">
     
-    <h2 className="text-[24px] md:text-[56px] font-bold mb-6 leading-[1.15]">
+    <h2 className="text-[28px] md:text-[56px] font-bold mb-6 leading-[1.15]">
       What We Can Do For You
     </h2>
 
-    <p className="text-base text-[14px] md:text-[20px] mb-16 max-w-7xl mx-auto opacity-90">
+    <p className="text-base text-[16px] md:text-[20px] mb-16 max-w-7xl mx-auto opacity-90">
       Discover how CheckEmailHealth helps you keep your emails safe, deliverable, and your Business Communication reliable. Instantly identify
       <br className="hidden md:block" />
       issues like SPF, DKIM, DMARC, and forwarding misconfigurations to ensure every message reaches its recipient.
@@ -125,12 +125,12 @@ export default function Home() {
     {/* Right aligned content */}
     <div className="max-w-[52rem] ml-auto text-left">
 
-      <h3 className="text-[24px] md:text-[48px] font-bold leading-[1.2]">
+      <h3 className="text-[28px] md:text-[48px] font-bold leading-[1.2] mb-4">
         Why Email health and Deliverability<br className="hidden md:block" />
         Matter for Your Business
       </h3>
 
-      <p className="text-base text-[14px] md:text-[20px] text-black leading-relaxed space-y-4">
+      <p className="text-base text-[16px] md:text-[20px] text-black leading-relaxed space-y-4">
         Email deliverability issues can silently damage your business communication, reduce response rates, and cause important messages to land in spam without you even noticing.
         <br />
         Misconfigured SPF, DKIM, DMARC, or email forwarding settings are some of the most common reasons emails fail to reach the inbox.
@@ -144,7 +144,7 @@ export default function Home() {
 
      {/* Faq Section */}
 
-     <section className="bg-white mt-8 md:mt-32">
+     <section className="bg-white md:mt-32">
       <Faq />
      </section>
 
