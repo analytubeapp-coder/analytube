@@ -154,22 +154,26 @@ export default function Home() {
 
       {/* Final Section */}
 <section className="bg-white py-32 px-6 md:px-12">
-  <div className="max-w-6xl mx-auto text-center">
+  <div className="max-w-7xl mx-auto text-center">
 
     {/* Headline */}
     <h2 className="text-[25px] md:text-[52px] font-bold mb-8 leading-[1.2]">
-      Move In Confidently, Protect Your Deposit,
+      Take Control of Your Email Health
       <br className="hidden md:block" />
-      Avoid Rental Scams, and Master Your Rental Experience Across Canada
+      and Deliverability to Protect Your Business
+      <br className="hidden md:block" />
+      Communication and Domain Reputation
     </h2>
 
     {/* Description */}
     <p className="text-[14px] md:text-[20px] text-black/80 leading-relaxed mb-12">
-      The Canada Rental Survival Kit is your all-in-one toolkit for a stress-free rental experience. 
+      Email deliverability issues often remain hidden until they start impacting open rates, reply rates, and customer trust.
       <br className="hidden md:block" />
-      Inside, you’ll find clear, easy-to-follow guides on your tenant rights, ready-to-use templates to track deposits and payments, and step-by-step checklists to ensure a smooth move-in and move-out. 
+      Problems with SPF, DKIM, DMARC, or email forwarding configurations can silently damage your domain reputation and cause critical business
       <br className="hidden md:block" />
-      Whether it’s your first rental or you’re relocating across provinces, this kit equips you with everything you need to stay informed, avoid common pitfalls, and enjoy your new home confidently.
+      emails to land in spam folders. CheckEmailHealth gives you a fast and reliable way to analyze your email setup, identify deliverability risks,
+      <br className="hidden md:block" />
+      and take action before email issues affect your sales, support, and day-to-day business communication.
     </p>
 
     {/* CTA Button */}
