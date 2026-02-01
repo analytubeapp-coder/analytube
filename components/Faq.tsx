@@ -7,28 +7,28 @@ export default function FAQ() {
 
   const faqs = [
   {
-    q: "Who is this kit for?",
-    a: "The Canada Rental Survival Kit is perfect for anyone renting in Canada—first-time renters, people moving across provinces, or those who want to stay protected and informed."
+    q: "What is an email health check?",
+    a: "An email health check analyzes your domain’s email configuration to identify issues that affect deliverability. It checks essential settings like SPF, DKIM, DMARC, and email forwarding to ensure your emails reach the inbox instead of spam."
   },
   {
-    q: "Which provinces does it cover?",
-    a: "The kit currently includes general guidance applicable across Canada, with province-specific sections starting with Ontario. More provinces will be added soon."
+    q: "Why do my emails go to spam?",
+    a: "Emails often land in spam due to misconfigured authentication records, poor domain reputation, or incorrect forwarding setups. Even small configuration issues can cause email providers to flag your messages as untrusted."
   },
   {
-    q: "What’s included in the kit?",
-    a: "You’ll get clear guides on tenant rights, ready-to-use templates for deposits and payments, and checklists to make moving in and out stress-free."
+    q: "What does CheckEmailHealth analyze?",
+    a: "CheckEmailHealth scans your domain’s email setup, including SPF, DKIM, DMARC, and forwarding configurations. It highlights potential risks, explains what’s wrong, and shows how these issues impact your email deliverability."
   },
   {
-    q: "Is this a legal service?",
-    a: "No, the kit provides guidance and templates based on publicly available information. It’s not a substitute for professional legal advice."
+    q: "Do I need technical knowledge to use this tool?",
+    a: "No. CheckEmailHealth is designed to be simple and easy to use. You only need to enter your domain and run the check. The results are clear, readable, and focused on what actually matters."
   },
   {
-    q: "How do I access the kit after purchase?",
-    a: "After purchase, you’ll get instant access to downloadable files directly on the website—no emails or extra steps required."
+    q: "Do you store my email data or messages?",
+    a: "No. CheckEmailHealth does not store your emails or read message content. The tool only analyzes public domain configurations and generates a report based on those settings."
   },
   {
-    q: "Can I use it for multiple rentals?",
-    a: "Absolutely! The templates and checklists are reusable, so you can use them for any rental property across Canada."
+    q: "Is this tool free to use?",
+    a: "You can run a free email health check to see basic results. Paid plans unlock more detailed insights, extended checks, and advanced recommendations to improve your email reliability."
   },
 ];
 
@@ -41,7 +41,7 @@ export default function FAQ() {
 
         {/* Left: Title */}
         <div className="text-left">
-          <h3 className="text-[30px] md:text-[52px] font-bold leading-[1.2] text-white">
+          <h3 className="text-[22px] md:text-[52px] font-bold leading-[1.2] text-white">
             Frequently<br />Asked Questions
           </h3>
         </div>
@@ -59,7 +59,7 @@ export default function FAQ() {
                 }
                 className="w-full flex justify-between items-center text-left"
               >
-                <span className="text-[18px] md:text-[20px] font-semibold text-white">
+                <span className="text-[16px] md:text-[20px] font-semibold text-white">
                   {item.q}
                 </span>
                 <span className="text-xl text-white/70">
@@ -68,7 +68,7 @@ export default function FAQ() {
               </button>
 
               {openIndex === index && (
-                <p className="mt-3 text-white/80 text-[18px] leading-[1.7] animate-fadeIn">
+                <p className="mt-3 text-white/80 text-[14px] md:text-[18px] font-regular leading-[1.7] animate-fadeIn">
                   {item.a}
                 </p>
               )}
