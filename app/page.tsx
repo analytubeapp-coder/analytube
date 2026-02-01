@@ -174,7 +174,7 @@ export default function Home() {
 
     {/* CTA Button */}
     <button className="px-10 py-5 bg-[#5B65DC] text-white text-[20px] font-semibold rounded-full hover:bg-[#5B65DC]/80 transition">
-      Get Your Kit Now
+      Start Free Check
     </button>
 
   </div>
