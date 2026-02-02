@@ -141,7 +141,7 @@ export default function Contact() {
                 href="mailto:support@tublyai.com"
                 className="text-[#5b65dc] font-semibold"
               >
-                support@[YourBrand].com
+                support@example.com
               </a>
             </p>
 
