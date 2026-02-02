@@ -15,7 +15,7 @@ export default function About() {
         <Navbar />
 
         {/* CONTENT */}
-        <section className="py-15 md:py-52 md:pb-60">
+        <section className="py-20 md:py-52 md:pb-60">
           <div className="max-w-7xl mx-auto px-6 space-y-[10rem] md:space-y-[24rem]">
             {/* SECTION 01 ------------------------------------------------ */}
             <div className="grid grid-cols-1 md:grid-cols-3 items-start relative">
@@ -30,13 +30,13 @@ export default function About() {
                 <motion.div
                   className="bg-[#5b65dc] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                   initial={{ height: 0 }}
-                  whileInView={{ height: 340 }}
+                  whileInView={{ height: 500 }}
                   transition={{ duration: verticalDuration }}
                   viewport={{ once: true }}
                 />
 
                 <motion.div
-                  className="bg-[#5b65dc] h-1 absolute top-[calc(150%+340px)] left-1/2 hidden md:block"
+                  className="bg-[#5b65dc] h-1 absolute top-[calc(150%+500px)] left-1/2 hidden md:block"
                   initial={{ width: 0 }}
                   whileInView={{ width: "800px" }}
                   transition={{
@@ -54,19 +54,17 @@ export default function About() {
                 </h2>
 
                 <p className="text-black mb-4 leading-relaxed text-[20px]">
-                  We are a dedicated team passionate about simplifying rental experiences in Canada.
-                  Our goal is to help tenants navigate contracts, avoid scams, and make confident decisions.
+                  CheckEmailHealth is a simple, focused tool built to help businesses, founders, and technical teams understand and improve their email deliverability without complexity.
+                  We specialize in analyzing email authentication and domain-level configurations that directly impact whether emails reach the inbox or end up in spam.
                 </p>
 
                 <p className="text-black mb-4 leading-relaxed text-[20px]">
-                  [YourBrand] was created to provide clear, actionable guidance for renters,
-                  removing confusion and unnecessary stress. Our digital tools, checklists, and guides
-                  are designed to help you every step of the way.
+                  We believe email health should be clear, accessible, and actionable — not hidden behind confusing dashboards or technical jargon.
+                  That’s why CheckEmailHealth is designed as a single-purpose platform: to quickly analyze critical email settings like SPF, DKIM, DMARC, and forwarding configurations, and turn them into easy-to-understand insights.
                 </p>
 
                 <p className="text-black leading-relaxed text-[20px]">
-                  We believe informed renters make better choices. By offering expert tips, resources, and
-                  easy-to-follow instructions, we aim to empower Canadians to secure safe and fair housing.
+                  Our product is built for startups, small businesses, agencies, and growing teams that rely on email for sales, support, and daily communication — and need a reliable way to protect their domain reputation and inbox placement.
                 </p>
               </div>
             </div>
@@ -80,24 +78,16 @@ export default function About() {
                 </h2>
 
                 <p className="text-black mb-4 leading-relaxed text-[20px]">
-                  Our mission is to make renting in Canada safer, simpler, and more transparent
-                  for every tenant, whether you're new to renting or experienced.
+                  Our mission is to make email deliverability simple, transparent, and reliable for every business — regardless of size or technical expertise.
                 </p>
 
                 <p className="text-black mb-2 leading-relaxed text-[20px]">
-                  We focus on three main principles:
+                  Email issues often go unnoticed until they start damaging communication, customer trust, and revenue.
+                  Misconfigured SPF, DKIM, DMARC, or forwarding rules can silently harm deliverability, lower open rates, and send critical emails to spam without warning.
                 </p>
 
-                <ul className="list-disc list-inside text-black space-y-2 leading-relaxed text-[20px]">
-                 <li><b>Clarity:</b> We provide easy-to-understand guides and resources.</li>
-                  <li><b>Security:</b> Our tips help you avoid scams and protect your deposits.</li>
-                  <li><b>Confidence:</b> Empowering tenants to make informed decisions every step of the way.</li>
-                </ul>
-
                 <p className="text-black mt-4 leading-relaxed text-[20px]">
-                  By combining practical tools with expert knowledge, we remove uncertainty and create
-                  a seamless rental experience. Our goal is to help tenants feel secure, prepared, and confident
-                  in their housing journey.
+                  CheckEmailHealth exists to change that. We aim to help businesses detect email configuration issues early, understand what’s affecting their email performance, and take clear steps to fix problems before they impact real conversations. By providing fast, accurate, and easy-to-read email health checks, we empower teams to stay proactive instead of reactive.
                 </p>
               </div>
 
@@ -112,13 +102,13 @@ export default function About() {
                 <motion.div
                   className="bg-[#5b65dc] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                   initial={{ height: 0 }}
-                  whileInView={{ height: 410 }}
+                  whileInView={{ height: 440 }}
                   transition={{ duration: verticalDuration }}
                   viewport={{ once: true }}
                 />
 
                 <motion.div
-                  className="bg-[#5b65dc] h-1 absolute top-[calc(150%+410px)] right-1/2 hidden md:block"
+                  className="bg-[#5b65dc] h-1 absolute top-[calc(150%+440px)] right-1/2 hidden md:block"
                   initial={{ width: 0 }}
                   whileInView={{ width: "800px" }}
                   transition={{
@@ -167,29 +157,23 @@ export default function About() {
                 </h2>
 
                 <p className="text-[20px] mb-4 leading-relaxed text-black">
-                  We promise to make every resource practical, trustworthy, and immediately useful.
+                  We promise clarity, simplicity, and respect for your data.
                 </p>
+                  
 
                 <p className="text-[20px] mb-2 leading-relaxed text-black">
-                  [YourBrand] delivers clear guidance without extra complexity or learning curves.
-                  Everything is designed to integrate seamlessly into your renting process.
+                  CheckEmailHealth does not read, store, or access your email content.
+                  We only analyze publicly available domain configurations to evaluate email authentication and deliverability risks. Your privacy and trust come first.
                 </p>
 
-                <ul className="list-disc list-inside text-[19px] text-black space-y-2 leading-relaxed">
-                  <li>Practical, step-by-step guides.
-                    </li>
-                  <li>Easy-to-use checklists and templates.</li>
-                  <li>Tips verified to prevent common mistakes and scams.</li>
-                </ul>
-
                 <p className="text-[20px] text-black mt-4 mb-4 leading-relaxed">
-                  What changes is your confidence and control. By following our advice,
-                  tenants can avoid pitfalls, save money, and enjoy a stress-free renting experience.
+                  We also promise to keep the platform focused and efficient — no unnecessary features, no bloated dashboards, and no hidden complexity.
+                  Every result, recommendation, and insight is designed to be practical, understandable, and immediately useful.
                 </p>
 
                 <p className="text-black leading-relaxed text-[20px]">
-                  Our goal is not to overwhelm you with features. Our goal is to simplify your journey —
-                  making renting in Canada smooth, safe, and professional.
+                  Our goal is to help you send emails with confidence, protect your domain reputation,
+                  and ensure your business communication remains reliable, professional, and spam-free — every day.
                 </p>
               </div>
             </div>
