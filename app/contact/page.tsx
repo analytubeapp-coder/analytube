@@ -43,7 +43,7 @@ export default function Contact() {
     setSuccess(false);
 
     if (!subject.trim() || !message.trim()) {
-      setError("Please fill out all fields.");
+      setError("Please fill in both the subject and message so we can help you properly.");
       return;
     }
 
@@ -137,11 +137,8 @@ export default function Contact() {
 
             <p className="text-[16px] text-gray-600 text-center">
               For support inquiries, contact us at{" "}
-              <a
-                href="mailto:support@tublyai.com"
-                className="text-[#5b65dc] font-semibold"
-              >
-                support@example.com
+              <a href="mailto:support@checkemailhealth.com" className="text-[#5b65dc] font-semibold">
+                support@checkemailhealth.com
               </a>
             </p>
 
