@@ -41,7 +41,7 @@ export default function FAQ() {
 
         {/* Left: Title */}
         <div className="text-left">
-          <h3 className="text-[22px] md:text-[52px] font-bold leading-[1.2] text-white">
+          <h3 className="text-[28px] md:text-[52px] font-bold leading-[1.2] text-white">
             Frequently<br />Asked Questions
           </h3>
         </div>
@@ -59,7 +59,7 @@ export default function FAQ() {
                 }
                 className="w-full flex justify-between items-center text-left"
               >
-                <span className="text-[16px] md:text-[20px] font-semibold text-white">
+                <span className="text-[16px] md:text-[20px] font-medium text-white">
                   {item.q}
                 </span>
                 <span className="text-xl text-white/70">
@@ -68,7 +68,7 @@ export default function FAQ() {
               </button>
 
               {openIndex === index && (
-                <p className="mt-3 text-white/80 text-[14px] md:text-[18px] font-regular leading-[1.7] animate-fadeIn">
+                <p className="mt-3 text-white/80 text-[14px] md:text-[18px] font-regular leading-[1.75] animate-fadeIn">
                   {item.a}
                 </p>
               )}

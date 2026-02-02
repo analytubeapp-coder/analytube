@@ -17,7 +17,7 @@ export default function Home() {
 
     {/* LEFT — Text */}
     <div className="w-full text-left">
-      <h1 className="text-[28px] md:text-[56px] mt-2 md:mt-10 font-bold mb-6 leading-[1.15]">
+      <h1 className="text-[28px] md:text-[56px] mt-4 md:mt-10 font-bold mb-6 leading-[1.15]">
         Check Your Email Health in Seconds
         <br className="hidden md:block" />
         Keep Your Business Communication
@@ -64,12 +64,12 @@ export default function Home() {
 <section className="bg-[#5B65DC] mt-10 md:mt-32 py-24 px-6 md:px-12">
   <div className="max-w-[100rem] mx-auto text-center text-white">
     
-    <h2 className="text-[28px] md:text-[56px] font-bold mb-6 leading-[1.15]">
+    <h2 className="text-[26px] md:text-[56px] font-bold mb-6 leading-[1.15]">
       What We Can Do For You
     </h2>
 
     <p className="text-base text-[16px] md:text-[20px] mb-16 max-w-7xl mx-auto opacity-90">
-      Discover how CheckEmailHealth helps you keep your emails safe, deliverable, and your Business Communication reliable. Instantly identify
+      Discover how CheckEmailHealth helps you keep your emails safe, deliverable, and your business communication reliable. Instantly identify
       <br className="hidden md:block" />
       issues like SPF, DKIM, DMARC, and forwarding misconfigurations to ensure every message reaches its recipient.
 
@@ -125,8 +125,8 @@ export default function Home() {
     {/* Right aligned content */}
     <div className="max-w-[52rem] ml-auto text-left">
 
-      <h3 className="text-[28px] md:text-[48px] font-bold leading-[1.2] mb-4">
-        Why Email health and Deliverability<br className="hidden md:block" />
+      <h3 className="text-[26px] md:text-[48px] font-bold leading-[1.2] mb-4">
+        Why Email Health and Deliverability<br className="hidden md:block" />
         Matter for Your Business
       </h3>
 
@@ -157,7 +157,7 @@ export default function Home() {
   <div className="max-w-7xl mx-auto text-center">
 
     {/* Headline */}
-    <h2 className="text-[25px] md:text-[52px] font-bold mb-8 leading-[1.2]">
+    <h2 className="text-[26px] md:text-[52px] font-bold mb-8 leading-[1.2]">
       Take Control of Your Email Health
       <br className="hidden md:block" />
       and Deliverability to Protect Your Business
@@ -177,7 +177,7 @@ export default function Home() {
     </p>
 
     {/* CTA Button */}
-    <button className="px-10 py-5 bg-[#5B65DC] text-white text-[20px] font-semibold rounded-full hover:bg-[#5B65DC]/80 transition">
+    <button className="px-6 md:px-8 py-3 md:py-4 bg-[#5B65DC] text-white text-[16px] md:text-[20px] font-semibold rounded-full hover:bg-[#5B65DC]/80 transition">
       Start Free Check
     </button>
 
