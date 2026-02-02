@@ -133,13 +133,13 @@ export default function About() {
                 <motion.div
                   className="bg-[#5b65dc] w-1 absolute top-[150%] left-1/2 -translate-x-1/2 hidden md:block"
                   initial={{ height: 0 }}
-                  whileInView={{ height: 440 }}
+                  whileInView={{ height: 420 }}
                   transition={{ duration: verticalDuration }}
                   viewport={{ once: true }}
                 />
 
                 <motion.div
-                  className="bg-[#5b65dc] h-1 absolute top-[calc(150%+440px)] left-1/2 hidden md:block"
+                  className="bg-[#5b65dc] h-1 absolute top-[calc(150%+420px)] left-1/2 hidden md:block"
                   initial={{ width: 0 }}
                   whileInView={{ width: "800px" }}
                   transition={{

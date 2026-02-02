@@ -25,111 +25,180 @@ export default function Privacy() {
             <div>
               <h2 className="text-[24px] text-black font-bold mb-2">Introduction</h2>
               <p className="text-black text-[17px]">
-                Your privacy is important to us. This Privacy Policy explains how Canada Rental Survival Kit collects, uses, and protects your personal information when you access our website and services.
+                At CheckEmailHealth, we take your privacy seriously.
+                This Privacy Policy explains how we collect, use, and protect information when you use our website and services.
               </p>
               <p className="text-black text-[17px] mt-2">
-                By using our site, you consent to the practices described in this policy.
+                By using CheckEmailHealth, you agree to the practices described in this policy.
               </p>
             </div>
 
             <div className="mt-8">
               <h2 className="text-[24px] text-black font-bold mb-2">1. Information We Collect</h2>
+
+              <h3 className="text-[17px] text-black font-bold mb-1">
+                Information You Provide
+              </h3>
               <p className="text-black text-[17px]">
-                We may collect the following information when you use our services:
+                When you use our services or contact us, we may collect:
               </p>
               <ul className="list-disc ml-6 text-black text-[17px] mt-2">
-                <li>Personal information such as name, email address, and billing details</li>
-                <li>Account credentials if you create an account</li>
-                <li>Usage data, including pages visited and interaction with our site</li>
+                <li>Your email address (for authentication, support, or account-related communication)</li>
+                <li>Information you submit through contact forms or support requests</li>
               </ul>
-            </div>
 
-            <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">2. How We Use Your Information</h2>
+              <br />
+
+              <h3 className="text-[17px] text-black font-bold mb-1">
+                Information We Do Not Collect
+              </h3>
               <p className="text-black text-[17px]">
-                We use the information we collect to:
+                CheckEmailHealth does not:
               </p>
               <ul className="list-disc ml-6 text-black text-[17px] mt-2">
-                <li>Provide and improve our digital guides, templates, and tools</li>
-                <li>Process payments and manage subscriptions</li>
-                <li>Communicate with you about updates, promotions, or support</li>
-                <li>Ensure security and prevent unauthorized access</li>
+                <li>Read your email messages</li>
+                <li>Store email content</li>
+                <li>Access inboxes or mail servers</li>
+                <li>Collect passwords or private email data</li>
               </ul>
+              <p className="text-black text-[17px] mt-2">
+                Our service only analyzes publicly available domain-level email configurations.
+              </p>
             </div>
 
+
+            
             <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">3. Data Sharing & Third Parties</h2>
+              <h2 className="text-[24px] text-black font-bold mb-2">2. How Our Email Health Check Works</h2>
               <p className="text-black text-[17px]">
-                We do not sell your personal information. We may share data with trusted third parties for:
+                CheckEmailHealth analyzes technical email authentication records associated with your domain, including:
               </p>
               <ul className="list-disc ml-6 text-black text-[17px] mt-2">
-                <li>Payment processing providers</li>
-                <li>Email and communication services</li>
-                <li>Analytics tools to improve our website</li>
+                <li>SPF</li>
+                <li>DKIM</li>
+                <li>DMARC</li>
+                <li>Email forwarding configuration</li>
               </ul>
-              <p className="text-black text-[17px] mt-2">
-                Third parties are required to use your data only for the purposes we specify and to protect it securely.
-              </p>
+              <p className="mt-2">These records are publicly accessible via DNS and do not contain private or personal email content.</p>
             </div>
 
+
+
             <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">4. Cookies & Tracking</h2>
+              <h2 className="text-[24px] text-black font-bold mb-2">3. How We Use Your Information</h2>
               <p className="text-black text-[17px]">
-                We may use cookies and similar technologies to enhance your experience, analyze site usage, and deliver personalized content.
-              </p>
-              <p className="text-black text-[17px] mt-2">
-                You can manage your cookie preferences through your browser settings.
-              </p>
-            </div>
-            <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">5. Your Rights</h2>
-              <p className="text-black text-[17px]">
-                You have the right to:
+                We use collected information only to:
               </p>
               <ul className="list-disc ml-6 text-black text-[17px] mt-2">
-                <li>Access and correct your personal information</li>
-                <li>Request deletion of your data</li>
-                <li>Opt-out of marketing communications</li>
-                <li>Withdraw consent at any time</li>
+                <li>Provide and operate the CheckEmailHealth service</li>
+                <li>Generate email health and deliverability reports</li>
+                <li>Improve platform performance and reliability</li>
+                <li>Respond to support inquiries</li>
+                <li>Communicate important service-related updates</li>
               </ul>
               <p className="text-black text-[17px] mt-2">
-                To exercise these rights, contact us at the email provided below.
+                We do not sell, rent, or trade your personal data.
               </p>
             </div>
 
+
             <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">6. Data Security</h2>
+              <h2 className="text-[24px] text-black font-bold mb-2">4. Data Storage and Security</h2>
               <p className="text-black text-[17px]">
-                We implement industry-standard security measures to protect your data from unauthorized access, alteration, disclosure, or destruction.
+                We take reasonable technical and organizational measures to protect your data against unauthorized access, loss, or misuse.
               </p>
+              <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+                <li>We do not store email message content</li>
+                <li>We do not monitor or intercept communications</li>
+                <li>We limit data access to essential systems only</li>
+              </ul>
               <p className="text-black text-[17px] mt-2">
-                However, no method of transmission over the internet or electronic storage is completely secure.
+                While no online service is 100% secure, we continuously work to protect your information.
               </p>
             </div>
 
+
             <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">7. Service Availability</h2>
+              <h2 className="text-[24px] text-black font-bold mb-2">5. Cookies and Analytics</h2>
               <p className="text-black text-[17px]">
-                We aim to provide uninterrupted access to our website and tools but cannot guarantee continuous availability.
+                We may use cookies or similar technologies to:
               </p>
+              <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+                <li>Understand how users interact with our website</li>
+                <li>Improve user experience and performance</li>
+                <li>Analyze traffic and usage trends</li>
+              </ul>
               <p className="text-black text-[17px] mt-2">
-                Temporary downtime may occur due to maintenance, technical issues, or events beyond our control.
+                You can control or disable cookies through your browser settings.
               </p>
             </div>
 
+
+
             <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">8. Third-Party Links</h2>
+              <h2 className="text-[24px] text-black font-bold mb-2">6. Third-Party Services</h2>
               <p className="text-black text-[17px]">
-                Our site may include links to third-party websites. We are not responsible for their privacy practices or content.
+                We may use trusted third-party services for:
+              </p>
+              <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+                <li>Authentication</li>
+                <li>Hosting and infrastructure</li>
+                <li>Analytics</li>
+                <li>Payment processing (if applicable)</li>
+              </ul>
+              <p className="text-black text-[17px] mt-2">
+                These providers only access information necessary to perform their services and are required to protect your data.
               </p>
             </div>
 
-            <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">9. Children’s Privacy</h2>
-              <p className="text-black text-[17px]">
-                Our services are not intended for children under 13, and we do not knowingly collect data from children.
-              </p>
-            </div>
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <div className="mt-8">
               <h2 className="text-[24px] text-black font-bold mb-2">10. Changes to Privacy Policy</h2>
