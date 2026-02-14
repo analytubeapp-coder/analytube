@@ -77,7 +77,7 @@ export default function Privacy() {
                 <li>SPF</li>
                 <li>DKIM</li>
                 <li>DMARC</li>
-                <li>Email forwarding configuration</li>
+                <li>Email forwarding configurations</li>
               </ul>
               <p className="mt-2">These records are publicly accessible via DNS and do not contain private or personal email content.</p>
             </div>
@@ -153,71 +153,61 @@ export default function Privacy() {
 
 
 
-
-
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">10. Changes to Privacy Policy</h2>
+             <div className="mt-8">
+              <h2 className="text-[24px] text-black font-bold mb-2">7. Data Retention</h2>
               <p className="text-black text-[17px]">
-                We may update this Privacy Policy periodically. Any changes will be posted on this page with a revised "Last Updated" date.
+                We retain personal information only for as long as necessary to:
               </p>
+              <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+                <li>Provide the service</li>
+                <li>Comply with legal obligations</li>
+                <li>Resolve disputes</li>
+                <li>Enforce our agreements</li>
+              </ul>
               <p className="text-black text-[17px] mt-2">
-                Continued use of our website after updates implies acceptance of the revised Privacy Policy.
+               You may request deletion of your account or personal data at any time.
               </p>
             </div>
 
+
             <div className="mt-8">
-              <h2 className="text-[24px] text-black font-bold mb-2">11. Contact Us</h2>
+              <h2 className="text-[24px] text-black font-bold mb-2">8. Your Rights</h2>
               <p className="text-black text-[17px]">
-                For questions about this Privacy Policy or your data:
+                Depending on your location, you may have the right to:
+              </p>
+              <ul className="list-disc ml-6 text-black text-[17px] mt-2">
+                <li>Access your personal data</li>
+                <li>Request correction or deletion</li>
+                <li>Withdraw consent where applicable</li>
+              </ul>
+              <p className="text-black text-[17px] mt-2">
+               To exercise these rights, please contact us using the details below.
+              </p>
+            </div>
+
+
+            <div className="mt-8">
+              <h2 className="text-[24px] text-black font-bold mb-2">9. Changes to This Privacy Policy</h2>
+              <p className="text-black text-[17px]">
+                We may update this Privacy Policy from time to time.
+              </p>
+              <p className="text-black text-[17px] mt-2">
+                Any changes will be posted on this page with an updated revision date.
+              </p>
+              <p className="text-black text-[17px] mt-2">
+                We encourage you to review this policy periodically.
+              </p>
+            </div>
+
+
+            <div className="mt-8">
+              <h2 className="text-[24px] text-black font-bold mb-2">10. Contact Us</h2>
+              <p className="text-black text-[17px]">
+               If you have any questions about this Privacy Policy or how we handle your data, please contact us at:
               </p>
               <p className="text-black mb-14 text-[17px] mt-2">
-                📩 Email: <b>support@canadarentalsurvivalkit.com</b><br />
-                🌐 Website: <b>www.canadarentalsurvivalkit.com</b>
+                📩 Email: <b>support@checkemailhealth.com</b><br />
+                🌐 Website: <b>www.checkemailhealth.com</b>
               </p>
             </div>
 

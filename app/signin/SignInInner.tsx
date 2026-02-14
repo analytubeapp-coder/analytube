@@ -74,7 +74,7 @@ export default function SignInInner() {
           <div className="w-full max-w-md space-y-8 text-center">
 
             <h1 className="text-2xl md:text-3xl font-bold text-black">
-              Sign in to [YourBrand]
+              Sign in to CheckEmailHealth
             </h1>
 
             <p className="text-black/70">
@@ -147,14 +147,21 @@ export default function SignInInner() {
 
         {/* ---------------- RIGHT / IMAGE (DESKTOP ONLY) ---------------- */}
         
-        <div
-  className="
-    hidden md:flex h-screen bg-gray-50
-    rounded-tl-[20px] rounded-bl-[20px]
-    bg-no-repeat bg-center bg-cover
-  "
-  style={{ backgroundImage: "url('/signin.svg')" }}
-/>
+        <div className="hidden md:block h-screen relative overflow-hidden">
+
+          <video
+           autoPlay
+           muted
+           loop
+           playsInline
+           preload="metadata"
+           aria-hidden="true"
+           className="absolute inset-0 w-full h-full object-cover rounded-tl-[30px] rounded-bl-[30px]"
+           >
+            <source src="/A.mp4" type="video/mp4" />
+           </video>
+
+        </div>
 
       </div>
     </>
