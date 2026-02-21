@@ -62,7 +62,7 @@ export default function SignUpPage() {
           <div className="w-full max-w-md space-y-8 text-center">
 
             <h1 className="text-2xl md:text-3xl font-bold text-black">
-              Sign up to CheckEmailHealth
+              Sign up to -
             </h1>
 
             <p className="text-black/70">
@@ -143,7 +143,7 @@ export default function SignUpPage() {
            playsInline
            preload="metadata"
            aria-hidden="true"
-           className="absolute inset-0 w-full h-full object-cover rounded-tl-[30px] rounded-bl-[30px]"
+           className="absolute inset-0 w-full h-full object-cover rounded-tl-[15px] rounded-bl-[15px]"
            >
             <source src="/A.mp4" type="video/mp4" />
            </video>
